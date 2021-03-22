@@ -1,0 +1,57 @@
+#atomosform {
+    background-color:#1F2833;
+
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #4ec9c1;
+    }    
+
+    form {
+        display: flex;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        height: 100%;
+        justify-content: center;
+        flex-direction: column;
+
+        input[type=text] {
+            background-color: transparent;
+            border: 2px solid whitesmoke;
+            opacity: 0.2;
+            transition-duration: 0.1s;
+        }
+
+        input[type=text]:hover {
+            opacity: 0.5;
+            transition-duration: 0.1s;
+        }
+
+        input[type=text]:focus {
+            opacity: 1;
+        }
+    }
+
+    button {
+        display: none;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        background-color:#1F2833;
+        transition-duration: 0.5s;
+        border:none;
+    }
+
+    button:hover {
+        width: 110%;
+    }
+}
+
+::placeholder {
+    color: #45A29E;
+}
