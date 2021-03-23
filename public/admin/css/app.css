@@ -1,148 +1,150 @@
-
 .atomosflex {
-    z-index: -1;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;                
-    
+  z-index: -1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
-.atomosflex > div {                
-    height: 100%;                
-}
-.activo {
-    z-index: 0;
-    width: 90%;
-    transition: width .7s;                
-}
-.inactivo {
-    z-index: 1;
-    width: 10%; 
-    transition: width .7s;               
+.atomosflex div {
+  height: 100%;
 }
 
-/*#region Formulario*/
+.activo {
+  z-index: 0;
+  width: 90%;
+  transition: width 0.7s;
+}
+
+.inactivo {
+  z-index: 1;
+  width: 10%;
+  transition: width 0.7s;
+}
 
 #atomosform {
-    background-color:#1F2833;
+  background-color: #1F2833;
 }
-
 #atomosform * {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #4ec9c1;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #4ec9c1;
+}
+#atomosform form {
+  display: flex;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  flex-direction: column;
+}
+#atomosform form input[type=text] {
+  background-color: transparent;
+  border: 2px solid whitesmoke;
+  opacity: 0.2;
+  transition-duration: 0.1s;
+}
+#atomosform form input[type=text]:hover {
+  opacity: 0.5;
+  transition-duration: 0.1s;
+}
+#atomosform form input[type=text]:focus {
+  opacity: 1;
+}
+#atomosform button {
+  display: none;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: #1F2833;
+  transition-duration: 0.5s;
+  border: none;
+}
+#atomosform button:hover {
+  width: 110%;
 }
 
-#atomosform > form {
-    display: flex;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 100%;
-    justify-content: center;
-    flex-direction: column;
+::-moz-placeholder {
+  color: #45A29E;
 }
 
-#atomosform > form > input[type=text]{
-    background-color: transparent;
-    border: 2px solid whitesmoke;
-    opacity: 0.2;
-    transition-duration: 0.1s;
-}
-
-#atomosform > form > input[type=text]:hover{                
-    opacity: 0.5;
-    transition-duration: 0.1s;
-}
-
-#atomosform > form > input[type=text]:focus{
-    opacity: 1;
+:-ms-input-placeholder {
+  color: #45A29E;
 }
 
 ::placeholder {
-    color: #45A29E;
+  color: #45A29E;
 }
-
-/*#endregion Formulario*/
-
-/*#region Tabla*/
 
 #atomostabla {
-    background-color: #50d0ff;
+  background-color: #50d0ff;
 }
-
 #atomostabla * {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #1F2833;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1F2833;
 }
-
-#atomostabla > table {
-    display: none;
-    background-color: #50d0ff;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    flex-direction: column;  
-    border-collapse: collapse;              
+#atomostabla table {
+  display: none;
+  background-color: #50d0ff;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  flex-direction: column;
+  border-collapse: collapse;
 }
-
-#atomostabla > th, td {
-    border: 3px solid #50d0ff;
-    width: 33%;
-    text-align: center;
+#atomostabla tr:nth-child(even) {
+  background-color: #9ee5ff;
 }
-
-tr:nth-child(even) {
-    background-color: #9ee5ff;
+#atomostabla button {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: #50d0ff;
+  transition-duration: 0.5s;
+  border: none;
 }
-
-#edit {
-    background-color: rgb(121, 255, 121);
+#atomostabla button:hover {
+  width: 110%;
 }
-
-#delete {
-    background-color: rgb(255, 123, 123);
+#atomostabla th, #atomostabla td {
+  border: 3px solid #50d0ff;
+  width: 33%;
+  text-align: center;
 }
-
-#edit:hover {
-    background-color: rgb(0, 255, 0);
+#atomostabla .botones button {
+  position: relative;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  border: none;
+  width: 50%;
+  height: 100%;
 }
-
-#delete:hover {
-    background-color: rgb(255, 0, 0);
+#atomostabla .botones .edit {
+  background-color: #79ff79;
 }
-
-#edit > button {
-    background-color: transparent;
-    border: none;
-    width: 100%;
-    height: 100%;
+#atomostabla .botones .delete {
+  background-color: #ff7b7b;
 }
-
-#delete > button {
-    background-color: transparent;
-    border: none;
-    width: 100%;
-    height: 100%;
+#atomostabla .botones .edit:hover {
+  background-color: lime;
 }
-
-
-/*#endregion Tabla*/
-
-/*#region Botones*/
-
-
-
-
-
-/*#endregion Botones*/        
+#atomostabla .botones .delete:hover {
+  background-color: red;
+}
