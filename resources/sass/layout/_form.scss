@@ -21,6 +21,7 @@
             background-color: transparent;
             border: 2px solid whitesmoke;
             opacity: 0.2;
+            font-size: 18px;
             transition-duration: 0.1s;
         }
 
@@ -31,6 +32,14 @@
 
         input[type=text]:focus {
             opacity: 1;
+        }
+
+        input[type=submit] {
+            
+        }
+
+        label {
+            font-size: 18px;
         }
     }
 

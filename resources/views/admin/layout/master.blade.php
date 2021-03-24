@@ -5,14 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Atomos En Web</title>
 
-        @include("admin.layout.styles")
+        @include("admin.layout.partials.styles")
         
     </head>
-    <body>
-        <div class="atomosflex">
-            @yield('content')
-        </div>
-        
-        @include("admin.layout.js")
+    <body>        
+        @yield('content')
+                
+        @include("admin.layout.partials.js")
     </body>    
 </html>

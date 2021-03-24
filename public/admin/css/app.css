@@ -48,6 +48,7 @@
   background-color: transparent;
   border: 2px solid whitesmoke;
   opacity: 0.2;
+  font-size: 18px;
   transition-duration: 0.1s;
 }
 #atomosform form input[type=text]:hover {
@@ -56,6 +57,9 @@
 }
 #atomosform form input[type=text]:focus {
   opacity: 1;
+}
+#atomosform form label {
+  font-size: 18px;
 }
 #atomosform button {
   display: none;

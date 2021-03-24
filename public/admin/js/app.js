@@ -1849,104 +1849,16 @@ module.exports = {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
     axios = _require["default"];
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-var boton_enviar_form = document.getElementById("enviar_form");
-var boton_expandir_form = document.getElementById("expandir_form");
-var boton_expandir_tabla = document.getElementById("expandir_tabla");
-boton_enviar_form.addEventListener("click", function () {
-  event.preventDefault();
-  var formularios = document.querySelectorAll('.admin_form');
-  formularios.forEach(function (formulario) {
-    var id_formulario = formulario.id;
-    var datos_formulario = new FormData(formulario);
-    var url = form.action;
-    var resp = axios.post(url, data);
+__webpack_require__(/*! ./form */ "./resources/js/form.js");
 
-    var sendPostRequest = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var _resp;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return axios.post(url, data);
-
-              case 3:
-                _resp = _context.sent;
-                _context.next = 9;
-                break;
-
-              case 6:
-                _context.prev = 6;
-                _context.t0 = _context["catch"](0);
-                console.error(_context.t0);
-
-              case 9:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, null, [[0, 6]]);
-      }));
-
-      return function sendPostRequest() {
-        return _ref.apply(this, arguments);
-      };
-    }();
-  });
-});
-boton_expandir_form.addEventListener("click", function () {
-  return cosas();
-});
-boton_expandir_tabla.addEventListener("click", function () {
-  return cosas();
-});
-
-var cosas = function cosas() {
-  var formulario = document.getElementById("atomosform");
-  var formhijos = formulario.children;
-  var tabla = document.getElementById("atomostabla");
-  var tabhijos = tabla.children;
-
-  if (formulario.className === 'activo') {
-    formulario.classList.toggle("activo", false);
-    formulario.classList.toggle("inactivo", true);
-    tabla.classList.toggle("inactivo", false);
-    tabla.classList.toggle("activo", true);
-    formhijos[1].style.display = "none";
-    tabhijos[0].style.display = "none";
-    formhijos[0].style.display = "flex";
-    tabhijos[1].style.display = "table";
-  } else {
-    formulario.classList.toggle("inactivo", false);
-    formulario.classList.toggle("activo", true);
-    tabla.classList.toggle("activo", false);
-    tabla.classList.toggle("inactivo", true);
-    formhijos[0].style.display = "none";
-    tabhijos[1].style.display = "none";
-    formhijos[1].style.display = "flex";
-    tabhijos[0].style.display = "flex";
-  }
-};
+__webpack_require__(/*! ./master */ "./resources/js/master.js");
 
 /***/ }),
 
@@ -1978,6 +1890,117 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/form.js":
+/*!******************************!*\
+  !*** ./resources/js/form.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var boton_enviar_form = document.getElementById("enviar_form");
+boton_enviar_form.addEventListener("click", function () {
+  event.preventDefault();
+  var formularios = document.querySelectorAll('.admin_form');
+  formularios.forEach(function (formulario) {
+    var data = new FormData(document.getElementById(formulario.id));
+    var url = formulario.action;
+    var resp = axios.post(url, data);
+
+    var sendPostRequest = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _resp;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios.post(url, data).then(function (resp) {
+                  formulario.innerHTML = resp.data.formulario;
+                });
+
+              case 3:
+                _resp = _context.sent;
+                _context.next = 9;
+                break;
+
+              case 6:
+                _context.prev = 6;
+                _context.t0 = _context["catch"](0);
+                console.error(_context.t0);
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 6]]);
+      }));
+
+      return function sendPostRequest() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/master.js":
+/*!********************************!*\
+  !*** ./resources/js/master.js ***!
+  \********************************/
+/***/ (() => {
+
+var boton_expandir_form = document.getElementById("expandir_form");
+var boton_expandir_tabla = document.getElementById("expandir_tabla");
+
+var cosas = function cosas() {
+  var formulario = document.getElementById("atomosform");
+  var formhijos = formulario.children;
+  var tabla = document.getElementById("atomostabla");
+  var tabhijos = tabla.children;
+
+  if (formulario.className === 'activo') {
+    formulario.classList.toggle("activo", false);
+    formulario.classList.toggle("inactivo", true);
+    tabla.classList.toggle("inactivo", false);
+    tabla.classList.toggle("activo", true);
+    formhijos[1].style.display = "none";
+    tabhijos[0].style.display = "none";
+    formhijos[0].style.display = "flex";
+    tabhijos[1].style.display = "table";
+  } else {
+    formulario.classList.toggle("inactivo", false);
+    formulario.classList.toggle("activo", true);
+    tabla.classList.toggle("activo", false);
+    tabla.classList.toggle("inactivo", true);
+    formhijos[0].style.display = "none";
+    tabhijos[1].style.display = "none";
+    formhijos[1].style.display = "flex";
+    tabhijos[0].style.display = "flex";
+  }
+};
+
+boton_expandir_form.addEventListener("click", function () {
+  return cosas();
+});
+boton_expandir_tabla.addEventListener("click", function () {
+  return cosas();
+});
 
 /***/ }),
 
