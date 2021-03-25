@@ -2,15 +2,18 @@
 
 @section('form')
     <button type="button" id="expandir_tabla"></button>
-    <form class="admin_form" id="id_form1">
+    <form class="admin_form" id="faqs-form" action="{{route("faqs_store")}}">
 
         {{ csrf_field()}}
 
+        <input type="hidden" name="id" value="{{isset($faq->id) ? $faq->id : ''}}">
         <label for="title">Título:</label>
-        <input type="text" id="title" name="title" placeholder="¿En qué año fue 1 + 1?">
+        <input type="text" id="title" name="title" value="{{isset($faq->title) ? $faq->title : ''}}" placeholder="¿En qué año fue 1 + 1?">
         <label for="answer">Respuesta:</label>
-        <input type="text" id="answer" name="answer" placeholder="¡La respuesta es el fantástico Ralph!"><br>
-        <input type="submit" value="Submit" id="enviar_form">
+        <input type="text" id="answer" name="description" value="{{isset($faq->description) ? $faq->description : ''}}" placeholder="¡La respuesta es el fantástico Ralph!"><br>
+        <div id ="submit">
+            <input type="submit" value="Submit" id="enviar_form">
+        </div>        
     </form>    
 @endsection
 

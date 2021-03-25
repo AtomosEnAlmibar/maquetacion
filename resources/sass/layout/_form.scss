@@ -34,10 +34,37 @@
             opacity: 1;
         }
 
-        input[type=submit] {
-            
-        }
+        #submit {
+            z-index: 3;
+            width: 100%;
+            height: 10%;
+            background-color: #1F2833;
+            transform: skewX(20deg);
+            input[type=submit] {
+                background-color: transparent;
+                border:2px solid #4ec9c1;
+                width: 100%;
+                height: 100%;
 
+                value {
+                    transform: skewX(-20deg);
+                }                
+            }
+    
+            input[type=submit]:hover {
+                animation-name: muerte;                    
+            }            
+
+            @keyframes muerte {
+                from {
+                    box-shadow: 0px 0px #4ec9c1 inset;
+                }
+                to {
+                    box-shadow: 180px 0px #4ec9c1 inset;
+                }
+            }
+        }
+        
         label {
             font-size: 18px;
         }
