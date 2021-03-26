@@ -5,7 +5,7 @@ let cosas = () =>
 {
     let formulario = document.getElementById("atomosform");
     var formhijos = formulario.children;
-    let tabla = document.getElementById("atomostabla");
+    let tabla = document.getElementById("atomostable");
     var tabhijos = tabla.children;
     if (formulario.className === 'activo')
     {
@@ -16,7 +16,7 @@ let cosas = () =>
         formhijos[1].style.display = "none"
         tabhijos[0].style.display = "none"
         formhijos[0].style.display = "flex"                    
-        tabhijos[1].style.display = "table"
+        tabhijos[1].style.display = "flex"
     } else {                
 
         formulario.classList.toggle("inactivo",false);

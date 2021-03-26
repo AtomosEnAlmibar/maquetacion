@@ -1,18 +1,20 @@
 const boton_enviar_form = document.getElementById("enviar_form");
-const tabla = document.getElementById("atomostabla");
+const table = document.getElementById("table");
+const forms = document.querySelectorAll(".admin-form");
+
 boton_enviar_form.addEventListener("click", () => {
     event.preventDefault();
-    const formularios=document.querySelectorAll('.admin_form');
-    formularios.forEach(formulario => {        
-        let data = new FormData(document.getElementById(formulario.getAttribute("id")));
-        let url = formulario.action;        
-        let resp = axios.post(url, data);
+    
+    forms.forEach(form => {        
+        let data = new FormData(form);
+        let url = form.action;                
+
         let sendPostRequest = async () => {
 
             try {
-                await axios.post(url, data).then(resp => {
-                    formulario.id.value = resp.data.id;
-                    tabla.innerHTML = resp.data.tabla;
+                await axios.post(url, data).then(response => {
+                    form.id.value = response.data.id;
+                    table.innerHTML = response.data.table;
                 });
                  
             } catch (error) {

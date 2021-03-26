@@ -22,8 +22,8 @@ class FaqController extends Controller
     {
 
         $view = View::make('admin.faqs.index')
-                ->with('faq', $this->faq)
-                ->with('faqs', $this->faq->get());
+        ->with('faq', $this->faq)
+        ->with('faqs', $this->faq->get());
 
         if(request()->ajax()) {
 
@@ -64,9 +64,9 @@ class FaqController extends Controller
         ->with('faq', $faq)
         ->renderSections();        
 
-        return response()->json([
-            'table' => $view['table'],
+        return response()->json([            
             'form' => $view['form'],
+            'table' => $view['table'],
             'id' => $faq->id,
         ]);
     }
