@@ -1856,9 +1856,11 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./master */ "./resources/js/master.js");
+
 __webpack_require__(/*! ./form */ "./resources/js/form.js");
 
-__webpack_require__(/*! ./master */ "./resources/js/master.js");
+__webpack_require__(/*! ./table */ "./resources/js/table.js");
 
 /***/ }),
 
@@ -1909,13 +1911,16 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+var form_faqs = document.getElementById("faqs-form");
 var boton_enviar_form = document.getElementById("enviar_form");
+var botones_editar = document.querySelectorAll(".edit");
 var table = document.getElementById("table");
 var forms = document.querySelectorAll(".admin-form");
-boton_enviar_form.addEventListener("click", function () {
+boton_enviar_form.addEventListener("click", function (event) {
   event.preventDefault();
   forms.forEach(function (form) {
     var data = new FormData(form);
+    console.log(data);
     var url = form.action;
 
     var sendPostRequest = /*#__PURE__*/function () {
@@ -1927,6 +1932,7 @@ boton_enviar_form.addEventListener("click", function () {
                 _context.prev = 0;
                 _context.next = 3;
                 return axios.post(url, data).then(function (response) {
+                  console.log(response);
                   form.id.value = response.data.id;
                   table.innerHTML = response.data.table;
                 });
@@ -1954,7 +1960,45 @@ boton_enviar_form.addEventListener("click", function () {
     }();
 
     sendPostRequest();
-    console.log('1');
+  });
+});
+botones_editar.forEach(function (boton) {
+  boton.addEventListener("click", function () {
+    var sendGetRequest = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios.get(boton.dataset.url).then(function (response) {
+                  form_faqs.innerHTML = response.data.form;
+                });
+
+              case 3:
+                _context2.next = 8;
+                break;
+
+              case 5:
+                _context2.prev = 5;
+                _context2.t0 = _context2["catch"](0);
+                console.error(_context2.t0);
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 5]]);
+      }));
+
+      return function sendGetRequest() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    sendGetRequest();
   });
 });
 
@@ -2001,6 +2045,67 @@ boton_expandir_form.addEventListener("click", function () {
 });
 boton_expandir_tabla.addEventListener("click", function () {
   return cosas();
+});
+
+/***/ }),
+
+/***/ "./resources/js/table.js":
+/*!*******************************!*\
+  !*** ./resources/js/table.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var table = document.getElementById("table");
+var botones_eliminar = document.querySelectorAll(".delete");
+botones_eliminar.forEach(function (boton) {
+  boton.addEventListener("click", function () {
+    var sendDeleteRequest = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios["delete"](boton.dataset.url).then(function (response) {
+                  table.innerHTML = response.data.table;
+                });
+
+              case 3:
+                console.log("tu madre");
+                _context.next = 9;
+                break;
+
+              case 6:
+                _context.prev = 6;
+                _context.t0 = _context["catch"](0);
+                console.error(_context.t0.response);
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 6]]);
+      }));
+
+      return function sendDeleteRequest() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    sendDeleteRequest();
+  });
 });
 
 /***/ }),
