@@ -1,1 +1,1 @@
-<script src="/admin/js/app.js"></script>
+<script src="/desktop/admin/js/app.js"></script>

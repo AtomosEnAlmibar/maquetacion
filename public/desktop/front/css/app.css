@@ -1,0 +1,139 @@
+.menu {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #50d0ff;
+  max-height: 15vh;
+  width: 100%;
+  transition: height 1s;
+}
+.menu div {
+  color: #1F2833;
+  border: 2px solid #1F2833;
+  border-radius: 5px;
+  height: 10vh;
+  width: 10em;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-right: 3.5%;
+  margin-left: 3.5%;
+}
+.menu div b {
+  position: relative;
+  top: 30%;
+  left: 25%;
+  font-size: 30px;
+}
+.menu button {
+  border: none;
+  outline: none;
+  background-color: yellowgreen;
+  width: 100%;
+  height: 30%;
+  transition-duration: 1s;
+}
+.menu button:hover {
+  height: 100%;
+  background-color: brown;
+  transition-duration: 1s;
+}
+
+.atomosflex {
+  z-index: -1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1F2833;
+}
+.atomosflex .faq {
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid #1F2833;
+  border-radius: 10px;
+  background-color: #50d0ff;
+  width: 80%;
+  color: #1F2833;
+}
+.atomosflex .faq .title {
+  font-size: 30px;
+  font-weight: bold;
+  width: 95%;
+}
+.atomosflex .faq .expandir-faq {
+  background-color: #1ec0fa;
+  border-left: 2px solid #1F2833;
+  border-bottom: none;
+  border-top: none;
+  border-right: none;
+  border-radius: 0px 10px 10px 0px;
+  width: 5%;
+  outline: none;
+}
+.atomosflex .faq .expandir-faq .linea {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  width: 50%;
+  height: 50%;
+  cursor: pointer;
+}
+.atomosflex .faq .expandir-faq .linea.active:before {
+  transform: translatey(-50%) rotate(-90deg);
+  opacity: 0;
+}
+.atomosflex .faq .expandir-faq .linea.active:after {
+  transform: translatey(-50%) rotate(0);
+}
+.atomosflex .faq .expandir-faq .linea:before, .atomosflex .faq .expandir-faq .linea:after {
+  content: "";
+  display: block;
+  background-color: #333;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transition: 0.35s;
+  width: 100%;
+  height: 3px;
+}
+.atomosflex .faq .expandir-faq .linea:before {
+  transform: translatey(-50%);
+}
+.atomosflex .faq .expandir-faq .linea:after {
+  transform: translatey(-50%) rotate(90deg);
+}
+.atomosflex .faq .extendido {
+  border-bottom: 2px solid #1F2833;
+  border-radius: 0px 10px 0px 0px;
+}
+.atomosflex .faq .description {
+  max-height: 100vh;
+  font-size: 20px;
+  width: 100%;
+  overflow: hidden;
+  word-wrap: break-word;
+  transition-duration: 0.4s;
+}
+.atomosflex .faq .inactivo {
+  max-height: 0vh;
+  transition-duration: 0.4s;
+}
+
+.encogido {
+  max-height: 1vh;
+  transition: height 1s;
+}
+.encogido div {
+  display: none;
+}

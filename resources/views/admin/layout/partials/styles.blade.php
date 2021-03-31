@@ -1,1 +1,1 @@
-<link href="/admin/css/app.css" rel="stylesheet">
+<link href="/desktop/admin/css/app.css" rel="stylesheet">

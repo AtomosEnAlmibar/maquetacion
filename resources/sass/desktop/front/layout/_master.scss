@@ -1,0 +1,159 @@
+.menu {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #50d0ff;
+    max-height: 15vh;
+    width: 100%;
+
+    transition:height 1s ;
+    div {
+        color: #1F2833;
+        border: 2px solid #1F2833;
+        border-radius: 5px;
+        height: 10vh;
+        
+        width:10em;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-right: 3.5%;
+        margin-left: 3.5%;
+
+        b {
+            position: relative;
+            top: 30%;
+            left: 25%;            
+            font-size: 30px;
+        }
+    }
+
+    button {
+        border:none;
+        outline: none;
+        background-color: yellowgreen;
+        width: 100%;
+        height: 30%;
+        transition-duration: 1s;
+    }
+
+    button:hover {
+        height: 100%;
+        background-color: brown;
+        transition-duration: 1s;
+    }
+
+
+}
+
+.atomosflex {
+    z-index: -1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   
+    align-items: center;
+    background-color: #1F2833;
+
+    .faq {    
+        display: flex;
+        flex-wrap: wrap;
+        border: 2px solid #1F2833;
+        border-radius: 10px;
+        background-color: #50d0ff;
+        width: 80%;
+        color: #1F2833;   
+        .title {            
+            font-size: 30px;
+            font-weight: bold;
+            width: 95%;
+        }
+        
+        .expandir-faq {
+            background-color: hsl(196, 96%, 55%);
+            border-left: 2px solid #1F2833;    
+            border-bottom: none;        
+            border-top: none;
+            border-right: none;
+            border-radius: 0px 10px 10px 0px;
+            width: 5%;
+            outline: none;
+            .linea {                       
+                position: relative;
+                left: 50%;
+                transform: translate(-50%);
+                width: 50%;
+                height: 50%;
+                cursor: pointer;
+
+                &.active {
+                    &:before {
+                        transform: translatey(-50%) rotate(-90deg);
+                        opacity: 0;
+                    }
+                    &:after {
+                        transform: translatey(-50%) rotate(0);
+                    }
+                }
+                
+                &:before , &:after {
+                    content: "";
+                    display: block;
+                    background-color: #333;
+                    position: absolute;		
+                    top: 50%; left: 0;
+                    transition: .35s;
+                    width: 100%;
+                    height: 3px;
+                }
+                
+                &:before {		
+                    transform: translatey(-50%);
+                }
+                
+                &:after {
+                    transform: translatey(-50%) rotate(90deg);
+                }
+            }
+        }
+
+        .extendido {
+            border-bottom: 2px solid #1F2833;
+            border-radius: 0px 10px 0px 0px;            
+        }
+
+        .description {
+            max-height: 100vh;
+            font-size: 20px;
+            width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;        
+            transition-duration:  .4s;
+        }
+
+        .inactivo {
+            max-height: 0vh;
+            transition-duration:  .4s;
+        }
+
+    }
+}
+
+.encogido {
+    max-height: 1vh;
+
+    div {
+        display: none;
+    }
+
+    transition:height 1s ;
+}

@@ -1,0 +1,1 @@
+<script src="/desktop/front/js/app.js"></script>
