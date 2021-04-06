@@ -1834,10 +1834,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/mobile/front/bootstrap.js":
-/*!************************************************!*\
-  !*** ./resources/js/mobile/front/bootstrap.js ***!
-  \************************************************/
+/***/ "./resources/js/bootstrap.js":
+/*!***********************************!*\
+  !*** ./resources/js/bootstrap.js ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
@@ -1862,6 +1862,49 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/mobile/front/faqs.js":
+/*!*******************************************!*\
+  !*** ./resources/js/mobile/front/faqs.js ***!
+  \*******************************************/
+/***/ (() => {
+
+var faqs = document.querySelectorAll('.faq');
+var botones_expandir_faq = document.querySelectorAll('.expandir-faq');
+botones_expandir_faq.forEach(function (boton) {
+  boton.addEventListener("click", function () {
+    var descripcion = boton.parentElement.lastElementChild;
+    descripcion.classList.toggle("inactivo");
+    boton.classList.toggle('extendido');
+    boton.childNodes[1].classList.toggle('active');
+    faqs.forEach(function (faq) {
+      if (faq.lastElementChild.className == 'description') {
+        if (faq.id != descripcion.id) {
+          faq.lastElementChild.classList.toggle("inactivo");
+          faq.childNodes[3].classList.toggle("extendido");
+          var _boton = faq.childNodes[3];
+
+          _boton.childNodes[1].classList.toggle('active');
+        }
+      }
+    });
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/mobile/front/master.js":
+/*!*********************************************!*\
+  !*** ./resources/js/mobile/front/master.js ***!
+  \*********************************************/
+/***/ (() => {
+
+var boton_expandir_menu = document.getElementById("expandir-menu");
+boton_expandir_menu.addEventListener("click", function () {
+  boton_expandir_menu.parentElement.classList.toggle('encogido');
+});
 
 /***/ }),
 
@@ -19332,7 +19375,11 @@ var __webpack_exports__ = {};
 var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
     axios = _require["default"];
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/mobile/front/bootstrap.js");
+__webpack_require__(/*! ../../bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./master */ "./resources/js/mobile/front/master.js");
+
+__webpack_require__(/*! ./faqs */ "./resources/js/mobile/front/faqs.js");
 })();
 
 /******/ })()

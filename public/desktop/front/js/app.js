@@ -1834,10 +1834,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/desktop/front/bootstrap.js":
-/*!*************************************************!*\
-  !*** ./resources/js/desktop/front/bootstrap.js ***!
-  \*************************************************/
+/***/ "./resources/js/bootstrap.js":
+/*!***********************************!*\
+  !*** ./resources/js/bootstrap.js ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
@@ -19363,7 +19363,7 @@ var __webpack_exports__ = {};
 var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
     axios = _require["default"];
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/desktop/front/bootstrap.js");
+__webpack_require__(/*! ../../bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./master */ "./resources/js/desktop/front/master.js");
 

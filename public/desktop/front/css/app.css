@@ -8,7 +8,7 @@
   justify-content: space-evenly;
   align-items: center;
   background-color: #50d0ff;
-  max-height: 15vh;
+  max-height: 25vh;
   width: 100%;
   transition: height 1s;
 }

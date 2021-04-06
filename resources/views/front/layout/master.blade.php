@@ -9,13 +9,13 @@
         
     </head>
     <body>
-        <div class="menu">
-            <div><b>Cosa 1</b></div>
-            <div><b>Cosa 2</b></div>
-            <div><b>Cosa 3</b></div>
-            <div><b>Cosa 4</b></div>
-            <div><b>Cosa 5</b></div>
-            <button id="expandir-menu">Cosas</button>
+        <div class="menu encogido">
+            <div class="menu-item">Cosa 1</div>
+            <div class="menu-item">Cosa 2</div>
+            <div class="menu-item">Cosa 3</div>
+            <div class="menu-item">Cosa 4</div>
+            <div class="menu-item">Cosa 5</div>
+            <button id="expandir-menu"><div class="line"></div></button>
         </div>
         <div class="atomosflex">                    
             @yield('content')

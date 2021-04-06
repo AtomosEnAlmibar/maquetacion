@@ -1845,29 +1845,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/desktop/admin/app.js":
-/*!*******************************************!*\
-  !*** ./resources/js/desktop/admin/app.js ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
-    axios = _require["default"];
-
-__webpack_require__(/*! ./bootstrap */ "./resources/js/desktop/admin/bootstrap.js");
-
-__webpack_require__(/*! ./master */ "./resources/js/desktop/admin/master.js");
-
-__webpack_require__(/*! ./form */ "./resources/js/desktop/admin/form.js");
-
-__webpack_require__(/*! ./table */ "./resources/js/desktop/admin/table.js");
-
-/***/ }),
-
-/***/ "./resources/js/desktop/admin/bootstrap.js":
-/*!*************************************************!*\
-  !*** ./resources/js/desktop/admin/bootstrap.js ***!
-  \*************************************************/
+/***/ "./resources/js/bootstrap.js":
+/*!***********************************!*\
+  !*** ./resources/js/bootstrap.js ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
@@ -1892,6 +1873,25 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/desktop/admin/app.js":
+/*!*******************************************!*\
+  !*** ./resources/js/desktop/admin/app.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
+
+__webpack_require__(/*! ../../bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./master */ "./resources/js/desktop/admin/master.js");
+
+__webpack_require__(/*! ./form */ "./resources/js/desktop/admin/form.js");
+
+__webpack_require__(/*! ./table */ "./resources/js/desktop/admin/table.js");
 
 /***/ }),
 

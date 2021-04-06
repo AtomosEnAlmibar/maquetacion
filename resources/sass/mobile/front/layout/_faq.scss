@@ -1,55 +1,3 @@
-.menu {
-    position: fixed;
-    top: 0%;
-    left: 0%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: #50d0ff;
-    max-height: 25vh;
-    width: 100%;
-
-    transition:height 1s ;
-    div {
-        color: #1F2833;
-        border: 2px solid #1F2833;
-        border-radius: 5px;
-        height: 10vh;
-        
-        width:10em;
-        margin-top: 1%;
-        margin-bottom: 1%;
-        margin-right: 3.5%;
-        margin-left: 3.5%;
-
-        b {
-            position: relative;
-            top: 30%;
-            left: 25%;            
-            font-size: 30px;
-        }
-    }
-
-    button {
-        border:none;
-        outline: none;
-        background-color: yellowgreen;
-        width: 100%;
-        height: 30%;
-        transition-duration: 1s;
-    }
-
-    button:hover {
-        height: 100%;
-        background-color: brown;
-        transition-duration: 1s;
-    }
-
-
-}
-
 .atomosflex {
     z-index: -1;
     position: fixed;
@@ -75,7 +23,8 @@
         .title {            
             font-size: 30px;
             font-weight: bold;
-            width: 95%;
+            width: 80%;
+            margin-left: 5%;
         }
         
         .expandir-faq {
@@ -85,7 +34,7 @@
             border-top: none;
             border-right: none;
             border-radius: 0px 10px 10px 0px;
-            width: 5%;
+            width: 15%;
             outline: none;
             .linea {                       
                 position: relative;
@@ -111,7 +60,7 @@
                     background-color: #333;
                     position: absolute;		
                     top: 50%; left: 0;
-                    transition: .35s;
+                    transition: .65s;
                     width: 100%;
                     height: 3px;
                 }
@@ -137,23 +86,13 @@
             width: 100%;
             overflow: hidden;
             word-wrap: break-word;        
-            transition-duration:  .4s;
+            transition-duration:  .3s;
         }
 
         .inactivo {
             max-height: 0vh;
-            transition-duration:  .4s;
+            transition-duration:  .3s;
         }
 
     }
-}
-
-.encogido {
-    max-height: 1vh;
-
-    div {
-        display: none;
-    }
-
-    transition:height 1s ;
 }
