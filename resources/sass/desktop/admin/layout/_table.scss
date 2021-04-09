@@ -12,7 +12,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
-        height: 100%;
+        height: 101%;
         background-color: #50d0ff;
         transition-duration: 0.5s;
         border:none;
@@ -45,7 +45,7 @@
         
             th, td {
                 border: 3px solid #50d0ff;
-                width: 25%;
+                min-width: 20%;
                 text-align: center;
                 
             }
@@ -76,7 +76,29 @@
                     background-color: rgb(255, 0, 0);
                 }
             }
-        }        
-                
-    }
+        }               
+        /* width */
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #50d0ff;             
+        }
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb {            
+            border-radius: 15px;
+            background: #1F2833; 
+            box-shadow: inset 0 0 5px hsl(213, 24%, 55%);            
+        }
+        
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            box-shadow: inset 0 0 5px hsl(213, 24%, 35%);            
+            background: hsl(213, 24%, 10%); 
+        }    
+    }    
 }
+

@@ -40,16 +40,13 @@ class FaqController extends Controller
                 ->with('faqs', $this->faq->where('active', 1)->get());
 
         if(request()->ajax()) {
-
-            // $faqs = $this->faq->where('active', 1)->get();
-            // return response()->json($faqs);
             
-            // $sections = $view->renderSections(); 
-    
-            // return response()->json([
-            //     'table' => $sections['table'],
-            //     'form' => $sections['form'],
-            // ]); 
+            $sections = $view->renderSections(); 
+            
+            return response()->json([
+                'table' => $sections['table'],
+                'form' => $sections['form'],
+            ]); 
         }
 
         return $view;
@@ -67,19 +64,14 @@ class FaqController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(FaqRequest $request)
     {            
         $faq = $this->faq->updateOrCreate([
             'id' => request('id')],[
+            'category_id' => request('category_id'),
             'title' => request('title'),
             'description' => request('description'),
             'active' => 1,
-        ]);
-        
-        $request->validate([
-            'id' => 'required',
-            'title' => 'required|unique:posts|max:25',
-            'description' => 'required'
         ]);
 
         $view = View::make('admin.faqs.index')

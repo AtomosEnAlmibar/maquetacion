@@ -1,5 +1,5 @@
-const boton_expandir_form =document.getElementById("expandir_form");
-const boton_expandir_tabla =document.getElementById("expandir_tabla");
+const botonExpandirForm =document.getElementById("expandir_form");
+const botonExpandirTabla =document.getElementById("expandir_tabla");
 
 let cosas = () =>
 {
@@ -30,5 +30,5 @@ let cosas = () =>
     }                            
 }
 
-boton_expandir_form.addEventListener("click", () => cosas());
-boton_expandir_tabla.addEventListener("click", () => cosas());
+botonExpandirForm.addEventListener("click", () => cosas());
+botonExpandirTabla.addEventListener("click", () => cosas());

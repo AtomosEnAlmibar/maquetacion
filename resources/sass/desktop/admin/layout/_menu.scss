@@ -1,0 +1,120 @@
+.menu {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #50d0ff;
+    max-height: 15vh;
+    width: 100%;
+    transition-duration: .5s ;
+    .menu-item {
+        position: relative;
+        border: 2px solid #1F2833;
+        border-radius: 5px 5px 5px 0px;
+        text-align: center;
+        min-height: 0vh;
+        max-height: 10vh;
+        height: 8vh;
+        min-width:3em;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-right: 3%;
+        margin-left: 3%;                          
+        transition-duration: .5s ;                
+        .submenu-main {
+            display: flex;        
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;                
+            width: 100%;
+            height: 100%;
+        }
+
+        span {
+            color: #1F2833;
+            font-family: 'Dosis', sans-serif;
+            font-size: 35px;
+            font-weight: bolder;
+        }
+
+        .line {                   
+            min-width: 0vh;
+            margin-top: 5%;               
+            border: solid #1F2833;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate3d(0,0,1,-135deg);            
+            transition-duration: 1s;            
+        }
+        
+        .submenu-item {      
+            text-align: left;
+            top: 100%;   
+            left: -3%;   
+            position: absolute;
+            min-width: 7em;
+            background-color: deeppink;            
+            z-index: 1;
+            border: 2px solid #1F2833;
+            border-radius: 0px 10px 10px 10px;
+            span{
+                font-size: 17px;
+            }
+        }
+    }
+
+    #expandir-menu {
+        z-index: 0;
+        border:none;
+        outline: none;
+        background-color: #50d0ff;
+        width: 100%;
+        min-height: 3vh;
+        position: relative;
+        transition-duration: 1s;
+
+        .line {                                  
+            border: solid #1F2833;
+            border-width: 0 4px 4px 0;
+            display: inline-block;
+            padding: 4px;
+            transform: rotate3d(0,0,1,-135deg);            
+            transition-duration: 1s;
+        }        
+    }
+
+    button:hover {
+        
+        transition-duration: 1s;
+    }
+
+
+}
+
+.encogido {
+
+    max-height: 0vh;    
+    transition-duration: .5s ;
+
+    .menu-item {
+        max-height: 0vh;
+        margin-top: 0%;
+        margin-bottom: 0%;
+        border: none;
+        transition-duration: .5s ;
+    }
+
+    #expandir-menu {      
+
+        transition-duration: 1s;
+
+        .line {                        
+            transform: rotate3d(0,0 ,1,45deg);            
+        }
+    }
+}

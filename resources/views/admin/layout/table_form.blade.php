@@ -1,15 +1,17 @@
 @extends('admin.layout.master')
 
 @section('content')
-    <div class="atomosflex">
+    <div class="form-table">
+        
         <div id="atomosform" class="activo">
-            <button type="button" id="expandir_tabla"></button>
+            <div id="expandir_tabla"></div>
             @yield('form')
-        </div>   
+        </div>  
+
         <div id="atomostable" class="inactivo">
-            <button type="button" id="expandir_form"></button>
+            <div id="expandir_form"></div>
             <div id="table">
-            @yield('table')
+                @yield('table')
             </div>
         </div>
     </div>
