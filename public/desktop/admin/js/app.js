@@ -1979,6 +1979,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 var table = document.getElementById("table");
 var forms = document.querySelectorAll(".admin-form");
 var renderForm = function renderForm() {
@@ -1987,10 +1999,21 @@ var renderForm = function renderForm() {
     event.preventDefault();
     forms.forEach(function (form) {
       var data = new FormData(form);
+
+      if (ckeditors != 'null') {
+        Object.entries(ckeditors).forEach(function (_ref) {
+          var _ref2 = _slicedToArray(_ref, 2),
+              key = _ref2[0],
+              value = _ref2[1];
+
+          data.append(key, value.getData());
+        });
+      }
+
       var url = form.action;
 
       var sendPostRequest = /*#__PURE__*/function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
@@ -2021,7 +2044,7 @@ var renderForm = function renderForm() {
         }));
 
         return function sendPostRequest() {
-          return _ref.apply(this, arguments);
+          return _ref3.apply(this, arguments);
         };
       }();
 
@@ -2036,7 +2059,7 @@ var renderTable = function renderTable() {
   botonesEditar.forEach(function (boton) {
     boton.addEventListener("click", function () {
       var sendGetRequest = /*#__PURE__*/function () {
-        var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
@@ -2066,7 +2089,7 @@ var renderTable = function renderTable() {
         }));
 
         return function sendGetRequest() {
-          return _ref2.apply(this, arguments);
+          return _ref4.apply(this, arguments);
         };
       }();
 
@@ -2076,7 +2099,7 @@ var renderTable = function renderTable() {
   botonesEliminar.forEach(function (boton) {
     boton.addEventListener("click", function () {
       var sendDeleteRequest = /*#__PURE__*/function () {
-        var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
             while (1) {
               switch (_context3.prev = _context3.next) {
@@ -2106,7 +2129,7 @@ var renderTable = function renderTable() {
         }));
 
         return function sendDeleteRequest() {
-          return _ref3.apply(this, arguments);
+          return _ref5.apply(this, arguments);
         };
       }();
 
@@ -2185,6 +2208,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var botonExpandirMenu = document.getElementById("expandir-menu");
+var botonesExpandirSubmenu = document.querySelectorAll(".expandir-submenu");
 var botonesMenu = document.querySelectorAll('.clickable');
 var form = document.getElementById("faqs-form");
 var table = document.getElementById("table");
@@ -2193,6 +2217,8 @@ botonExpandirMenu.addEventListener("mouseenter", function () {
 });
 botonesMenu.forEach(function (botonMenu) {
   botonMenu.addEventListener("click", function () {
+    var url = botonMenu.dataset.url;
+
     var sendGetRequest = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -2201,7 +2227,7 @@ botonesMenu.forEach(function (botonMenu) {
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios.get(botonMenu.dataset.url).then(function (response) {
+                return axios.get(url).then(function (response) {
                   form.innerHTML = response.data.form;
                   table.innerHTML = response.data.table;
                   (0,_form_table_js__WEBPACK_IMPORTED_MODULE_2__.renderForm)();
@@ -2211,6 +2237,7 @@ botonesMenu.forEach(function (botonMenu) {
                       (0,_ckeditor_js__WEBPACK_IMPORTED_MODULE_1__.createCK)();
                     }
                   });
+                  window.history.pushState('', '', url);
                 });
 
               case 3:

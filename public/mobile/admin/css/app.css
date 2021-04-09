@@ -1,16 +1,190 @@
 .atomosflex {
+  display: flex;
+  flex-direction: column;
+  background-color: #50d0ff;
+}
+
+.menu {
+  order: 2;
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #50d0ff;
+  height: 100vh;
+  width: 100%;
+  -webkit-margin-before: 0em;
+          margin-block-start: 0em;
+  -webkit-margin-after: 0em;
+          margin-block-end: 0em;
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
+  transition-duration: 0.5s;
+}
+.menu .menu-item {
+  display: block;
+  position: relative;
+  border: 3px solid #1F2833;
+  border-radius: 8px 8px 8px 8px;
+  text-align: center;
+  min-height: 0vh;
+  max-height: 10vh;
+  height: 8vh;
+  min-width: 5em;
+  width: 7em;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-right: 3%;
+  margin-left: 3%;
+  transition-duration: 0.5s;
+  list-style-type: none;
+  order: 2;
+}
+.menu .menu-item span {
+  color: #1F2833;
+  font-family: "Dosis", sans-serif;
+  font-size: 35px;
+  font-weight: bolder;
+}
+.menu .menu-item .submenu-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #1fc3ff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.menu .menu-item .submenu-main .line {
+  display: inline-block;
+  margin-left: 5%;
+  min-height: 0vh;
+  min-width: 0em;
+  border: solid #1F2833;
+  border-width: 0 3px 3px 0;
+  padding: 3px;
+  transform: rotate3d(0, 0, 1, 135deg);
+  transition-duration: 1s;
+}
+.menu .menu-item .submenu {
+  z-index: 1;
+  position: absolute;
+  top: -5%;
+  left: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition-duration: 1s;
+  cursor: pointer;
+}
+.menu .menu-item .submenu .submenu-item {
+  text-align: left;
+  min-width: 7em;
+  background-color: #2a62a2;
+  z-index: 1;
+  border: 3px solid #1F2833;
+  border-radius: 0px 5px 5px 0px;
+  max-height: 3vh;
+}
+.menu .menu-item .submenu .submenu-item span {
+  font-size: 17px;
+}
+.menu .menu-item .submenu .submenu-item:last-child {
+  border-radius: 0px 5px 5px 5px;
+}
+.menu #expandir-menu {
+  z-index: 0;
+  border: none;
+  outline: none;
+  background-color: yellow;
+  width: 100%;
+  min-height: 3vh;
+  position: relative;
+  transition-duration: 1s;
+  order: 1;
+}
+.menu #expandir-menu .line {
+  margin-top: 2%;
+  border: solid #1F2833;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding: 4px;
+  transform: rotate3d(0, 0, 1, 45deg);
+  transition-duration: 1s;
+}
+.menu button:hover {
+  transition-duration: 1s;
+}
+
+.menu-item:hover {
+  border-radius: 8px 0px 8px 8px;
+}
+.menu-item:hover .submenu-main {
+  border-radius: 8px 0px 8px 8px;
+}
+.menu-item:hover .submenu-main .line {
+  margin-left: 5%;
+  border: solid #1F2833;
+  border-width: 0 3px 3px 0;
+  padding: 3px;
+  transform: rotate3d(0, 0, 1, -45deg);
+  transition-duration: 1s;
+}
+.menu-item:hover .submenu {
+  display: flex;
+  opacity: 1;
+  transition-duration: 1s;
+}
+
+.encogido {
+  height: 10vh;
+  max-height: 0vh;
+  transition-duration: 0.5s;
+  top: 97%;
+}
+.encogido .menu-item {
+  display: none;
+  max-height: 0vh;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  border: none;
+  transition-duration: 0.5s;
+}
+.encogido .menu-item .submenu-main .line {
+  display: none;
+}
+.encogido .menu-item .submenu {
+  display: none;
+}
+.encogido .menu-item .submenu .submenu-item {
+  display: none;
+}
+.encogido #expandir-menu {
+  transition-duration: 1s;
+}
+.encogido #expandir-menu .line {
+  transform: rotate3d(0, 0, 1, -135deg);
+}
+
+.form-table {
+  order: 1;
   z-index: -1;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0%;
+  left: 0%;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.atomosflex div {
+.form-table div {
   height: 100%;
 }
 
@@ -32,6 +206,7 @@
 #atomosform * {
   font-family: Arial, Helvetica, sans-serif;
   color: #4ec9c1;
+  background-color: transparent;
 }
 #atomosform #expandir_tabla {
   display: none;
@@ -45,16 +220,13 @@
   transition-duration: 0.5s;
   border: none;
 }
-#atomosform #expandir_tabla:hover {
-  width: 110%;
-}
 #atomosform form {
   display: flex;
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
+  width: 80%;
   height: 100%;
   justify-content: center;
   flex-direction: column;
@@ -63,7 +235,7 @@
   background-color: transparent;
   border: 2px solid whitesmoke;
   opacity: 0.2;
-  font-size: 14px;
+  font-size: 18px;
   transition-duration: 0.1s;
   outline: none;
 }
@@ -74,7 +246,45 @@
 #atomosform form input[type=text]:focus {
   opacity: 1;
 }
+#atomosform form textarea {
+  border: 2px solid whitesmoke;
+  opacity: 0.2;
+  font-size: 18px;
+  transition-duration: 0.1s;
+  outline: none;
+}
+#atomosform form textarea:hover {
+  opacity: 0.5;
+  transition-duration: 0.1s;
+}
+#atomosform form textarea:focus {
+  opacity: 1;
+}
+#atomosform form #category {
+  background-color: transparent;
+  border: 2px solid whitesmoke;
+  opacity: 0.2;
+  font-size: 18px;
+  transition-duration: 0.1s;
+  outline: none;
+}
+#atomosform form #category .category_id {
+  background-color: transparent;
+  border: 2px solid whitesmoke;
+  opacity: 0.2;
+  font-size: 18px;
+  transition-duration: 0.1s;
+  outline: none;
+}
+#atomosform form #category:hover {
+  opacity: 0.5;
+  transition-duration: 0.1s;
+}
+#atomosform form #category:focus {
+  opacity: 1;
+}
 #atomosform form #submit {
+  margin-top: 25%;
   z-index: 3;
   width: 100%;
   height: 10%;
@@ -96,7 +306,7 @@
   border: 2px solid #4ec9c1;
   width: 100%;
   height: 10%;
-  font-size: 30px;
+  font-size: 50px;
 }
 #atomosform form #submit:hover #bg {
   width: 110%;
@@ -150,6 +360,10 @@
   flex-direction: column;
   border-collapse: collapse;
   overflow: auto;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 #atomostable #table table {
   background-color: #50d0ff;
@@ -164,24 +378,20 @@
 }
 #atomostable #table table th, #atomostable #table table td {
   border: 3px solid #50d0ff;
-  max-width: 50px;
+  max-width: 10%;
+  width: 10%;
   text-align: center;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 #atomostable #table table .botones button {
   position: relative;
-  top: 50%;
-  left: 25%;
-  transform: translate(-50%, -50%);
   border: none;
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 50%;
 }
 #atomostable #table table .botones button svg {
-  width: 50%;
-  height: 50%;
+  height: 25px;
+  width: 25px;
 }
 #atomostable #table table .botones .edit {
   background-color: #79ff79;
@@ -194,4 +404,19 @@
 }
 #atomostable #table table .botones .delete:hover {
   background-color: red;
+}
+#atomostable #table::-webkit-scrollbar {
+  width: 10px;
+}
+#atomostable #table::-webkit-scrollbar-track {
+  background: #50d0ff;
+}
+#atomostable #table::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background: #1F2833;
+  box-shadow: inset 0 0 5px #7189a8;
+}
+#atomostable #table::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 5px #44576f;
+  background: #131920;
 }

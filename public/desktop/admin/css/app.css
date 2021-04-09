@@ -16,22 +16,35 @@
   background-color: #50d0ff;
   max-height: 15vh;
   width: 100%;
+  -webkit-margin-before: 0em;
+          margin-block-start: 0em;
+  -webkit-margin-after: 0em;
+          margin-block-end: 0em;
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
   transition-duration: 0.5s;
 }
 .menu .menu-item {
   position: relative;
-  border: 2px solid #1F2833;
-  border-radius: 5px 5px 5px 0px;
+  border: 3px solid #1F2833;
+  border-radius: 8px 8px 8px 8px;
   text-align: center;
   min-height: 0vh;
   max-height: 10vh;
   height: 8vh;
-  min-width: 3em;
+  min-width: 5em;
   margin-top: 1%;
   margin-bottom: 1%;
   margin-right: 3%;
   margin-left: 3%;
   transition-duration: 0.5s;
+  list-style-type: none;
+}
+.menu .menu-item span {
+  color: #1F2833;
+  font-family: "Dosis", sans-serif;
+  font-size: 35px;
+  font-weight: bolder;
 }
 .menu .menu-item .submenu-main {
   display: flex;
@@ -40,43 +53,54 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+  background-color: #1fc3ff;
+  border-radius: 8px;
+  cursor: pointer;
 }
-.menu .menu-item span {
-  color: #1F2833;
-  font-family: "Dosis", sans-serif;
-  font-size: 35px;
-  font-weight: bolder;
-}
-.menu .menu-item .line {
-  min-width: 0vh;
-  margin-top: 5%;
+.menu .menu-item .submenu-main .line {
+  display: inline-block;
+  min-height: 0vh;
+  min-width: 0em;
   border: solid #1F2833;
   border-width: 0 3px 3px 0;
-  display: inline-block;
   padding: 3px;
-  transform: rotate3d(0, 0, 1, -135deg);
+  transform: rotate3d(0, 0, 1, 45deg);
   transition-duration: 1s;
 }
-.menu .menu-item .submenu-item {
-  text-align: left;
-  top: 100%;
-  left: -3%;
-  position: absolute;
-  min-width: 7em;
-  background-color: deeppink;
+.menu .menu-item .submenu {
   z-index: 1;
-  border: 2px solid #1F2833;
-  border-radius: 0px 10px 10px 10px;
+  position: absolute;
+  top: 100%;
+  left: -4%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  transition-duration: 1s;
 }
-.menu .menu-item .submenu-item span {
+.menu .menu-item .submenu .submenu-item {
+  text-align: left;
+  min-width: 7em;
+  background-color: #2a62a2;
+  z-index: 1;
+  border: 3px solid #1F2833;
+  border-radius: 0px 5px 5px 0px;
+  max-height: 2.5vh;
+}
+.menu .menu-item .submenu .submenu-item span {
   font-size: 17px;
+}
+.menu .menu-item .submenu .submenu-item:last-child {
+  border-radius: 0px 5px 5px 5px;
 }
 .menu #expandir-menu {
   z-index: 0;
   border: none;
   outline: none;
   background-color: #50d0ff;
-  width: 100%;
+  width: 160%;
   min-height: 3vh;
   position: relative;
   transition-duration: 1s;
@@ -93,6 +117,26 @@
   transition-duration: 1s;
 }
 
+.menu-item:hover {
+  border-radius: 8px 8px 8px 0px;
+}
+.menu-item:hover .submenu-main {
+  border-radius: 8px 8px 8px 0px;
+}
+.menu-item:hover .submenu-main .line {
+  margin-top: -1%;
+  border: solid #1F2833;
+  border-width: 0 3px 3px 0;
+  padding: 3px;
+  transform: rotate3d(0, 0, 1, -135deg);
+  transition-duration: 1s;
+}
+.menu-item:hover .submenu {
+  display: flex;
+  opacity: 1;
+  transition-duration: 1s;
+}
+
 .encogido {
   max-height: 0vh;
   transition-duration: 0.5s;
@@ -103,6 +147,15 @@
   margin-bottom: 0%;
   border: none;
   transition-duration: 0.5s;
+}
+.encogido .menu-item .submenu-main .line {
+  display: none;
+}
+.encogido .menu-item .submenu {
+  display: none;
+}
+.encogido .menu-item .submenu .submenu-item {
+  display: none;
 }
 .encogido #expandir-menu {
   transition-duration: 1s;
@@ -145,6 +198,7 @@
 #atomosform * {
   font-family: Arial, Helvetica, sans-serif;
   color: #4ec9c1;
+  background-color: transparent;
 }
 #atomosform #expandir_tabla {
   display: none;
@@ -188,7 +242,6 @@
   opacity: 1;
 }
 #atomosform form textarea {
-  background-color: transparent;
   border: 2px solid whitesmoke;
   opacity: 0.2;
   font-size: 18px;
