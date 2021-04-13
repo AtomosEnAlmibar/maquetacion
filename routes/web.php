@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/faqs','App\Http\Controllers\Front\FaqController@index');
 
+Route::get('/login','App\Http\Controllers\Admin\UserController@index');
+
 Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('faqs/categorias', 'App\Http\Controllers\Admin\FaqCategoryController', [
@@ -39,5 +41,18 @@ Route::group(['prefix' => 'admin'], function () {
             'destroy' => 'faqs_destroy',
             'show' => 'faqs_show',
         ]
-    ]);    
+    ]);   
+    
+    Route::resource('usuarios', 'App\Http\Controllers\Admin\UserController', [
+        'parameters' => [
+            'usuarios' => 'user', 
+        ],
+        'names' => [
+            'index' => 'users',
+            'create' => 'users_create',
+            'store' => 'users_store',
+            'destroy' => 'users_destroy',
+            'show' => 'users_show',
+        ]
+    ]);
 });
