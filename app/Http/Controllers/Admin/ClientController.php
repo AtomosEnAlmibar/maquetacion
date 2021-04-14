@@ -73,8 +73,7 @@ class ClientController extends Controller
             'name' => request('name'),
             'email' => request('email'),
             'phone' => request('phone'),
-            'password' => bcrypt(request('password')),
-            '2SV' => request('doublever'),
+            'password' => bcrypt(request('password')),            
             'active' => 1,
         ]);
 
