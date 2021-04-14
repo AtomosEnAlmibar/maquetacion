@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTFaqs extends Migration
+class CreateTDirections extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateTFaqs extends Migration
      */
     public function up()
     {
-        Schema::create('t_faqs', function (Blueprint $table) {
+        Schema::create('t_directions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('t_faq_categories');
-            $table->string('title');
-            $table->text('description');
-            $table->boolean('active');
+            $table->foreignId('client_id')->constrained('t_clients');
+            $table->string('country');
+            $table->string('state');
+            $table->string('city');
+            $table->string('address');
+            $table->integer('postal code');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateTFaqs extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_faqs');
+        Schema::dropIfExists('t_directions');
     }
 }

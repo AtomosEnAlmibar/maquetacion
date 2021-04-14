@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/faqs','App\Http\Controllers\Front\FaqController@index');
 
-Route::get('/login','App\Http\Controllers\Admin\UserController@index');
+Route::get('/login', 'App\Http\Controllers\Front\LoginController@index')->name('front_login');
+Route::post('/login', 'App\Http\Controllers\Front\LoginController@login')->name('front_login_submit');
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -53,6 +54,20 @@ Route::group(['prefix' => 'admin'], function () {
             'store' => 'users_store',
             'destroy' => 'users_destroy',
             'show' => 'users_show',
+        ]
+    ]);
+
+    Route::resource('clientes', 'App\Http\Controllers\Admin\ClientController', [
+        'parameters' => [
+            'clientes' => 'client', 
+        ],
+        'names' => [
+            'index' => 'clients',
+            'create' => 'clients_create',
+            'edit' => 'clients_edit',
+            'store' => 'clients_store',
+            'destroy' => 'clients_destroy',
+            'show' => 'clients_show',
         ]
     ]);
 });

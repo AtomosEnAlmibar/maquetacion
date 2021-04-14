@@ -17,6 +17,7 @@ export let renderForm = () => {
                     data.append(key, value.getData());
                 });
             }
+            
             let url = form.action;                        
             let sendPostRequest = async () => {
     

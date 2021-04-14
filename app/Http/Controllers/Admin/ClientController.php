@@ -7,18 +7,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\FaqRequest;
-use App\Models\DB\Faq;
+use App\Http\Requests\Admin\ClientRequest;
+use App\Models\DB\Client;
 
-class FaqController extends Controller
+class ClientController extends Controller
 {
-    protected $faq;
+    protected $client;
 
-    function __construct(Faq $faq)
+    function __construct(Client $client)
     {
         //$this->middleware('auth');
 
-        $this->faq = $faq;
+        $this->client = $client;
     }
 
     public function indexJson(Request $request)
@@ -28,7 +28,7 @@ class FaqController extends Controller
         $orderByDir = $request->input('dir', 'asc');
         $searchValue = $request->input('search');
         
-        $query = $this->faq->eloquentQuery($orderBy, $orderByDir, $searchValue);
+        $query = $this->client->eloquentQuery($orderBy, $orderByDir, $searchValue);
         $data = $query->paginate($length);
         
         return new DataTableCollectionResource($data);
@@ -37,9 +37,9 @@ class FaqController extends Controller
     public function index()
     {
 
-        $view = View::make('admin.faqs.index')
-                ->with('faq', $this->faq)
-                ->with('faqs', $this->faq->where('active', 1)->get());
+        $view = View::make('admin.clients.index')
+                ->with('client', $this->client)
+                ->with('clients', $this->client->where('active', 1)->get());
 
         if(request()->ajax()) {
             
@@ -57,8 +57,8 @@ class FaqController extends Controller
     public function create()
     {
 
-        $view = View::make('admin.faqs.index')
-        ->with('faq', $this->faq)
+        $view = View::make('admin.clients.index')
+        ->with('client', $this->client)
         ->renderSections();
 
         return response()->json([
@@ -66,33 +66,35 @@ class FaqController extends Controller
         ]);
     }
 
-    public function store(FaqRequest $request)
+    public function store(ClientRequest $request)
     {            
-        $faq = $this->faq->updateOrCreate([
+        $client = $this->client->updateOrCreate([
             'id' => request('id')],[
-            'category_id' => request('category_id'),
-            'title' => request('title'),
-            'description' => request('description'),
+            'name' => request('name'),
+            'email' => request('email'),
+            'phone' => request('phone'),
+            'password' => bcrypt(request('password')),
+            '2SV' => request('doublever'),
             'active' => 1,
         ]);
 
-        $view = View::make('admin.faqs.index')
-        ->with('faqs', $this->faq->where('active', 1)->get())
-        ->with('faq', $faq)
+        $view = View::make('admin.clients.index')
+        ->with('clients', $this->client->where('active', 1)->get())
+        ->with('client', $client)
         ->renderSections();        
 
         return response()->json([
             'table' => $view['table'],
             'form' => $view['form'],
-            'id' => $faq->id,
+            'id' => $client->id,
         ]);
     }
 
-    public function show(Faq $faq)
+    public function show(Client $client)
     {
-        $view = View::make('admin.faqs.index')
-        ->with('faq', $faq)
-        ->with('faqs', $this->faq->where('active', 1)->get());   
+        $view = View::make('admin.clients.index')
+        ->with('client', $client)
+        ->with('clients', $this->client->where('active', 1)->get());   
         
         if(request()->ajax()) {
 
@@ -106,16 +108,16 @@ class FaqController extends Controller
         return $view;
     }
 
-    public function destroy(Faq $faq)
+    public function destroy(Client $client)
     {
-        $faq->active = 0;
-        $faq->save();
+        $client->active = 0;
+        $client->save();
 
-        // $faq->delete();
+        // $client->delete();
 
-        $view = View::make('admin.faqs.index')
-            ->with('faq', $this->faq)
-            ->with('faqs', $this->faq->where('active', 1)->get())
+        $view = View::make('admin.clients.index')
+            ->with('client', $this->client)
+            ->with('clients', $this->client->where('active', 1)->get())
             ->renderSections();
         
         return response()->json([
