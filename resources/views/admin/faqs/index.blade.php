@@ -5,22 +5,27 @@
 
         {{ csrf_field()}}
 
+        
         <input id="nada" autocomplete="false" name="hidden" type="text" style="display:none;">
         <input id="id" type="hidden" name="id" value="{{isset($faq->id) ? $faq->id : ''}}">        
         <label for="category">Categoría:</label>
         <select id="category" name="category_id">
             @foreach ($faq_categories as $faq_category)
-            <option value="{{$faq_category->id}}" {{$faq->category_id == $faq_category->id ? 'selected':''}} class="category_id">{{ $faq_category->name }}</option>
+                <option value="{{$faq_category->id}}" {{$faq->category_id == $faq_category->id ? 'selected':''}} class="category_id">{{ $faq_category->name }}</option>
             @endforeach
         </select>
+        
+        
         <label for="title">Título:</label>
         <input type="text" id="title" name="title" value="{{isset($faq->title) ? $faq->title : ''}}" placeholder="¿En qué año fue 1 + 1?">
+        
+        
         <label for="answer">Respuesta:</label>
         <textarea class="answer" id="area_texto" name="description" placeholder="¡La respuesta es el fantástico Ralph!">{{isset($faq->description) ? $faq->description : ''}}</textarea>
         <div id ="submit">            
             <button type="submit" value="Submit" id="enviar_form"><b>Submit</b></button>            
             <div id="bg"></div>
-        </div>        
+        
     </form>    
 @endsection
 

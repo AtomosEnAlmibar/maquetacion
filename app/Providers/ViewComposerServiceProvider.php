@@ -31,6 +31,16 @@ class ViewComposerServiceProvider extends ServiceProvider
         );
 
         view()->composer([
+            'admin.directions.index'],
+            'App\Http\ViewComposers\Admin\Countries'
+        );
+
+        view()->composer([
+            'admin.directions.index'],
+            'App\Http\ViewComposers\Admin\Clients'
+        );
+
+        view()->composer([
             'admin.clients.index'],
             'App\Http\ViewComposers\Admin\Directions'
         );

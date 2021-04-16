@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/faqs','App\Http\Controllers\Front\FaqController@index');
-
-Route::get('/login', 'App\Http\Controllers\Front\LoginController@index')->name('front_login');
-Route::post('/login', 'App\Http\Controllers\Front\LoginController@login')->name('front_login_submit');
-
 Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('faqs/categorias', 'App\Http\Controllers\Admin\FaqCategoryController', [
@@ -70,4 +65,25 @@ Route::group(['prefix' => 'admin'], function () {
             'show' => 'clients_show',
         ]
     ]);
+
+    Route::resource('direcciones', 'App\Http\Controllers\Admin\DirectionController', [
+        'parameters' => [
+            'direcciones' => 'direction', 
+        ],
+        'names' => [
+            'index' => 'directions',
+            'create' => 'directions_create',
+            'edit' => 'directions_edit',
+            'store' => 'directions_store',
+            'destroy' => 'directions_destroy',
+            'show' => 'directions_show',
+        ]
+    ]);
 });
+
+Route::post('/fingerprint', 'App\Http\Controllers\Front\FingerprintController@store')->name('front_fingerprint');
+
+Route::get('/faqs','App\Http\Controllers\Front\FaqController@index');
+
+Route::get('/login', 'App\Http\Controllers\Front\LoginController@index')->name('front_login');
+Route::post('/login', 'App\Http\Controllers\Front\LoginController@login')->name('front_login_submit');

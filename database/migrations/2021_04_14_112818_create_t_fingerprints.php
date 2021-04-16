@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTLogins extends Migration
+class CreateTFingerprints extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateTLogins extends Migration
      */
     public function up()
     {
-        Schema::create('t_logins', function (Blueprint $table) {
+        Schema::create('t_fingerprints', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('action');
+            $table->integer('fingerprint_code');
+            $table->string('browser');
+            $table->string('browser_version');
+            $table->string('OS');
+            $table->string('resolution');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateTLogins extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_logins');
+        Schema::dropIfExists('t_fingerprints');
     }
 }

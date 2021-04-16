@@ -1,5 +1,21 @@
 const table = document.getElementById("table");
 const forms = document.querySelectorAll(".admin-form");
+const botonesMenuPestana=document.querySelectorAll('.menu-pestana-item');
+const pestanas=document.querySelectorAll('.pestana');
+
+let cambiarPestana = () => {
+    botonesMenuPestana.forEach(boton=>{        
+        boton.addEventListener("click",()=>{
+            pestanas.forEach(pestana=>{
+                pestana.classList.add("inactivo");
+
+                if (pestana.id==boton.dataset.name) {                    
+                    pestana.classList.remove("inactivo");
+                }
+            })
+        })
+    })
+}
 
 export let renderForm = () => {    
     
@@ -82,3 +98,4 @@ export let renderTable = () => {
 
 renderForm();
 renderTable();
+cambiarPestana();

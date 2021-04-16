@@ -7,15 +7,29 @@
 
         <input autocomplete="false" name="hidden" type="text" style="display:none;">
         <input id="id" type="hidden" name="id" value="{{isset($client->id) ? $client->id : ''}}">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" value="{{isset($client->name) ? $client->name : ''}}" placeholder="¿En qué año fue 1 + 1?">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" value="{{isset($client->email) ? $client->email : ''}}" placeholder="¿En qué año fue 1 + 1?">
-        <label for="phone">Teléfono:</label>
-        <input type="text" id="phone" name="phone" value="{{isset($client->phone) ? $client->phone : ''}}" placeholder="¿En qué año fue 1 + 1?">
-        <label for="password">Contraseña:</label>
-        <input type="text" id="password" name="password" value="{{isset($client->password) ? $client->password : ''}}" placeholder="¿En qué año fue 1 + 1?">
-        
+        <ul class="menu-pestana">
+            <li class="menu-pestana-item" data-name="nombre">Nombre</li>
+            <li class="menu-pestana-item" data-name="email">Email</li>
+            <li class="menu-pestana-item" data-name="telefono">Telefono</li>
+            <li class="menu-pestana-item" data-name="contrasena">Contraseña</li>
+        </ul>
+        <div class="pestana" id="nombre">
+
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" value="{{isset($client->name) ? $client->name : ''}}" placeholder="¿En qué año fue 1 + 1?">        
+        </div>
+        <div class="pestana inactivo" id="email">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" value="{{isset($client->email) ? $client->email : ''}}" placeholder="¿En qué año fue 1 + 1?">
+        </div>
+        <div class="pestana inactivo" id="telefono">
+            <label for="phone">Teléfono:</label>
+            <input type="text" id="phone" name="phone" value="{{isset($client->phone) ? $client->phone : ''}}" placeholder="¿En qué año fue 1 + 1?">            
+        </div>
+        <div class="pestana inactivo" id="contrasena">
+            <label for="password">Contraseña:</label>
+            <input type="text" id="password" name="password" value="{{isset($client->password) ? $client->password : ''}}" placeholder="¿En qué año fue 1 + 1?">
+        </div>
         <div id ="submit">            
             <button type="submit" value="Submit" id="enviar_form"><b>Submit</b></button>            
             <div id="bg"></div>
@@ -43,9 +57,9 @@
                 <td>{{$client->phone}}</td>
                 <td>{{$client->password}}</td>                
                 <td>
-                    @foreach ($directions as $direction)
+                    @foreach ($directions as $direction)    
                         @if ($direction->client_id == $client->id)
-                            {{$direction->country}},
+                            {{$direction->country->name}},
                             {{$direction->state}},
                             {{$direction->city}},
                             {{$direction->address}},

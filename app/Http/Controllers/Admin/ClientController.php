@@ -89,6 +89,24 @@ class ClientController extends Controller
         ]);
     }
 
+    public function edit(Client $client)
+    {
+                
+        $view = View::make('admin.client.index')
+        ->with('client', $client)
+        ->with('clients', $this->client->where('active', 1)->get());
+        
+        if(request()->ajax()) {
+            $sections = $view->renderSections(); 
+    
+            return response()->json([
+                'form' => $sections['form'],
+            ]); 
+        }
+                
+        return $view;
+    }
+
     public function show(Client $client)
     {
         $view = View::make('admin.clients.index')

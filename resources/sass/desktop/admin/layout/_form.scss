@@ -1,6 +1,5 @@
 #atomosform {
-    background-color:#1F2833;
-
+    background-color:#1F2833;    
     * {
         font-family: Arial, Helvetica, sans-serif;
         color: #4ec9c1;
@@ -31,55 +30,49 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 50%;
-        height: 100%;        
-        justify-content: center;
+        height: 50%;        
+        justify-content: row;
         flex-direction: column;
 
-        input[type=text] {
+        border: 4px solid #4ec9c1;;
+        border-radius: 30px;
+
+        .menu-pestana {
+            display: flex;
+            flex-direction: row;                      
+            list-style-type: none;        
             background-color: transparent;
-            border: 2px solid whitesmoke;
-            opacity: 0.2;
-            font-size: 18px;
-            transition-duration: 0.1s;
-            outline: none;
-        }
+            margin-top: 0%;
+            padding-inline-start: 0px;            
+            li {                 
+                border: 2px solid transparent;
+                border-radius: 10px;
+                margin-top: 1%;
+                margin-left: 2%;
+                margin-right: 2%;
+                text-align: center;   
+                width: 25%;
+                color: #1F2833;       
+                background-color: #4ec9c1;                                              
+            }            
 
-        input[type=text]:hover {
-            opacity: 0.5;
-            transition-duration: 0.1s;
-        }
-
-        input[type=text]:focus {
-            opacity: 1;
+            li:hover {
+                background-color: hsl(176, 53%, 35%);                                              
+            }
         }
         
-        textarea {            
-            border: 2px solid whitesmoke;
-            opacity: 0.2;
-            font-size: 18px;
-            transition-duration: 0.1s;
-            outline: none;            
-        }
+        .pestana {
+            display: flex;
+            position: relative;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            height: 50%;        
+            justify-content: center;
+            flex-direction: column;
 
-        textarea:hover {
-            opacity: 0.5;
-            transition-duration: 0.1s;
-        }
-
-        textarea:focus {
-            opacity: 1;
-        }
-        
-
-        #category {
-            background-color: transparent;
-            border: 2px solid whitesmoke;
-            opacity: 0.2;
-            font-size: 18px;
-            transition-duration: 0.1s;
-            outline: none;
-
-            .category_id {
+            input[type=text] {
                 background-color: transparent;
                 border: 2px solid whitesmoke;
                 opacity: 0.2;
@@ -87,15 +80,72 @@
                 transition-duration: 0.1s;
                 outline: none;
             }
+    
+            input[type=text]:hover {
+                opacity: 0.5;
+                transition-duration: 0.1s;
+            }
+    
+            input[type=text]:focus {
+                opacity: 1;
+            }
+            
+            textarea {            
+                border: 2px solid whitesmoke;
+                opacity: 0.2;
+                font-size: 18px;
+                transition-duration: 0.1s;
+                outline: none;            
+            }
+    
+            textarea:hover {
+                opacity: 0.5;
+                transition-duration: 0.1s;
+            }
+    
+            textarea:focus {
+                opacity: 1;
+            }
+            
+    
+            #category {
+                background-color: transparent;
+                border: 2px solid whitesmoke;
+                opacity: 0.2;
+                font-size: 18px;
+                transition-duration: 0.1s;
+                outline: none;
+    
+                .category_id {
+                    background-color: transparent;
+                    border: 2px solid whitesmoke;
+                    opacity: 0.2;
+                    font-size: 18px;
+                    transition-duration: 0.1s;
+                    outline: none;
+                }
+            }
+    
+            #category:hover {
+                opacity: 0.5;
+                transition-duration: 0.1s;
+            }
+    
+            #category:focus {
+                opacity: 1;
+            }            
+    
+            label {
+                font-size: 18px;
+            }
+        }
+        
+        .inactivo {
+            display: none   ;
         }
 
-        #category:hover {
-            opacity: 0.5;
-            transition-duration: 0.1s;
-        }
-
-        #category:focus {
-            opacity: 1;
+        .activo {
+            display:flex;
         }
 
         #submit {
@@ -119,26 +169,12 @@
                 position: fixed;
                 background-color: transparent;
                 border:2px solid #4ec9c1;
-                width: 100%;
-                height: 10%;
+                width: 100%;                
                 font-size: 50px;
             }                                               
         }
         
-        #submit:hover {
-            #bg {
-                width: 110%;
-                transition-duration: 0.3s;
-            }
-
-            button[type=submit] {
-                color: #1F2833;
-            }
-        }
-
-        label {
-            font-size: 18px;
-        }
+        
     }
 }
 
