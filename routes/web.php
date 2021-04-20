@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['prefix' => 'admin'], function () {
 
+    
+
     Route::resource('faqs/categorias', 'App\Http\Controllers\Admin\FaqCategoryController', [
         'parameters' => [
             'categorias' => 'faq_category', 
@@ -27,6 +29,8 @@ Route::group(['prefix' => 'admin'], function () {
             'show' => 'faq_categories_show',
         ]
     ]);
+
+    Route::post('/faqs/filter', 'App\Http\Controllers\Admin\FaqController@filter')->name('faqs_filter');
 
     //Route::get('/faqs/json', 'App\Http\Controllers\Admin\FaqController@indexJson')->name('faqs_json');
     Route::resource('faqs', 'App\Http\Controllers\Admin\FaqController', [

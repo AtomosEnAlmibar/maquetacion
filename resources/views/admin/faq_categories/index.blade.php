@@ -23,7 +23,7 @@
             <th>Id</th>
             <th>Nombre</th>                                   
         </tr>
-        @foreach($faq_categories as $faq_category)
+        @foreach($faq_categories as $faq_category)            
             <tr class="swipe-front" id={{$faq_category->id}}>
                 <td>{{$faq_category->id}}</td>
                 <td>{{$faq_category->name}}</td> 

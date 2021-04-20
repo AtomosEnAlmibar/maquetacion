@@ -1,7 +1,10 @@
 @extends('admin.layout.master')
 
 @section('content')
-    <div class="form-table">        
+    <div class="form-table">         
+        @if(isset($filters))
+                @include('admin.components.table_filters', $filters)
+        @endif
         <div id="atomostable" class="activo">
             <div id="expandir_form"></div>
             <div id="table">

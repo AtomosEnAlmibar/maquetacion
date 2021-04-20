@@ -192,6 +192,31 @@
   transition: width 0.7s;
 }
 
+.table-filter {
+  z-index: 4;
+  height: 90%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  background-color: #0087b8;
+}
+.table-filter .table-filter-buttons {
+  background-color: #50d0ff;
+}
+.table-filter .table-filter-buttons .table-filter-button {
+  display: none;
+}
+.table-filter .table-filter-buttons .button-active {
+  background-color: #0087b8;
+  border-radius: 0px 500px 500px 0px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline;
+}
+
 #atomosform {
   background-color: #1F2833;
 }
@@ -201,7 +226,6 @@
   background-color: transparent;
 }
 #atomosform #expandir_tabla {
-  display: none;
   position: relative;
   top: 50%;
   left: 50%;
@@ -216,7 +240,7 @@
   width: 110%;
 }
 #atomosform form {
-  display: flex;
+  display: none;
   position: relative;
   top: 50%;
   left: 50%;
@@ -362,12 +386,17 @@
 
 #atomostable {
   background-color: #50d0ff;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 #atomostable * {
   font-family: Arial, Helvetica, sans-serif;
   color: #1F2833;
 }
 #atomostable #expandir_form {
+  display: none;
   position: relative;
   top: 50%;
   left: 50%;
@@ -381,20 +410,8 @@
 #atomostable #expandir_form:hover {
   width: 110%;
 }
-#atomostable #table {
-  display: none;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  flex-direction: column;
-  border-collapse: collapse;
-  overflow: auto;
-  /* width */
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
-}
-#atomostable #table table {
+#atomostable #table-table {
+  display: flex;
   background-color: #50d0ff;
   width: 100%;
   height: 100%;
@@ -402,15 +419,21 @@
   flex-direction: column;
   border-collapse: collapse;
 }
-#atomostable #table table tr:nth-child(even) {
-  background-color: #9ee5ff;
+#atomostable #table-table .fila {
+  max-height: 10%;
+  display: flex;
+  flex-direction: row;
+  border: 3px solid black;
 }
-#atomostable #table table th, #atomostable #table table td {
-  border: 3px solid #50d0ff;
-  max-width: 20%;
+#atomostable #table-table .fila .cabecera {
+  min-width: 20%;
   text-align: center;
 }
-#atomostable #table table .botones button {
+#atomostable #table-table .fila .columna {
+  min-width: 20%;
+  text-align: center;
+}
+#atomostable #table-table .fila .botones button {
   position: relative;
   top: 50%;
   left: 25%;
@@ -419,30 +442,33 @@
   width: 50%;
   height: 100%;
 }
-#atomostable #table table .botones .edit {
+#atomostable #table-table .fila .botones .edit {
   background-color: #79ff79;
 }
-#atomostable #table table .botones .delete {
+#atomostable #table-table .fila .botones .delete {
   background-color: #ff7b7b;
 }
-#atomostable #table table .botones .edit:hover {
+#atomostable #table-table .fila .botones .edit:hover {
   background-color: lime;
 }
-#atomostable #table table .botones .delete:hover {
+#atomostable #table-table .fila .botones .delete:hover {
   background-color: red;
 }
-#atomostable #table::-webkit-scrollbar {
+#atomostable #table-table .fila:nth-child(even) {
+  background-color: #9ee5ff;
+}
+#atomostable::-webkit-scrollbar {
   width: 10px;
 }
-#atomostable #table::-webkit-scrollbar-track {
+#atomostable::-webkit-scrollbar-track {
   background: #50d0ff;
 }
-#atomostable #table::-webkit-scrollbar-thumb {
+#atomostable::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background: #1F2833;
   box-shadow: inset 0 0 5px #7189a8;
 }
-#atomostable #table::-webkit-scrollbar-thumb:hover {
+#atomostable::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 5px #44576f;
   background: #131920;
 }

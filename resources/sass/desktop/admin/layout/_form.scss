@@ -6,8 +6,7 @@
         background-color: transparent;
     }    
 
-    #expandir_tabla {
-        display: none;
+    #expandir_tabla {        
         position: relative;
         top: 50%;
         left: 50%;
@@ -24,7 +23,7 @@
     }
 
     form {
-        display: flex;
+        display: none;
         position: relative;
         top: 50%;
         left: 50%;

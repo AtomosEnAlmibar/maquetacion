@@ -1914,11 +1914,13 @@ __webpack_require__(/*! ../../bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./master */ "./resources/js/desktop/admin/master.js");
 
-__webpack_require__(/*! ./form_table */ "./resources/js/desktop/admin/form_table.js");
+__webpack_require__(/*! ./formTable */ "./resources/js/desktop/admin/formTable.js");
 
 __webpack_require__(/*! ./menu */ "./resources/js/desktop/admin/menu.js");
 
 __webpack_require__(/*! ./ckeditor */ "./resources/js/desktop/admin/ckeditor.js");
+
+__webpack_require__(/*! ./filterTable */ "./resources/js/desktop/admin/filterTable.js");
 
 /***/ }),
 
@@ -1959,10 +1961,101 @@ createCK();
 
 /***/ }),
 
-/***/ "./resources/js/desktop/admin/form_table.js":
-/*!**************************************************!*\
-  !*** ./resources/js/desktop/admin/form_table.js ***!
-  \**************************************************/
+/***/ "./resources/js/desktop/admin/filterTable.js":
+/*!***************************************************!*\
+  !*** ./resources/js/desktop/admin/filterTable.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderFilterTable": () => (/* binding */ renderFilterTable),
+/* harmony export */   "hideFilterTable": () => (/* binding */ hideFilterTable),
+/* harmony export */   "showFilterTable": () => (/* binding */ showFilterTable)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _formTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./formTable */ "./resources/js/desktop/admin/formTable.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var table = document.getElementById("table");
+var tableFilter = document.getElementById("table-filter");
+var filterForm = document.getElementById("filter-form");
+var renderFilterTable = function renderFilterTable() {
+  var openFilter = document.getElementById("open-filter");
+  var applyFilter = document.getElementById("apply-filter");
+  openFilter.addEventListener('click', function () {
+    openFilter.classList.remove('button-active');
+    tableFilter.classList.add('filter-active');
+    applyFilter.classList.add('button-active');
+  });
+  applyFilter.addEventListener('click', function () {
+    var data = new FormData(filterForm);
+    var url = filterForm.action;
+
+    var sendPostRequest = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios.post(url, data).then(function (response) {
+                  table.innerHTML = response.data.table;
+                  console.log(response.data.table);
+                  (0,_formTable__WEBPACK_IMPORTED_MODULE_1__.renderTable)();
+                  tableFilter.classList.remove('filter-active');
+                  applyFilter.classList.remove('button-active');
+                  openFilter.classList.add('button-active');
+                });
+
+              case 3:
+                _context.next = 7;
+                break;
+
+              case 5:
+                _context.prev = 5;
+                _context.t0 = _context["catch"](0);
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 5]]);
+      }));
+
+      return function sendPostRequest() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    sendPostRequest();
+  });
+};
+var hideFilterTable = function hideFilterTable() {
+  var openFilter = document.getElementById("open-filter");
+  openFilter.classList.remove('button-active');
+};
+var showFilterTable = function showFilterTable() {
+  var openFilter = document.getElementById("open-filter");
+  openFilter.classList.add('button-active');
+};
+renderFilterTable();
+
+/***/ }),
+
+/***/ "./resources/js/desktop/admin/formTable.js":
+/*!*************************************************!*\
+  !*** ./resources/js/desktop/admin/formTable.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1992,6 +2085,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var table = document.getElementById("table");
+var tableHeader = document.querySelectorAll(".cabecera");
 var forms = document.querySelectorAll(".admin-form");
 var botonesMenuPestana = document.querySelectorAll('.menu-pestana-item');
 var pestanas = document.querySelectorAll('.pestana');
@@ -2154,6 +2248,72 @@ var renderTable = function renderTable() {
     });
   });
 };
+
+function sortTable(n) {
+  var table,
+      rows,
+      switching,
+      i,
+      x,
+      y,
+      shouldSwitch,
+      dir,
+      switchcount = 0;
+  table = document.getElementById("table-table");
+  switching = true;
+  dir = "asc";
+
+  while (switching) {
+    switching = false;
+    rows = document.querySelectorAll(".fila");
+
+    for (i = 1; i < rows.length - 1; i++) {
+      shouldSwitch = false;
+      x = rows[i].querySelectorAll(".columna")[n];
+      y = rows[i + 1].querySelectorAll(".columna")[n];
+
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true; //Each time a switch is done, increase this count by 1:
+
+      switchcount++;
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+var _loop = function _loop(i) {
+  tableHeader[i].addEventListener("click", function () {
+    sortTable(i);
+  });
+};
+
+for (var i = 0; i < tableHeader.length; i++) {
+  _loop(i);
+}
+
 renderForm();
 renderTable();
 cambiarPestana();
@@ -2216,7 +2376,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _ckeditor_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ckeditor.js */ "./resources/js/desktop/admin/ckeditor.js");
-/* harmony import */ var _form_table_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./form_table.js */ "./resources/js/desktop/admin/form_table.js");
+/* harmony import */ var _formTable_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./formTable.js */ "./resources/js/desktop/admin/formTable.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2248,8 +2408,8 @@ botonesMenu.forEach(function (botonMenu) {
                 return axios.get(url).then(function (response) {
                   form.innerHTML = response.data.form;
                   table.innerHTML = response.data.table;
-                  (0,_form_table_js__WEBPACK_IMPORTED_MODULE_2__.renderForm)();
-                  (0,_form_table_js__WEBPACK_IMPORTED_MODULE_2__.renderTable)();
+                  (0,_formTable_js__WEBPACK_IMPORTED_MODULE_2__.renderForm)();
+                  (0,_formTable_js__WEBPACK_IMPORTED_MODULE_2__.renderTable)();
                   form.childNodes.forEach(function (child) {
                     if (child.id == "area_texto") {
                       (0,_ckeditor_js__WEBPACK_IMPORTED_MODULE_1__.createCK)();

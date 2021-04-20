@@ -1,5 +1,5 @@
 import {createCK} from './ckeditor.js';
-import {renderForm, renderTable} from './form_table.js';
+import {renderForm, renderTable} from './formTable.js';
 
 const botonExpandirMenu=document.getElementById("expandir-menu");
 const botonesExpandirSubmenu=document.querySelectorAll(".expandir-submenu");

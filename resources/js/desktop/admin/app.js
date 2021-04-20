@@ -2,6 +2,7 @@ const { default: axios } = require('axios');
 
 require('../../bootstrap');
 require('./master');
-require('./form_table');
+require('./formTable');
 require('./menu');
 require('./ckeditor');
+require('./filterTable');
