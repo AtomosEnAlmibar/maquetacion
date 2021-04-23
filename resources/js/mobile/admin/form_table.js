@@ -1,5 +1,7 @@
 const table = document.getElementById("table");
 const forms = document.querySelectorAll(".admin-form");
+let muerte = 2;
+let datas = document.querySelectorAll(".check");
 
 export let renderForm = () => {    
     
@@ -42,8 +44,37 @@ export let renderTable = () => {
 
     let formFaqs = document.getElementById("faqs-form");
     let botonesEditar = document.querySelectorAll(".edit");
-    let botonesEliminar = document.querySelectorAll(".delete");
-    
+    let botonesEliminar = document.querySelectorAll(".delete");       
+    let tableHeader=document.querySelector(".cabeceras");
+    let tableData = document.querySelector(".datos");        
+    datas = document.querySelectorAll(".check");
+
+    window.ontouchend=()=>{        
+
+        datas.forEach(dato=>{                
+            if ( dato.parentNode.getBoundingClientRect().top <= (tableHeader.offsetTop + tableHeader.offsetHeight)) {                                                
+                let url = dato.dataset.url+muerte;
+                muerte++;
+                let sendGetRequest = async () => {
+                    try {
+                        await axios.get(url).then(response => {                                                              
+                            tableData.insertAdjacentHTML("beforeend",response.data.datos);
+                            dato.remove();
+                            datas = document.querySelectorAll(".check");
+                            renderTable();
+                        });                
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+
+                sendGetRequest();                                
+            }
+        })
+        
+        console.log(datas);        
+    }
+
     botonesEditar.forEach(boton => {
         boton.addEventListener("click", () => {        
             let sendGetRequest = async () => {

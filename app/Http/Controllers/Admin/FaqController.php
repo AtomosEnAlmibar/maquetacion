@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FaqRequest;
 use App\Models\DB\Faq;
+use Debugbar;
 
 class FaqController extends Controller
 {
@@ -39,7 +40,7 @@ class FaqController extends Controller
 
         $view = View::make('admin.faqs.index')
                 ->with('faq', $this->faq)
-                ->with('faqs', $this->faq->where('active', 1)->get());
+                ->with('faqs', $this->faq->where('active', 1)->paginate(10));
 
         if(request()->ajax()) {
             
@@ -47,7 +48,8 @@ class FaqController extends Controller
             
             return response()->json([
                 'table' => $sections['table'],
-                'form' => $sections['form'],
+                'form' => $sections['form'],                
+                'datos' => $sections['datos'],
             ]); 
         }
 
@@ -126,21 +128,21 @@ class FaqController extends Controller
 
     public function filter(){
 
-        $query = $this->faq->query();
+        $query = $this->faq->query();                
 
-        $query->when(request('category_id'), function ($q, $category_id) {
+        $query->when(request('category_id'), function ($q, $category_id) {            
 
-            if($category_id == 'all'){
+            if($category_id == 'all'){                                
                 return $q;
             }
-            else {
+            else {                                            
                 return $q->where('category_id', $category_id);
             }
         });
 
         $query->when(request('init-date'), function ($q, $init_date) {
 
-            if(($init_date) == 'all'){
+            if(($init_date) == 'all'){                                
                 return $q;
             }
             else {

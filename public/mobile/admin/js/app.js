@@ -1972,6 +1972,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var table = document.getElementById("table");
 var forms = document.querySelectorAll(".admin-form");
+var muerte = 2;
+var datas = document.querySelectorAll(".check");
 var renderForm = function renderForm() {
   var botonEnviarForm = document.getElementById("enviar_form");
   botonEnviarForm.addEventListener("click", function (event) {
@@ -2035,49 +2037,62 @@ var renderTable = function renderTable() {
   var formFaqs = document.getElementById("faqs-form");
   var botonesEditar = document.querySelectorAll(".edit");
   var botonesEliminar = document.querySelectorAll(".delete");
+  var tableHeader = document.querySelector(".cabeceras");
+  var tableData = document.querySelector(".datos");
+  datas = document.querySelectorAll(".check");
+
+  window.ontouchend = function () {
+    datas.forEach(function (dato) {
+      if (dato.parentNode.getBoundingClientRect().top <= tableHeader.offsetTop + tableHeader.offsetHeight) {
+        var url = dato.dataset.url + muerte;
+        muerte++;
+
+        var sendGetRequest = /*#__PURE__*/function () {
+          var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    _context2.prev = 0;
+                    _context2.next = 3;
+                    return axios.get(url).then(function (response) {
+                      tableData.insertAdjacentHTML("beforeend", response.data.datos);
+                      dato.remove();
+                      datas = document.querySelectorAll(".check");
+                      renderTable();
+                    });
+
+                  case 3:
+                    _context2.next = 8;
+                    break;
+
+                  case 5:
+                    _context2.prev = 5;
+                    _context2.t0 = _context2["catch"](0);
+                    console.error(_context2.t0);
+
+                  case 8:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, null, [[0, 5]]);
+          }));
+
+          return function sendGetRequest() {
+            return _ref4.apply(this, arguments);
+          };
+        }();
+
+        sendGetRequest();
+      }
+    });
+    console.log(datas);
+  };
+
   botonesEditar.forEach(function (boton) {
     boton.addEventListener("click", function () {
       var sendGetRequest = /*#__PURE__*/function () {
-        var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-            while (1) {
-              switch (_context2.prev = _context2.next) {
-                case 0:
-                  _context2.prev = 0;
-                  _context2.next = 3;
-                  return axios.get(boton.dataset.url).then(function (response) {
-                    formFaqs.innerHTML = response.data.form;
-                    renderForm();
-                  });
-
-                case 3:
-                  _context2.next = 8;
-                  break;
-
-                case 5:
-                  _context2.prev = 5;
-                  _context2.t0 = _context2["catch"](0);
-                  console.error(_context2.t0);
-
-                case 8:
-                case "end":
-                  return _context2.stop();
-              }
-            }
-          }, _callee2, null, [[0, 5]]);
-        }));
-
-        return function sendGetRequest() {
-          return _ref4.apply(this, arguments);
-        };
-      }();
-
-      sendGetRequest();
-    });
-  });
-  botonesEliminar.forEach(function (boton) {
-    boton.addEventListener("click", function () {
-      var sendDeleteRequest = /*#__PURE__*/function () {
         var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
             while (1) {
@@ -2085,9 +2100,9 @@ var renderTable = function renderTable() {
                 case 0:
                   _context3.prev = 0;
                   _context3.next = 3;
-                  return axios["delete"](boton.dataset.url).then(function (response) {
-                    table.innerHTML = response.data.table;
-                    renderTable();
+                  return axios.get(boton.dataset.url).then(function (response) {
+                    formFaqs.innerHTML = response.data.form;
+                    renderForm();
                   });
 
                 case 3:
@@ -2097,7 +2112,7 @@ var renderTable = function renderTable() {
                 case 5:
                   _context3.prev = 5;
                   _context3.t0 = _context3["catch"](0);
-                  console.error(_context3.t0.response);
+                  console.error(_context3.t0);
 
                 case 8:
                 case "end":
@@ -2107,8 +2122,48 @@ var renderTable = function renderTable() {
           }, _callee3, null, [[0, 5]]);
         }));
 
-        return function sendDeleteRequest() {
+        return function sendGetRequest() {
           return _ref5.apply(this, arguments);
+        };
+      }();
+
+      sendGetRequest();
+    });
+  });
+  botonesEliminar.forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var sendDeleteRequest = /*#__PURE__*/function () {
+        var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  _context4.prev = 0;
+                  _context4.next = 3;
+                  return axios["delete"](boton.dataset.url).then(function (response) {
+                    table.innerHTML = response.data.table;
+                    renderTable();
+                  });
+
+                case 3:
+                  _context4.next = 8;
+                  break;
+
+                case 5:
+                  _context4.prev = 5;
+                  _context4.t0 = _context4["catch"](0);
+                  console.error(_context4.t0.response);
+
+                case 8:
+                case "end":
+                  return _context4.stop();
+              }
+            }
+          }, _callee4, null, [[0, 5]]);
+        }));
+
+        return function sendDeleteRequest() {
+          return _ref6.apply(this, arguments);
         };
       }();
 
@@ -2118,6 +2173,16 @@ var renderTable = function renderTable() {
 };
 renderForm();
 renderTable();
+
+/***/ }),
+
+/***/ "./resources/js/mobile/admin/lazyLoad.js":
+/*!***********************************************!*\
+  !*** ./resources/js/mobile/admin/lazyLoad.js ***!
+  \***********************************************/
+/***/ (() => {
+
+
 
 /***/ }),
 
@@ -2244,346 +2309,6 @@ botonesMenu.forEach(function (botonMenu) {
     sendGetRequest();
   });
 });
-
-/***/ }),
-
-/***/ "./resources/js/mobile/admin/swipe.js":
-/*!********************************************!*\
-  !*** ./resources/js/mobile/admin/swipe.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ckeditor_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ckeditor.js */ "./resources/js/mobile/admin/ckeditor.js");
-/* harmony import */ var _form_table_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./form_table.js */ "./resources/js/mobile/admin/form_table.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-var formFaqs = document.getElementById("faqs-form");
-var botonesEditar = document.querySelectorAll(".edit");
-var botonesEliminar = document.querySelectorAll(".delete"); // Shim for requestAnimationFrame from Paul Irishpaul ir
-// http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
-
-window.requestAnimFrame = function () {
-  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
-    window.setTimeout(callback, 1000 / 60);
-  };
-}();
-/* // [START pointereventsupport] */
-
-
-var pointerDownName = 'pointerdown';
-var pointerUpName = 'pointerup';
-var pointerMoveName = 'pointermove'; // Simple way to check if some form of pointerevents is enabled or not
-
-window.PointerEventsSupport = false;
-
-if (window.PointerEvent || window.navigator.msPointerEnabled) {
-  window.PointerEventsSupport = true;
-}
-/* // [END pointereventsupport] */
-
-
-function SwipeRevealItem(element) {
-  // Gloabl state variables
-  var STATE_DEFAULT = 1;
-  var STATE_LEFT_SIDE = 2;
-  var STATE_RIGHT_SIDE = 3;
-  var swipeFrontElement = element.querySelector('.swipe-front');
-  var rafPending = false;
-  var initialTouchPos = null;
-  var lastTouchPos = null;
-  var currentXPosition = 0;
-  var currentState = STATE_DEFAULT;
-  var handleSize = 10; // Perform client width here as this can be expensive and doens't
-  // change until window.onresize
-
-  var itemWidth = swipeFrontElement.clientWidth;
-  console.log(itemWidth);
-  var slopValue = itemWidth * (1 / 4); // On resize, change the slop value
-
-  this.resize = function () {
-    itemWidth = swipeFrontElement.clientWidth;
-    slopValue = itemWidth * (1 / 4);
-  };
-  /* // [START handle-start-gesture] */
-  // Handle the start of gestures
-
-
-  this.handleGestureStart = function (evt) {
-    evt.preventDefault();
-
-    if (evt.touches && evt.touches.length > 1) {
-      return;
-    } // Add the move and end listeners
-
-
-    if (window.PointerEvent) {
-      evt.target.setPointerCapture(evt.pointerId);
-    }
-
-    initialTouchPos = getGesturePointFromEvent(evt);
-    swipeFrontElement.style.transition = 'initial';
-  }.bind(this);
-  /* // [END handle-start-gesture] */
-  // Handle move gestures
-  //
-
-  /* // [START handle-move] */
-
-
-  this.handleGestureMove = function (evt) {
-    evt.preventDefault();
-
-    if (!initialTouchPos) {
-      return;
-    }
-
-    lastTouchPos = getGesturePointFromEvent(evt);
-
-    if (rafPending) {
-      return;
-    }
-
-    rafPending = true;
-    window.requestAnimFrame(onAnimFrame);
-  }.bind(this);
-  /* // [END handle-move] */
-
-  /* // [START handle-end-gesture] */
-  // Handle end gestures
-
-
-  this.handleGestureEnd = function (evt) {
-    evt.preventDefault();
-
-    if (evt.touches && evt.touches.length > 0) {
-      return;
-    }
-
-    rafPending = false; // Remove Event Listeners
-
-    if (window.PointerEvent) {
-      evt.target.releasePointerCapture(evt.pointerId);
-    } else {
-      // Remove Mouse Listeners
-      document.removeEventListener('mousemove', this.handleGestureMove, true);
-      document.removeEventListener('mouseup', this.handleGestureEnd, true);
-    }
-
-    updateSwipeRestPosition();
-    initialTouchPos = null;
-    lastTouchPos = null;
-  }.bind(this);
-  /* // [END handle-end-gesture] */
-
-
-  function updateSwipeRestPosition() {
-    var differenceInX = lastTouchPos.x - initialTouchPos.x;
-    console.log("Posicion inicial: " + initialTouchPos.x + "\n Posicion final: " + lastTouchPos.x + "\n Diferencia: " + differenceInX); // Go to the default state and change
-
-    var newState = STATE_DEFAULT; // Check if we need to change state to left or right based on slop value
-
-    if (Math.abs(differenceInX) > slopValue) {
-      if (currentState === STATE_DEFAULT) {
-        if (differenceInX > 0) {
-          newState = STATE_RIGHT_SIDE;
-        } else {
-          newState = STATE_LEFT_SIDE;
-        }
-      } else {
-        if (currentState === STATE_RIGHT_SIDE && differenceInX > 0) {
-          newState = STATE_DEFAULT;
-        } else if (currentState === STATE_LEFT_SIDE && differenceInX < 0) {
-          newState = STATE_DEFAULT;
-        }
-      }
-    } else {
-      newState = currentState;
-    }
-
-    changeState(newState);
-    swipeFrontElement.style.transition = 'all 150ms ease-out';
-  }
-
-  function changeState(newState) {
-    var transformStyle;
-
-    switch (newState) {
-      case STATE_DEFAULT:
-        currentXPosition = 0;
-        break;
-
-      case STATE_LEFT_SIDE:
-        currentXPosition = -(itemWidth - handleSize);
-        botonesEditar.forEach(function (boton) {
-          var sendGetRequest = /*#__PURE__*/function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-                while (1) {
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      _context.prev = 0;
-                      _context.next = 3;
-                      return axios.get(botonesEditar[swipeFrontElement.id].dataset.url).then(function (response) {
-                        formFaqs.innerHTML = response.data.form;
-                        (0,_form_table_js__WEBPACK_IMPORTED_MODULE_2__.renderForm)();
-                      });
-
-                    case 3:
-                      _context.next = 8;
-                      break;
-
-                    case 5:
-                      _context.prev = 5;
-                      _context.t0 = _context["catch"](0);
-                      console.error(_context.t0);
-
-                    case 8:
-                    case "end":
-                      return _context.stop();
-                  }
-                }
-              }, _callee, null, [[0, 5]]);
-            }));
-
-            return function sendGetRequest() {
-              return _ref.apply(this, arguments);
-            };
-          }();
-
-          sendGetRequest();
-        });
-        break;
-
-      case STATE_RIGHT_SIDE:
-        currentXPosition = itemWidth - handleSize;
-
-        var sendDeleteRequest = /*#__PURE__*/function () {
-          var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-              while (1) {
-                switch (_context2.prev = _context2.next) {
-                  case 0:
-                    _context2.prev = 0;
-                    _context2.next = 3;
-                    return axios["delete"](botonesEliminar[swipeFrontElement.id].dataset.url).then(function (response) {
-                      table.innerHTML = response.data.table;
-                      (0,_form_table_js__WEBPACK_IMPORTED_MODULE_2__.renderTable)();
-                    });
-
-                  case 3:
-                    _context2.next = 8;
-                    break;
-
-                  case 5:
-                    _context2.prev = 5;
-                    _context2.t0 = _context2["catch"](0);
-                    console.error(_context2.t0.response);
-
-                  case 8:
-                  case "end":
-                    return _context2.stop();
-                }
-              }
-            }, _callee2, null, [[0, 5]]);
-          }));
-
-          return function sendDeleteRequest() {
-            return _ref2.apply(this, arguments);
-          };
-        }();
-
-        sendDeleteRequest();
-        break;
-    }
-
-    transformStyle = 'translateX(' + currentXPosition + 'px)';
-    swipeFrontElement.style.msTransform = transformStyle;
-    swipeFrontElement.style.MozTransform = transformStyle;
-    swipeFrontElement.style.webkitTransform = transformStyle;
-    swipeFrontElement.style.transform = transformStyle;
-    currentState = newState;
-  }
-
-  function getGesturePointFromEvent(evt) {
-    var point = {};
-
-    if (evt.targetTouches) {
-      point.x = evt.targetTouches[0].clientX;
-      point.y = evt.targetTouches[0].clientY;
-    } else {
-      // Either Mouse event or Pointer Event
-      point.x = evt.clientX;
-      point.y = evt.clientY;
-    }
-
-    return point;
-  }
-  /* // [START on-anim-frame] */
-
-
-  function onAnimFrame() {
-    if (!rafPending) {
-      return;
-    }
-
-    var differenceInX = initialTouchPos.x - lastTouchPos.x;
-    var newXTransform = currentXPosition - differenceInX + 'px';
-    var transformStyle = 'translateX(' + newXTransform + ')';
-    swipeFrontElement.style.transform = transformStyle;
-    rafPending = false;
-  }
-  /* // [END on-anim-frame] */
-
-  /* // [START addlisteners] */
-  // Check if pointer events are supported.
-
-
-  if (window.PointerEvent) {
-    // Add Pointer Event Listener
-    swipeFrontElement.addEventListener('pointerdown', this.handleGestureStart, true);
-    swipeFrontElement.addEventListener('pointermove', this.handleGestureMove, true);
-    swipeFrontElement.addEventListener('pointerup', this.handleGestureEnd, true);
-    swipeFrontElement.addEventListener('pointercancel', this.handleGestureEnd, true);
-  } else {
-    // Add Touch Listener
-    swipeFrontElement.addEventListener('touchstart', this.handleGestureStart, true);
-    swipeFrontElement.addEventListener('touchmove', this.handleGestureMove, true);
-    swipeFrontElement.addEventListener('touchend', this.handleGestureEnd, true);
-    swipeFrontElement.addEventListener('touchcancel', this.handleGestureEnd, true);
-  }
-  /* // [END addlisteners] */
-
-}
-
-var swipeRevealItems = [];
-
-window.onload = function () {
-  'use strict';
-
-  var swipeRevealItemElements = document.querySelectorAll('.swipe-element');
-
-  for (var i = 0; i < swipeRevealItemElements.length; i++) {
-    swipeRevealItems.push(new SwipeRevealItem(swipeRevealItemElements[i]));
-  }
-};
-
-window.onresize = function () {
-  'use strict';
-
-  for (var i = 0; i < swipeRevealItems.length; i++) {
-    swipeRevealItems[i].resize();
-  }
-};
 
 /***/ }),
 
@@ -20858,9 +20583,10 @@ __webpack_require__(/*! ./master */ "./resources/js/mobile/admin/master.js");
 
 __webpack_require__(/*! ./form_table */ "./resources/js/mobile/admin/form_table.js");
 
-__webpack_require__(/*! ./menu */ "./resources/js/mobile/admin/menu.js");
+__webpack_require__(/*! ./menu */ "./resources/js/mobile/admin/menu.js"); //require('./swipe');
 
-__webpack_require__(/*! ./swipe */ "./resources/js/mobile/admin/swipe.js");
+
+__webpack_require__(/*! ./lazyLoad */ "./resources/js/mobile/admin/lazyLoad.js");
 
 __webpack_require__(/*! ./ckeditor */ "./resources/js/mobile/admin/ckeditor.js");
 })();

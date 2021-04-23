@@ -30,7 +30,7 @@
                 <li class="menu-item">Cosa 4</li>
                 <li class="menu-item">Cosa 5</li>
                 <button id="expandir-menu"><div class="line"></div></button>
-            </ul>                    
+            </ul>
             @yield('content')
         </div>
         @include("admin.layout.partials.js")

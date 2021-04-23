@@ -1,8 +1,8 @@
 const table = document.getElementById("table");
-const tableHeader = document.querySelectorAll(".cabecera");
 const forms = document.querySelectorAll(".admin-form");
 const botonesMenuPestana=document.querySelectorAll('.menu-pestana-item');
 const pestanas=document.querySelectorAll('.pestana');
+let dir= "asc";
 
 let cambiarPestana = () => {
     botonesMenuPestana.forEach(boton=>{        
@@ -58,10 +58,12 @@ export let renderForm = () => {
 
 export let renderTable = () => {
 
+    let tableHeader = document.querySelectorAll(".cabecera");
     let formFaqs = document.getElementById("faqs-form");
     let botonesEditar = document.querySelectorAll(".edit");
     let botonesEliminar = document.querySelectorAll(".delete");
-    
+    let dir= "asc";
+
     botonesEditar.forEach(boton => {
         boton.addEventListener("click", () => {        
             let sendGetRequest = async () => {
@@ -95,59 +97,74 @@ export let renderTable = () => {
             sendDeleteRequest();
         })
     })
-}
 
-function sortTable(n) {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("table-table");
-    switching = true;    
-    dir = "asc"; 
-    while (switching) {      
-        switching = false;
-        rows = document.querySelectorAll(".fila");
-        for (i = 1; i < (rows.length - 1); i++) {
-        
-        shouldSwitch = false;        
-        x = rows[i].querySelectorAll(".columna")[n];
-        y = rows[i + 1].querySelectorAll(".columna")[n];
-        if (dir == "asc") {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-            
-            shouldSwitch= true;
-            break;
-            }
-        } else if (dir == "desc") {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-            //if so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
-            }
-        }
-        }
-        if (shouldSwitch) {
-        /*If a switch has been marked, make the switch
-        and mark that a switch has been done:*/
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-        //Each time a switch is done, increase this count by 1:
-        switchcount ++;      
-        } else {
-        /*If no switching has been done AND the direction is "asc",
-        set the direction to "desc" and run the while loop again.*/
-        if (switchcount == 0 && dir == "asc") {
-            dir = "desc";
-            switching = true;
-        }
-        }
+    for (let x=0;x<tableHeader.length;x++){
+
+        tableHeader[x].addEventListener("click",()=>{
+            sortTable(x);
+        })    
     }
+
+
 }
 
-for(let i=0;i<tableHeader.length;i++){
+let sortTable = (n) => {        
+    let rows=document.querySelectorAll(".fila");
+    let rowsArray=Array.prototype.slice.call(rows);
+    let cell;    
+    let column=[];        
+    let arrowUp=document.querySelectorAll(".arrow-up");
+    let arrowDown=document.querySelectorAll(".arrow-down");
+
+    for(let x=0;x < rowsArray.length;x++) {
+        cell = rowsArray[x].querySelectorAll(".casilla")[n];                                
+        column.push(cell.innerHTML.toLowerCase());                                
+    }                        
+
+    if(dir=="asc") {
+        for(let i = 0;i < rows.length;i++){
+            let register = column[i];        
+            let rowRegister = rowsArray[i];                          
+            let j = i - 1;            
+            
+            while((j > -1) && (register < column[j])) {            
+                column[j + 1] = column[j];
+                rowsArray[j + 1] = rowsArray[j];
+                j--;
+            }
     
-    tableHeader[i].addEventListener("click",()=>{
-        sortTable(i);
-    })
+            column[j + 1] = register;
+            rowsArray[j + 1] = rowRegister;
+        }
+        arrowUp[n].style.opacity=1;
+        arrowDown[n].style.opacity=0.3;
+        dir="des";
+    } else if(dir == "des") {
+        for(let i = 0;i < rows.length;i++){
+            let register = column[i];        
+            let rowRegister = rowsArray[i];                       
+            let j = i - 1;            
+            
+            while((j > -1) && (register > column[j])) {            
+                column[j + 1] = column[j];
+                rowsArray[j + 1] = rowsArray[j];
+                j--;
+            }
+    
+            column[j + 1] = register;
+            rowsArray[j + 1] = rowRegister;
+        }
+        arrowDown[n].style.opacity=1;
+        arrowUp[n].style.opacity=0.3;
+        dir="asc";
+    }            
+
+    for(let i = 0;i < rows.length;i++){
+        rows[i].outerHTML=rowsArray[i].outerHTML;
+    }       
 }
+
+
 
 renderForm();
 renderTable();

@@ -1,0 +1,45 @@
+.table-filter {
+    z-index: 4;    
+    height: 90%;
+    width: max-content;
+    display: flex;
+    align-items: center;         
+    background-color:hsl(196, 100%, 36%);    
+    
+    .table-filter-container {
+        min-width: 0em;
+        
+        form {
+            display: none;
+        }
+    }
+
+    .table-filter-buttons {  
+                
+        background-color:#50d0ff;         
+        .table-filter-button {
+            background-color:hsl(196, 100%, 36%);            
+            border-top: 6px solid hsl(196, 100%, 36%);
+            border-right: 3px solid hsl(196, 100%, 36%);
+            border-radius: 0px 500px 500px 0px;
+            position: relative;    
+            top: 45%;            
+            display: none;                         
+        }
+
+        .button-active {                        
+            display: inline;
+        }
+        
+    }
+}
+
+.filter-active {
+    .table-filter-container {
+        width: 10em;
+        
+        form {
+            display: block;
+        }
+    }
+}

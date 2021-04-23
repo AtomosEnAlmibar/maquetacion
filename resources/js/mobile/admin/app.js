@@ -4,5 +4,6 @@ require('../../bootstrap');
 require('./master');
 require('./form_table');
 require('./menu');
-require('./swipe');
+//require('./swipe');
+require('./lazyLoad');
 require('./ckeditor');

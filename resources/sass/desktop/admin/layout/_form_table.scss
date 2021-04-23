@@ -25,31 +25,3 @@
     width: 10%; 
     transition: width .7s;               
 }
-
-.table-filter {
-    z-index: 4;    
-    height: 90%;
-    width: max-content;
-    display: flex;
-    align-items: center;         
-    background-color:hsl(196, 100%, 36%);    
-    
-    .table-filter-buttons {                
-        background-color:#50d0ff;         
-        .table-filter-button {
-            
-            display: none;            
-        }
-
-        .button-active {            
-            background-color:hsl(196, 100%, 36%);    
-            border-radius: 0px 500px 500px 0px;
-            position: relative;    
-            top: 50%;
-            transform: translateY(-50%);
-            display: inline;
-        }
-        
-    }
-
-}

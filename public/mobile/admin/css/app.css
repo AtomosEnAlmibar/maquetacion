@@ -332,6 +332,10 @@
 
 #atomostable {
   background-color: #50d0ff;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 #atomostable * {
   font-family: Arial, Helvetica, sans-serif;
@@ -344,7 +348,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  height: 100%;
+  height: 101%;
   background-color: #50d0ff;
   transition-duration: 0.5s;
   border: none;
@@ -353,76 +357,154 @@
   width: 110%;
 }
 #atomostable #table {
-  order: 1;
   display: flex;
-  z-index: 3;
+  position: fixed;
   width: 100%;
   height: 100%;
-  justify-content: center;
-  flex-direction: column;
-  border-collapse: collapse;
-  overflow: auto;
-  /* width */
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
 }
-#atomostable #table table {
-  display: table;
+#atomostable #table #table-table {
+  position: fixed;
+  top: 0%;
+  display: flex;
   background-color: #50d0ff;
   width: 100%;
   height: 100%;
   flex-direction: column;
   border-collapse: collapse;
 }
-#atomostable #table table tr {
-  margin-left: 3%;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  touch-action: none;
+#atomostable #table #table-table .cabeceras {
+  min-height: 10%;
   max-height: 10%;
-  z-index: 3;
-}
-#atomostable #table table .swipe-front {
-  top: alturas;
-  position: absolute;
-  width: 80%;
-  margin-left: 3%;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  touch-action: none;
-  z-index: 3;
-}
-#atomostable #table table tr:nth-child(even) {
+  display: flex;
+  flex-direction: row;
   background-color: #9ee5ff;
 }
-#atomostable #table table th, #atomostable #table table td {
-  position: relative;
-  border: 3px solid #50d0ff;
-  max-width: 10%;
-  width: 10%;
+#atomostable #table #table-table .cabeceras .cabecera {
+  min-width: 20%;
   text-align: center;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#atomostable #table table .botones {
+#atomostable #table #table-table .cabeceras .cabecera span {
+  flex-grow: 1;
+}
+#atomostable #table #table-table .cabeceras .cabecera .arrow-up {
+  width: 0;
+  height: 0;
+  opacity: 0.3;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #1F2833;
+}
+#atomostable #table #table-table .cabeceras .cabecera .arrow-down {
+  width: 0;
+  height: 0;
+  opacity: 0.3;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #1F2833;
+}
+#atomostable #table #table-table .datos {
+  overflow-x: auto;
+}
+#atomostable #table #table-table .datos .fila {
+  min-height: 10%;
+  max-height: 10%;
+  display: flex;
+  flex-direction: row;
+}
+#atomostable #table #table-table .datos .fila .casilla {
+  min-width: 20%;
+  text-align: center;
+}
+#atomostable #table #table-table .datos .fila .botones {
   display: none;
 }
-#atomostable #table::-webkit-scrollbar {
+#atomostable #table #table-table .datos .fila .botones button {
+  position: relative;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  border: none;
+  width: 50%;
+  height: 50%;
+}
+#atomostable #table #table-table .datos .fila .botones .edit {
+  background-color: #79ff79;
+}
+#atomostable #table #table-table .datos .fila .botones .delete {
+  background-color: #ff7b7b;
+}
+#atomostable #table #table-table .datos .fila .botones .edit:hover {
+  background-color: lime;
+}
+#atomostable #table #table-table .datos .fila .botones .delete:hover {
+  background-color: red;
+}
+#atomostable #table #table-table .datos .fila .check {
+  display: none;
+}
+#atomostable #table #table-table .datos .fila:nth-child(even) {
+  background-color: #9ee5ff;
+}
+#atomostable #table nav {
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+}
+#atomostable::-webkit-scrollbar {
   width: 10px;
 }
-#atomostable #table::-webkit-scrollbar-track {
+#atomostable::-webkit-scrollbar-track {
   background: #50d0ff;
 }
-#atomostable #table::-webkit-scrollbar-thumb {
+#atomostable::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background: #1F2833;
   box-shadow: inset 0 0 5px #7189a8;
 }
-#atomostable #table::-webkit-scrollbar-thumb:hover {
+#atomostable::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 5px #44576f;
   background: #131920;
+}
+
+.table-filter {
+  z-index: 4;
+  height: 90%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  background-color: #0087b8;
+}
+.table-filter .table-filter-container {
+  min-width: 0em;
+}
+.table-filter .table-filter-container form {
+  display: none;
+}
+.table-filter .table-filter-buttons {
+  background-color: #50d0ff;
+}
+.table-filter .table-filter-buttons .table-filter-button {
+  background-color: #0087b8;
+  border-top: 6px solid #0087b8;
+  border-right: 3px solid #0087b8;
+  border-radius: 0px 500px 500px 0px;
+  position: relative;
+  top: 45%;
+  display: none;
+}
+.table-filter .table-filter-buttons .button-active {
+  display: inline;
+}
+
+.filter-active .table-filter-container {
+  width: 10em;
+}
+.filter-active .table-filter-container form {
+  display: block;
 }

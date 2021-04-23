@@ -192,31 +192,6 @@
   transition: width 0.7s;
 }
 
-.table-filter {
-  z-index: 4;
-  height: 90%;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  display: flex;
-  align-items: center;
-  background-color: #0087b8;
-}
-.table-filter .table-filter-buttons {
-  background-color: #50d0ff;
-}
-.table-filter .table-filter-buttons .table-filter-button {
-  display: none;
-}
-.table-filter .table-filter-buttons .button-active {
-  background-color: #0087b8;
-  border-radius: 0px 500px 500px 0px;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  display: inline;
-}
-
 #atomosform {
   background-color: #1F2833;
 }
@@ -410,7 +385,14 @@
 #atomostable #expandir_form:hover {
   width: 110%;
 }
-#atomostable #table-table {
+#atomostable #table {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#atomostable #table #table-table {
+  overflow-x: scroll;
   display: flex;
   background-color: #50d0ff;
   width: 100%;
@@ -419,21 +401,47 @@
   flex-direction: column;
   border-collapse: collapse;
 }
-#atomostable #table-table .fila {
+#atomostable #table #table-table .cabeceras {
   max-height: 10%;
   display: flex;
   flex-direction: row;
-  border: 3px solid black;
 }
-#atomostable #table-table .fila .cabecera {
+#atomostable #table #table-table .cabeceras .cabecera {
+  min-width: 20%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#atomostable #table #table-table .cabeceras .cabecera span {
+  flex-grow: 1;
+}
+#atomostable #table #table-table .cabeceras .cabecera .arrow-up {
+  width: 0;
+  height: 0;
+  opacity: 0.3;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #1F2833;
+}
+#atomostable #table #table-table .cabeceras .cabecera .arrow-down {
+  width: 0;
+  height: 0;
+  opacity: 0.3;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #1F2833;
+}
+#atomostable #table #table-table .fila {
+  max-height: 10%;
+  display: flex;
+  flex-direction: row;
+}
+#atomostable #table #table-table .fila .casilla {
   min-width: 20%;
   text-align: center;
 }
-#atomostable #table-table .fila .columna {
-  min-width: 20%;
-  text-align: center;
-}
-#atomostable #table-table .fila .botones button {
+#atomostable #table #table-table .fila .botones button {
   position: relative;
   top: 50%;
   left: 25%;
@@ -442,20 +450,26 @@
   width: 50%;
   height: 100%;
 }
-#atomostable #table-table .fila .botones .edit {
+#atomostable #table #table-table .fila .botones .edit {
   background-color: #79ff79;
 }
-#atomostable #table-table .fila .botones .delete {
+#atomostable #table #table-table .fila .botones .delete {
   background-color: #ff7b7b;
 }
-#atomostable #table-table .fila .botones .edit:hover {
+#atomostable #table #table-table .fila .botones .edit:hover {
   background-color: lime;
 }
-#atomostable #table-table .fila .botones .delete:hover {
+#atomostable #table #table-table .fila .botones .delete:hover {
   background-color: red;
 }
-#atomostable #table-table .fila:nth-child(even) {
+#atomostable #table #table-table .fila:nth-child(even) {
   background-color: #9ee5ff;
+}
+#atomostable #table nav {
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
 }
 #atomostable::-webkit-scrollbar {
   width: 10px;
@@ -471,4 +485,56 @@
 #atomostable::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 5px #44576f;
   background: #131920;
+}
+
+.table-filter {
+  z-index: 4;
+  height: 90%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  background-color: #0087b8;
+}
+.table-filter .table-filter-container {
+  min-width: 0em;
+}
+.table-filter .table-filter-container form {
+  display: none;
+}
+.table-filter .table-filter-buttons {
+  background-color: #50d0ff;
+}
+.table-filter .table-filter-buttons .table-filter-button {
+  background-color: #0087b8;
+  border-top: 6px solid #0087b8;
+  border-right: 3px solid #0087b8;
+  border-radius: 0px 500px 500px 0px;
+  position: relative;
+  top: 45%;
+  display: none;
+}
+.table-filter .table-filter-buttons .button-active {
+  display: inline;
+}
+
+.filter-active .table-filter-container {
+  width: 10em;
+}
+.filter-active .table-filter-container form {
+  display: block;
+}
+
+.table-pagination {
+  position: absolute;
+  top: 80%;
+  display: flex;
+}
+.table-pagination .table-pagination-info {
+  display: flex;
+  justify-content: space-between;
+}
+.table-pagination .table-pagination-buttons .table-pagination-button {
+  cursor: pointer;
 }

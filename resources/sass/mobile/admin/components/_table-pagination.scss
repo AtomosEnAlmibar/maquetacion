@@ -1,0 +1,21 @@
+.table-pagination{
+
+    position: absolute;
+    top: 80%;
+    display: flex;
+    .table-pagination-info{
+
+        display: flex;
+        justify-content: space-between;        
+    }
+
+    .table-pagination-buttons{
+        
+        .table-pagination-button{
+
+            cursor: pointer;
+
+        }
+    }
+}
+ 

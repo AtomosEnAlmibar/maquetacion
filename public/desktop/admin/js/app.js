@@ -2009,7 +2009,6 @@ var renderFilterTable = function renderFilterTable() {
                 _context.next = 3;
                 return axios.post(url, data).then(function (response) {
                   table.innerHTML = response.data.table;
-                  console.log(response.data.table);
                   (0,_formTable__WEBPACK_IMPORTED_MODULE_1__.renderTable)();
                   tableFilter.classList.remove('filter-active');
                   applyFilter.classList.remove('button-active');
@@ -2085,10 +2084,10 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var table = document.getElementById("table");
-var tableHeader = document.querySelectorAll(".cabecera");
 var forms = document.querySelectorAll(".admin-form");
 var botonesMenuPestana = document.querySelectorAll('.menu-pestana-item');
 var pestanas = document.querySelectorAll('.pestana');
+var dir = "asc";
 
 var cambiarPestana = function cambiarPestana() {
   botonesMenuPestana.forEach(function (boton) {
@@ -2164,9 +2163,11 @@ var renderForm = function renderForm() {
   });
 };
 var renderTable = function renderTable() {
+  var tableHeader = document.querySelectorAll(".cabecera");
   var formFaqs = document.getElementById("faqs-form");
   var botonesEditar = document.querySelectorAll(".edit");
   var botonesEliminar = document.querySelectorAll(".delete");
+  var dir = "asc";
   botonesEditar.forEach(function (boton) {
     boton.addEventListener("click", function () {
       var sendGetRequest = /*#__PURE__*/function () {
@@ -2247,72 +2248,76 @@ var renderTable = function renderTable() {
       sendDeleteRequest();
     });
   });
-};
 
-function sortTable(n) {
-  var table,
-      rows,
-      switching,
-      i,
-      x,
-      y,
-      shouldSwitch,
-      dir,
-      switchcount = 0;
-  table = document.getElementById("table-table");
-  switching = true;
-  dir = "asc";
+  var _loop = function _loop(x) {
+    tableHeader[x].addEventListener("click", function () {
+      sortTable(x);
+    });
+  };
 
-  while (switching) {
-    switching = false;
-    rows = document.querySelectorAll(".fila");
-
-    for (i = 1; i < rows.length - 1; i++) {
-      shouldSwitch = false;
-      x = rows[i].querySelectorAll(".columna")[n];
-      y = rows[i + 1].querySelectorAll(".columna")[n];
-
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true; //Each time a switch is done, increase this count by 1:
-
-      switchcount++;
-    } else {
-      /*If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again.*/
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
+  for (var x = 0; x < tableHeader.length; x++) {
+    _loop(x);
   }
-}
-
-var _loop = function _loop(i) {
-  tableHeader[i].addEventListener("click", function () {
-    sortTable(i);
-  });
 };
 
-for (var i = 0; i < tableHeader.length; i++) {
-  _loop(i);
-}
+var sortTable = function sortTable(n) {
+  var rows = document.querySelectorAll(".fila");
+  var rowsArray = Array.prototype.slice.call(rows);
+  var cell;
+  var column = [];
+  var arrowUp = document.querySelectorAll(".arrow-up");
+  var arrowDown = document.querySelectorAll(".arrow-down");
+
+  for (var x = 0; x < rowsArray.length; x++) {
+    cell = rowsArray[x].querySelectorAll(".casilla")[n];
+    column.push(cell.innerHTML.toLowerCase());
+  }
+
+  if (dir == "asc") {
+    for (var i = 0; i < rows.length; i++) {
+      var register = column[i];
+      var rowRegister = rowsArray[i];
+      var j = i - 1;
+
+      while (j > -1 && register < column[j]) {
+        column[j + 1] = column[j];
+        rowsArray[j + 1] = rowsArray[j];
+        j--;
+      }
+
+      column[j + 1] = register;
+      rowsArray[j + 1] = rowRegister;
+    }
+
+    arrowUp[n].style.opacity = 1;
+    arrowDown[n].style.opacity = 0.3;
+    dir = "des";
+  } else if (dir == "des") {
+    for (var _i2 = 0; _i2 < rows.length; _i2++) {
+      var _register = column[_i2];
+      var _rowRegister = rowsArray[_i2];
+
+      var _j = _i2 - 1;
+
+      while (_j > -1 && _register > column[_j]) {
+        column[_j + 1] = column[_j];
+        rowsArray[_j + 1] = rowsArray[_j];
+        _j--;
+      }
+
+      column[_j + 1] = _register;
+      rowsArray[_j + 1] = _rowRegister;
+    }
+
+    arrowDown[n].style.opacity = 1;
+    arrowUp[n].style.opacity = 0.3;
+    dir = "asc";
+  }
+
+  for (var _i3 = 0; _i3 < rows.length; _i3++) {
+    rows[_i3].outerHTML = rowsArray[_i3].outerHTML;
+  }
+};
 
 renderForm();
 renderTable();

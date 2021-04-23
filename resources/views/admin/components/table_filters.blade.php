@@ -1,5 +1,9 @@
+@php
+    use App\Models\Db\Faq;
+@endphp
+
 <div class="table-filter" id="table-filter">
-    <div class="table-filter-container">
+    <div class="table-filter-container encogido">
         <form class="filter-form" id="filter-form" action="{{route("faqs_filter")}}" autocomplete="off">             
 
             {{ csrf_field() }}
@@ -15,9 +19,14 @@
                             </div>
                             <div class="form-input">
                                 <select name="category_id" data-placeholder="Seleccione una categoría" class="input-highlight">
-                                    <option value="all"}}>Todas</option>
+                                    <option value="all">Todas</option>
                                     @foreach($items as $item)
-                                        <option value="{{$item->id}}"}}>{{ $item->name }}</option>
+                                        @if (count(Faq::where('category_id', $item->id)->get()) > 0)
+                                            <option value="{{$item->id}}" >{{ $item->name }}</option>    
+                                        @else
+                                            <option value="{{$item->id}}" disabled>{{ $item->name }}</option>    
+                                        @endif
+                                        
                                     @endforeach
                                 </select>    
                             </div>
