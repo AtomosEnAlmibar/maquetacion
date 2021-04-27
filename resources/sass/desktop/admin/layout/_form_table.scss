@@ -12,16 +12,33 @@
     
     div {
         height: 100%;                
+    }   
+    
+    .activo {
+        z-index: 0;
+        width: 90%;
+        transition: 0.7s;         
+        
+        .pestana{            
+            display: none;            
+        }
+
+        .contenido{            
+            display: flex;            
+        }
     }
-}
- 
-.activo {
-    z-index: 0;
-    width: 90%;
-    transition: width .7s;                
-}
-.inactivo {
-    z-index: 1;
-    width: 10%; 
-    transition: width .7s;               
+    
+    .inactivo {
+        z-index: 1;
+        width: 10%; 
+        transition: 0.7s;                
+    
+        .pestana{            
+            display: flex;            
+        }
+
+        .contenido{            
+            display: none;
+        }
+    }
 }
