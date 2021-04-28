@@ -1922,6 +1922,8 @@ __webpack_require__(/*! ./ckeditor */ "./resources/js/desktop/admin/ckeditor.js"
 
 __webpack_require__(/*! ./filterTable */ "./resources/js/desktop/admin/filterTable.js");
 
+__webpack_require__(/*! ./messages */ "./resources/js/desktop/admin/messages.js");
+
 /***/ }),
 
 /***/ "./resources/js/desktop/admin/ckeditor.js":
@@ -2016,14 +2018,15 @@ var renderFilterTable = function renderFilterTable() {
                 });
 
               case 3:
-                _context.next = 7;
+                _context.next = 8;
                 break;
 
               case 5:
                 _context.prev = 5;
                 _context.t0 = _context["catch"](0);
+                console.error(_context.t0);
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -2065,6 +2068,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _messages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messages */ "./resources/js/desktop/admin/messages.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2082,6 +2086,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 var table = document.getElementById("table");
 var forms = document.querySelectorAll(".admin-form");
@@ -2105,6 +2110,7 @@ var cambiarPestana = function cambiarPestana() {
 
 var renderForm = function renderForm() {
   var botonEnviarForm = document.getElementById("enviar_form");
+  var botonResetForm = document.getElementById("erase");
   botonEnviarForm.addEventListener("click", function (event) {
     event.preventDefault();
     forms.forEach(function (form) {
@@ -2133,6 +2139,7 @@ var renderForm = function renderForm() {
                   return axios.post(url, data).then(function (response) {
                     form.id.value = response.data.id;
                     table.innerHTML = response.data.table;
+                    (0,_messages__WEBPACK_IMPORTED_MODULE_1__.showMessage)('success', response.data.message);
                     renderTable();
                   });
 
@@ -2161,10 +2168,16 @@ var renderForm = function renderForm() {
       sendPostRequest();
     });
   });
+  botonResetForm.addEventListener("click", function (event) {
+    forms.forEach(function (form) {
+      form.reset();
+      renderForm();
+    });
+  });
 };
 var renderTable = function renderTable() {
   var tableHeader = document.querySelectorAll(".cabecera");
-  var formFaqs = document.getElementById("faqs-form");
+  var form = document.querySelector(".admin-form");
   var botonesEditar = document.querySelectorAll(".edit");
   var botonesEliminar = document.querySelectorAll(".delete");
   var dir = "asc";
@@ -2179,7 +2192,7 @@ var renderTable = function renderTable() {
                   _context2.prev = 0;
                   _context2.next = 3;
                   return axios.get(boton.dataset.url).then(function (response) {
-                    formFaqs.innerHTML = response.data.form;
+                    form.innerHTML = response.data.form;
                     renderForm();
                   });
 
@@ -2436,6 +2449,48 @@ botonesMenu.forEach(function (botonMenu) {
     }();
 
     sendGetRequest();
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/desktop/admin/messages.js":
+/*!************************************************!*\
+  !*** ./resources/js/desktop/admin/messages.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "showMessage": () => (/* binding */ showMessage)
+/* harmony export */ });
+var closeButtons = document.querySelectorAll('.message-close');
+var messagesContainer = document.getElementById('messages-container');
+var messages = document.querySelectorAll('.message');
+var showMessage = function showMessage(state, messageText) {
+  messages.forEach(function (message) {
+    if (message.classList.contains(state)) {
+      var successMessage = document.getElementById('message-description-' + state);
+      messagesContainer.classList.add('show');
+      message.classList.add('message-active');
+      successMessage.innerHTML = messageText;
+      setTimeout(function () {
+        messagesContainer.classList.remove('show');
+        message.classList.remove('message-active');
+      }, 7000);
+    }
+
+    ;
+  });
+};
+closeButtons.forEach(function (closeButton) {
+  closeButton.addEventListener("click", function () {
+    messagesContainer.classList.remove('show');
+    var messagesActives = document.querySelectorAll('.message-active');
+    messagesActives.forEach(function (messageActive) {
+      messageActive.classList.remove('message-active');
+    });
   });
 });
 

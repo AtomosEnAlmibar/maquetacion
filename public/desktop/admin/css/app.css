@@ -184,6 +184,9 @@
   width: 90%;
   transition: 0.7s;
 }
+.form-table .activo .table-filter {
+  display: flex;
+}
 .form-table .activo .pestana {
   display: none;
 }
@@ -195,6 +198,9 @@
   width: 10%;
   transition: 0.7s;
 }
+.form-table .inactivo .table-filter {
+  display: flex;
+}
 .form-table .inactivo .pestana {
   display: flex;
 }
@@ -204,6 +210,7 @@
 
 #atomosform {
   background-color: #1F2833;
+  order: 2;
 }
 #atomosform * {
   font-family: Arial, Helvetica, sans-serif;
@@ -225,6 +232,7 @@
   width: 110%;
 }
 #atomosform form {
+  display: flex;
   position: relative;
   top: 50%;
   left: 50%;
@@ -234,7 +242,6 @@
   justify-content: row;
   flex-direction: column;
   border: 4px solid #4ec9c1;
-  border-radius: 30px;
 }
 #atomosform form .menu-pestana {
   display: flex;
@@ -331,29 +338,24 @@
 #atomosform form .activo {
   display: flex;
 }
-#atomosform form #submit {
-  margin-top: 10%;
+#atomosform form .modify-form {
+  display: flex;
+  flex-direction: row;
   z-index: 3;
   width: 100%;
-  height: 10%;
-}
-#atomosform form #submit #bg {
-  z-index: 2;
-  position: relative;
-  left: -5%;
   height: 100%;
-  width: 0%;
-  background-color: #4ec9c1;
-  transform: skewX(-20deg);
-  transition-duration: 0.3s;
 }
-#atomosform form #submit button[type=submit] {
+#atomosform form .modify-form div {
+  width: 50%;
   z-index: 4;
-  position: fixed;
-  background-color: transparent;
+  background-color: #4ec9c1;
   border: 2px solid #4ec9c1;
-  width: 100%;
-  font-size: 50px;
+}
+#atomosform form .modify-form div * {
+  position: relative;
+  color: #1F2833;
+  width: 60%;
+  height: 60%;
 }
 
 ::-moz-placeholder {
@@ -370,6 +372,7 @@
 
 #atomostable {
   background-color: #50d0ff;
+  order: 1;
   /* width */
   /* Track */
   /* Handle */
@@ -379,7 +382,7 @@
   font-family: Arial, Helvetica, sans-serif;
   color: #1F2833;
 }
-#atomostable #expandir_form {
+#atomostable #expandir_tabla {
   position: relative;
   top: 50%;
   left: 50%;
@@ -390,7 +393,7 @@
   transition-duration: 0.5s;
   border: none;
 }
-#atomostable #expandir_form:hover {
+#atomostable #expandir_tabla:hover {
   width: 110%;
 }
 #atomostable #table {
@@ -495,17 +498,19 @@
 }
 
 .table-filter {
+  position: fixed;
   z-index: 4;
   height: 90%;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   display: flex;
-  align-items: center;
   background-color: #0087b8;
 }
 .table-filter .table-filter-container {
   min-width: 0em;
+  width: 0em;
+  transition: 0.25s all ease-in-out;
 }
 .table-filter .table-filter-container form {
   display: none;
@@ -528,6 +533,7 @@
 
 .filter-active .table-filter-container {
   width: 10em;
+  transition: 0.25s all ease-in-out;
 }
 .filter-active .table-filter-container form {
   display: block;
@@ -544,4 +550,111 @@
 }
 .table-pagination .table-pagination-buttons .table-pagination-button {
   cursor: pointer;
+}
+
+.messages-container {
+  position: fixed;
+  bottom: 5vh;
+  right: 3%;
+  width: 30%;
+  z-index: 3;
+}
+.messages-container.show {
+  transform: translateX(-50%);
+}
+.messages-container .message {
+  display: none;
+  text-align: left;
+  padding: 2em 0;
+  background-color: white;
+  border-radius: 4px;
+  max-width: 100%;
+  top: 0px;
+  position: relative;
+  box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.2);
+}
+.messages-container .message.success.message-active {
+  display: block;
+}
+.messages-container .message.info.message-active {
+  display: block;
+}
+.messages-container .message.error.message-active {
+  display: block;
+}
+.messages-container .message.reorder.message-active {
+  display: block;
+}
+.messages-container .message:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.messages-container .message.success .message-icon {
+  background-color: greenyellow;
+}
+.messages-container .message.success:before {
+  background-color: greenyellow;
+}
+.messages-container .message.info .message-icon {
+  background-color: turquoise;
+}
+.messages-container .message.info:before {
+  background-color: turquoise;
+}
+.messages-container .message.reorder .message-icon {
+  background-color: turquoise;
+}
+.messages-container .message.reorder:before {
+  background-color: turquoise;
+}
+.messages-container .message.error .message-icon {
+  background-color: red;
+}
+.messages-container .message.error:before {
+  background-color: red;
+}
+.messages-container .message .message-icon {
+  border-radius: 50%;
+  display: inline-block;
+  height: 1em;
+  left: 1.5em;
+  padding: 7px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1em;
+}
+.messages-container .message .message-icon svg {
+  fill: #fff;
+}
+.messages-container .message .message-content {
+  padding: 0 4em;
+}
+.messages-container .message .message-content .message-type {
+  color: #3d3d3d;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+.messages-container .message .message-content .message-description {
+  font-size: 0.9em;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #878787;
+}
+.messages-container .message .message-close {
+  cursor: pointer;
+  fill: #3d3d3d;
+  height: 1.5em;
+  position: absolute;
+  right: 1.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1em;
 }

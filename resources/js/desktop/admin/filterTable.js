@@ -32,7 +32,7 @@ export let renderFilterTable = () => {
                 });
                 
             } catch (error) {
-
+                console.error(error);
             }
         };
 

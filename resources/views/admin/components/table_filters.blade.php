@@ -3,72 +3,124 @@
 @endphp
 
 <div class="table-filter" id="table-filter">
-    <div class="table-filter-container encogido">
-        <form class="filter-form" id="filter-form" action="{{route("faqs_filter")}}" autocomplete="off">             
+    <div class="table-filter-container encogido">  
+        
+        @switch($route)
+            @case('faqs')
+                <form class="filter-form" id="filter-form" action="{{route("faqs_filter")}}" autocomplete="off">             
 
-            {{ csrf_field() }}
+                    {{ csrf_field() }}
+        
+        
+                    @foreach ($filters as $key => $items)
+        
+                        @if($key == 'category')
+                            <div class="one-column">
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label for="category_id" class="label-highlight">Filtrar por categoría</label>
+                                    </div>
+                                    <div class="form-input">
+                                        <select name="category_id" data-placeholder="Seleccione una categoría" class="input-highlight">
+                                            <option value="all">Todas</option>
+                                            @foreach($items as $item)
+                                                @if (count(Faq::where('category_id', $item->id)->get()) > 0)
+                                                    <option value="{{$item->id}}" >{{ $item->name }}</option>    
+                                                @else
+                                                    <option value="{{$item->id}}" disabled>{{ $item->name }}</option>    
+                                                @endif
+                                                
+                                            @endforeach
+                                        </select>    
+                                    </div>
+                                </div>
+                            </div>    
+                        @endif
+        
+                        @if($key == 'date')
+                            <div class="one-column">
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label for="init-date" class="label-highlight">Desde:</label>
+                                    </div>
+                                    <div class="form-input">
+                                        <input type="date" name="init-date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
+                                    </div>
+                                    <div class="form-label">
+                                        <label for="final-date" class="label-highlight">Hasta:</label>
+                                    </div>
+                                    <div class="form-input">
+                                        <input type="date" name="final-date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
+                                    </div>
+                                </div>
+                            </div>    
+                        @endif
+        
+                        @if($key == 'search')
+                            <div class="one-column">
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label for="search" class="label-highlight">Buscar palabra</label>
+                                    </div>
+                                    <div class="form-input">
+                                        <input type="text" name="search" class="input-highlight" value="">
+                                    </div>
+                                </div>
+                            </div>    
+                        @endif                
+        
+                    @endforeach
+                        
+                </form>            
+                @break
+            @case('sliders')
+                <form class="filter-form" id="filter-form" action="{{route("sliders_filter")}}" autocomplete="off">             
 
-
-            @foreach ($filters as $key => $items)
-
-                @if($key == 'category')
-                    <div class="one-column">
-                        <div class="form-group">
-                            <div class="form-label">
-                                <label for="category_id" class="label-highlight">Filtrar por categoría</label>
-                            </div>
-                            <div class="form-input">
-                                <select name="category_id" data-placeholder="Seleccione una categoría" class="input-highlight">
-                                    <option value="all">Todas</option>
-                                    @foreach($items as $item)
-                                        @if (count(Faq::where('category_id', $item->id)->get()) > 0)
-                                            <option value="{{$item->id}}" >{{ $item->name }}</option>    
-                                        @else
-                                            <option value="{{$item->id}}" disabled>{{ $item->name }}</option>    
-                                        @endif
-                                        
-                                    @endforeach
-                                </select>    
-                            </div>
-                        </div>
-                    </div>    
-                @endif
-
-                @if($key == 'date')
-                    <div class="one-column">
-                        <div class="form-group">
-                            <div class="form-label">
-                                <label for="init-date" class="label-highlight">Desde:</label>
-                            </div>
-                            <div class="form-input">
-                                <input type="date" name="init-date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
-                            </div>
-                            <div class="form-label">
-                                <label for="final-date" class="label-highlight">Hasta:</label>
-                            </div>
-                            <div class="form-input">
-                                <input type="date" name="final-date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
-                            </div>
-                        </div>
-                    </div>    
-                @endif
-
-                @if($key == 'search')
-                    <div class="one-column">
-                        <div class="form-group">
-                            <div class="form-label">
-                                <label for="search" class="label-highlight">Buscar palabra</label>
-                            </div>
-                            <div class="form-input">
-                                <input type="text" name="search" class="input-highlight" value="">
-                            </div>
-                        </div>
-                    </div>    
-                @endif                
-
-            @endforeach
-                 
-        </form>
+                    {{ csrf_field() }}
+        
+        
+                    @foreach ($filters as $key => $items)                        
+        
+                        @if($key == 'date')
+                            <div class="one-column">
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label for="init-date" class="label-highlight">Desde:</label>
+                                    </div>
+                                    <div class="form-input">
+                                        <input type="date" name="init-date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
+                                    </div>
+                                    <div class="form-label">
+                                        <label for="final-date" class="label-highlight">Hasta:</label>
+                                    </div>
+                                    <div class="form-input">
+                                        <input type="date" name="final-date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
+                                    </div>
+                                </div>
+                            </div>    
+                        @endif
+        
+                        @if($key == 'search')
+                            <div class="one-column">
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label for="search" class="label-highlight">Buscar palabra</label>
+                                    </div>
+                                    <div class="form-input">
+                                        <input type="text" name="search" class="input-highlight" value="">
+                                    </div>
+                                </div>
+                            </div>    
+                        @endif                
+        
+                    @endforeach
+                        
+                </form>
+                @break
+            @default
+                
+        @endswitch
+    
     </div>
     <div class="table-filter-buttons">
         <div class="table-filter-button open-filter button-active" id="open-filter">

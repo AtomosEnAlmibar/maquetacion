@@ -14,7 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['prefix' => 'admin'], function () {
 
-    
+    Route::post('/sliders/filter', 'App\Http\Controllers\Admin\SliderController@filter')->name('sliders_filter');
+
+    Route::resource('sliders', 'App\Http\Controllers\Admin\SliderController', [
+        'names' => [
+            'index' => 'sliders',
+            'create' => 'sliders_create',
+            'edit' => 'sliders_edit',
+            'store' => 'sliders_store',
+            'destroy' => 'sliders_destroy',
+            'show' => 'sliders_show',
+        ]
+    ]);
 
     Route::resource('faqs/categorias', 'App\Http\Controllers\Admin\FaqCategoryController', [
         'parameters' => [

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@lang('admin/faqs.parent_section')</title>
+        <title>@lang('admin/sliders.parent_section')</title>
 
         @include("admin.layout.partials.styles")
         
@@ -31,6 +31,9 @@
                 <li class="menu-item">Cosa 5</li>
                 <button id="expandir-menu"><div class="line"></div></button>
             </ul>
+            @if($agent->isDesktop())
+                @include('admin.components.messages')          
+            @endif            
             @yield('content')
         </div>
         @include("admin.layout.partials.js")

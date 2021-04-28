@@ -8,7 +8,7 @@
     height: 97.40%;
     display: flex;
     flex-direction: row;
-    justify-content: center;                
+    justify-content: center;       
     
     div {
         height: 100%;                
@@ -19,6 +19,10 @@
         width: 90%;
         transition: 0.7s;         
         
+        .table-filter {
+            display: flex;
+        }
+
         .pestana{            
             display: none;            
         }
@@ -33,6 +37,10 @@
         width: 10%; 
         transition: 0.7s;                
     
+        .table-filter {
+            display: flex;
+        }
+
         .pestana{            
             display: flex;            
         }

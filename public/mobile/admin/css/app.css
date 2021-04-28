@@ -187,21 +187,38 @@
 .form-table div {
   height: 100%;
 }
-
-.activo {
+.form-table .activo {
   z-index: 0;
   width: 90%;
-  transition: width 0.7s;
+  transition: 0.7s;
 }
-
-.inactivo {
+.form-table .activo .table-filter {
+  display: flex;
+}
+.form-table .activo .pestana {
+  display: none;
+}
+.form-table .activo .contenido {
+  display: flex;
+}
+.form-table .inactivo {
   z-index: 1;
   width: 10%;
-  transition: width 0.7s;
+  transition: 0.7s;
+}
+.form-table .inactivo .table-filter {
+  display: flex;
+}
+.form-table .inactivo .pestana {
+  display: flex;
+}
+.form-table .inactivo .contenido {
+  display: none;
 }
 
 #atomosform {
   background-color: #1F2833;
+  order: 2;
 }
 #atomosform * {
   font-family: Arial, Helvetica, sans-serif;
@@ -220,7 +237,6 @@
   border: none;
 }
 #atomosform form {
-  display: none;
   position: relative;
   top: 50%;
   left: 50%;
@@ -282,37 +298,24 @@
 #atomosform form #category:focus {
   opacity: 1;
 }
-#atomosform form #submit {
-  margin-top: 25%;
+#atomosform form .modify-form {
+  display: flex;
+  flex-direction: row;
   z-index: 3;
   width: 100%;
-  height: 10%;
-}
-#atomosform form #submit #bg {
-  z-index: 2;
-  position: relative;
-  left: -5%;
   height: 100%;
-  width: 0%;
-  background-color: #4ec9c1;
-  transform: skewX(-20deg);
-  transition-duration: 0.3s;
 }
-#atomosform form #submit button[type=submit] {
+#atomosform form .modify-form div {
+  width: 50%;
   z-index: 4;
-  position: fixed;
-  background-color: transparent;
+  background-color: #4ec9c1;
   border: 2px solid #4ec9c1;
-  width: 100%;
-  height: 10%;
-  font-size: 50px;
 }
-#atomosform form #submit:hover #bg {
-  width: 110%;
-  transition-duration: 0.3s;
-}
-#atomosform form #submit:hover button[type=submit] {
+#atomosform form .modify-form div * {
+  position: relative;
   color: #1F2833;
+  width: 60%;
+  height: 60%;
 }
 #atomosform form label {
   font-size: 18px;
@@ -332,6 +335,7 @@
 
 #atomostable {
   background-color: #50d0ff;
+  order: 1;
   /* width */
   /* Track */
   /* Handle */
@@ -342,7 +346,6 @@
   color: #1F2833;
 }
 #atomostable #expandir_form {
-  display: none;
   position: relative;
   top: 50%;
   left: 50%;
@@ -357,7 +360,6 @@
   width: 110%;
 }
 #atomostable #table {
-  display: flex;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -407,30 +409,29 @@
 }
 #atomostable #table #table-table .datos {
   overflow-x: auto;
+  width: 90%;
 }
 #atomostable #table #table-table .datos .fila {
-  min-height: 10%;
-  max-height: 10%;
   display: flex;
   flex-direction: row;
+  min-height: 10%;
+  max-height: 10%;
 }
 #atomostable #table #table-table .datos .fila .casilla {
   min-width: 20%;
   text-align: center;
 }
 #atomostable #table #table-table .datos .fila .botones {
-  display: none;
+  min-width: 5%;
+  display: inline-flex;
 }
 #atomostable #table #table-table .datos .fila .botones button {
   position: relative;
-  top: 50%;
-  left: 25%;
-  transform: translate(-50%, -50%);
   border: none;
-  width: 50%;
-  height: 50%;
+  width: 25%;
 }
 #atomostable #table #table-table .datos .fila .botones .edit {
+  left: 30%;
   background-color: #79ff79;
 }
 #atomostable #table #table-table .datos .fila .botones .delete {

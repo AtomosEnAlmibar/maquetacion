@@ -1,14 +1,15 @@
 .table-filter {
+    position: fixed;
     z-index: 4;    
     height: 90%;
     width: max-content;
-    display: flex;
-    align-items: center;         
+    display: flex;             
     background-color:hsl(196, 100%, 36%);    
     
     .table-filter-container {
         min-width: 0em;
-        
+        width: 0em;
+        transition: .25s all ease-in-out;
         form {
             display: none;
         }
@@ -37,7 +38,7 @@
 .filter-active {
     .table-filter-container {
         width: 10em;
-        
+        transition: .25s all ease-in-out;
         form {
             display: block;
         }

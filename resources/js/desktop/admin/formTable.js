@@ -1,3 +1,5 @@
+import {showMessage} from './messages';
+
 const table = document.getElementById("table");
 const forms = document.querySelectorAll(".admin-form");
 const botonesMenuPestana=document.querySelectorAll('.menu-pestana-item');
@@ -21,7 +23,7 @@ let cambiarPestana = () => {
 export let renderForm = () => {    
     
     let botonEnviarForm = document.getElementById("enviar_form");
-
+    let botonResetForm = document.getElementById("erase");
     botonEnviarForm.addEventListener("click", (event) => {
         event.preventDefault();
         
@@ -42,6 +44,7 @@ export let renderForm = () => {
                     await axios.post(url, data).then(response => {
                         form.id.value = response.data.id;
                         table.innerHTML = response.data.table;
+                        showMessage('success', response.data.message);
                         renderTable();
                     });
                      
@@ -53,13 +56,21 @@ export let renderForm = () => {
             sendPostRequest();
             
         })    
+
+    })
+
+    botonResetForm.addEventListener("click", (event) => {
+        forms.forEach(form => {            
+            form.reset();
+            renderForm();
+        })
     })
 }
 
 export let renderTable = () => {
 
     let tableHeader = document.querySelectorAll(".cabecera");
-    let formFaqs = document.getElementById("faqs-form");
+    let form = document.querySelector(".admin-form");
     let botonesEditar = document.querySelectorAll(".edit");
     let botonesEliminar = document.querySelectorAll(".delete");
     let dir= "asc";
@@ -68,8 +79,8 @@ export let renderTable = () => {
         boton.addEventListener("click", () => {        
             let sendGetRequest = async () => {
                 try {
-                    await axios.get(boton.dataset.url).then(response => {                    
-                        formFaqs.innerHTML=response.data.form;
+                    await axios.get(boton.dataset.url).then(response => {                                            
+                        form.innerHTML=response.data.form;
                         renderForm();                                               
                     });                
                 } catch (error) {

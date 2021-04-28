@@ -42,14 +42,14 @@ export let renderForm = () => {
 
 export let renderTable = () => {
 
-    let formFaqs = document.getElementById("faqs-form");
+    let formFaqs = document.querySelector(".admin-form");
     let botonesEditar = document.querySelectorAll(".edit");
     let botonesEliminar = document.querySelectorAll(".delete");       
     let tableHeader=document.querySelector(".cabeceras");
     let tableData = document.querySelector(".datos");        
     datas = document.querySelectorAll(".check");
 
-    window.ontouchend=()=>{        
+    /*window.ontouchend=()=>{        
 
         datas.forEach(dato=>{                
             if ( dato.parentNode.getBoundingClientRect().top <= (tableHeader.offsetTop + tableHeader.offsetHeight)) {                                                
@@ -73,7 +73,7 @@ export let renderTable = () => {
         })
         
         console.log(datas);        
-    }
+    }*/
 
     botonesEditar.forEach(boton => {
         boton.addEventListener("click", () => {        

@@ -5,5 +5,5 @@ require('./master');
 require('./form_table');
 require('./menu');
 //require('./swipe');
-require('./lazyLoad');
+//require('./lazyLoad');
 require('./ckeditor');

@@ -1,7 +1,6 @@
-import {createCK} from './ckeditor.js';
 import {renderForm, renderTable} from './form_table.js';
 
-let formFaqs = document.getElementById("faqs-form");
+let formFaqs = document.querySelector(".admin-form");
 let botonesEditar = document.querySelectorAll(".edit");
 let botonesEliminar = document.querySelectorAll(".delete");
 
@@ -31,7 +30,6 @@ if(window.PointerEvent || window.navigator.msPointerEnabled) {
 /* // [END pointereventsupport] */
 
 function SwipeRevealItem(element) {
-
 
 // Gloabl state variables
   var STATE_DEFAULT = 1;

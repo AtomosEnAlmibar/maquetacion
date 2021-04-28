@@ -2034,96 +2034,70 @@ var renderForm = function renderForm() {
   });
 };
 var renderTable = function renderTable() {
-  var formFaqs = document.getElementById("faqs-form");
+  var formFaqs = document.querySelector(".admin-form");
   var botonesEditar = document.querySelectorAll(".edit");
   var botonesEliminar = document.querySelectorAll(".delete");
   var tableHeader = document.querySelector(".cabeceras");
   var tableData = document.querySelector(".datos");
   datas = document.querySelectorAll(".check");
-
-  window.ontouchend = function () {
-    datas.forEach(function (dato) {
-      if (dato.parentNode.getBoundingClientRect().top <= tableHeader.offsetTop + tableHeader.offsetHeight) {
-        var url = dato.dataset.url + muerte;
-        muerte++;
-
-        var sendGetRequest = /*#__PURE__*/function () {
-          var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-              while (1) {
-                switch (_context2.prev = _context2.next) {
-                  case 0:
-                    _context2.prev = 0;
-                    _context2.next = 3;
-                    return axios.get(url).then(function (response) {
-                      tableData.insertAdjacentHTML("beforeend", response.data.datos);
-                      dato.remove();
-                      datas = document.querySelectorAll(".check");
-                      renderTable();
-                    });
-
-                  case 3:
-                    _context2.next = 8;
-                    break;
-
-                  case 5:
-                    _context2.prev = 5;
-                    _context2.t0 = _context2["catch"](0);
-                    console.error(_context2.t0);
-
-                  case 8:
-                  case "end":
-                    return _context2.stop();
-                }
+  /*window.ontouchend=()=>{        
+        datas.forEach(dato=>{                
+          if ( dato.parentNode.getBoundingClientRect().top <= (tableHeader.offsetTop + tableHeader.offsetHeight)) {                                                
+              let url = dato.dataset.url+muerte;
+              muerte++;
+              let sendGetRequest = async () => {
+                  try {
+                      await axios.get(url).then(response => {                                                              
+                          tableData.insertAdjacentHTML("beforeend",response.data.datos);
+                          dato.remove();
+                          datas = document.querySelectorAll(".check");
+                          renderTable();
+                      });                
+                  } catch (error) {
+                      console.error(error);
+                  }
               }
-            }, _callee2, null, [[0, 5]]);
-          }));
-
-          return function sendGetRequest() {
-            return _ref4.apply(this, arguments);
-          };
-        }();
-
-        sendGetRequest();
-      }
-    });
-    console.log(datas);
-  };
+                sendGetRequest();                                
+          }
+      })
+      
+      console.log(datas);        
+  }*/
 
   botonesEditar.forEach(function (boton) {
     boton.addEventListener("click", function () {
       var sendGetRequest = /*#__PURE__*/function () {
-        var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
             while (1) {
-              switch (_context3.prev = _context3.next) {
+              switch (_context2.prev = _context2.next) {
                 case 0:
-                  _context3.prev = 0;
-                  _context3.next = 3;
+                  _context2.prev = 0;
+                  _context2.next = 3;
                   return axios.get(boton.dataset.url).then(function (response) {
                     formFaqs.innerHTML = response.data.form;
                     renderForm();
                   });
 
                 case 3:
-                  _context3.next = 8;
+                  _context2.next = 8;
                   break;
 
                 case 5:
-                  _context3.prev = 5;
-                  _context3.t0 = _context3["catch"](0);
-                  console.error(_context3.t0);
+                  _context2.prev = 5;
+                  _context2.t0 = _context2["catch"](0);
+                  console.error(_context2.t0);
 
                 case 8:
                 case "end":
-                  return _context3.stop();
+                  return _context2.stop();
               }
             }
-          }, _callee3, null, [[0, 5]]);
+          }, _callee2, null, [[0, 5]]);
         }));
 
         return function sendGetRequest() {
-          return _ref5.apply(this, arguments);
+          return _ref4.apply(this, arguments);
         };
       }();
 
@@ -2133,37 +2107,37 @@ var renderTable = function renderTable() {
   botonesEliminar.forEach(function (boton) {
     boton.addEventListener("click", function () {
       var sendDeleteRequest = /*#__PURE__*/function () {
-        var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
             while (1) {
-              switch (_context4.prev = _context4.next) {
+              switch (_context3.prev = _context3.next) {
                 case 0:
-                  _context4.prev = 0;
-                  _context4.next = 3;
+                  _context3.prev = 0;
+                  _context3.next = 3;
                   return axios["delete"](boton.dataset.url).then(function (response) {
                     table.innerHTML = response.data.table;
                     renderTable();
                   });
 
                 case 3:
-                  _context4.next = 8;
+                  _context3.next = 8;
                   break;
 
                 case 5:
-                  _context4.prev = 5;
-                  _context4.t0 = _context4["catch"](0);
-                  console.error(_context4.t0.response);
+                  _context3.prev = 5;
+                  _context3.t0 = _context3["catch"](0);
+                  console.error(_context3.t0.response);
 
                 case 8:
                 case "end":
-                  return _context4.stop();
+                  return _context3.stop();
               }
             }
-          }, _callee4, null, [[0, 5]]);
+          }, _callee3, null, [[0, 5]]);
         }));
 
         return function sendDeleteRequest() {
-          return _ref6.apply(this, arguments);
+          return _ref5.apply(this, arguments);
         };
       }();
 
@@ -2173,16 +2147,6 @@ var renderTable = function renderTable() {
 };
 renderForm();
 renderTable();
-
-/***/ }),
-
-/***/ "./resources/js/mobile/admin/lazyLoad.js":
-/*!***********************************************!*\
-  !*** ./resources/js/mobile/admin/lazyLoad.js ***!
-  \***********************************************/
-/***/ (() => {
-
-
 
 /***/ }),
 
@@ -2197,28 +2161,18 @@ var botonExpandirTabla = document.getElementById("expandir_tabla");
 
 var cosas = function cosas() {
   var formulario = document.getElementById("atomosform");
-  var formhijos = formulario.children;
   var tabla = document.getElementById("atomostable");
-  var tabhijos = tabla.children;
 
   if (formulario.className === 'activo') {
     formulario.classList.toggle("activo", false);
     formulario.classList.toggle("inactivo", true);
     tabla.classList.toggle("inactivo", false);
     tabla.classList.toggle("activo", true);
-    formhijos[1].style.display = "none";
-    tabhijos[0].style.display = "none";
-    formhijos[0].style.display = "flex";
-    tabhijos[1].style.display = "flex";
   } else {
     formulario.classList.toggle("inactivo", false);
     formulario.classList.toggle("activo", true);
     tabla.classList.toggle("activo", false);
     tabla.classList.toggle("inactivo", true);
-    formhijos[0].style.display = "none";
-    tabhijos[1].style.display = "none";
-    formhijos[1].style.display = "flex";
-    tabhijos[0].style.display = "flex";
   }
 };
 
@@ -20584,9 +20538,8 @@ __webpack_require__(/*! ./master */ "./resources/js/mobile/admin/master.js");
 __webpack_require__(/*! ./form_table */ "./resources/js/mobile/admin/form_table.js");
 
 __webpack_require__(/*! ./menu */ "./resources/js/mobile/admin/menu.js"); //require('./swipe');
+//require('./lazyLoad');
 
-
-__webpack_require__(/*! ./lazyLoad */ "./resources/js/mobile/admin/lazyLoad.js");
 
 __webpack_require__(/*! ./ckeditor */ "./resources/js/mobile/admin/ckeditor.js");
 })();
