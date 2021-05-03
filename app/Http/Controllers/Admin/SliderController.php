@@ -4,18 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Jenssegers\Agent\Agent;
 use App\Http\Requests\Admin\SliderRequest;
 use App\Models\DB\Slider;
 
 class SliderController extends Controller
 {
 
-    function __construct(Slider $slider)
+    function __construct(Slider $slider, Agent $agent)
     {    
         //$this->middleware('auth');
         
         $this->slider = $slider;
+
+        $this->agent = $agent;
     }
 
     public function index()
@@ -133,43 +137,58 @@ class SliderController extends Controller
         ]);
     }
 
-    public function filter(){
+    public function filter(Request $request, $filters = null){
 
-        $query = $this->slider->query();                
-
-        $query->when(request('init-date'), function ($q, $init_date) {
-
-            if(($init_date) == 'all'){                                
-                return $q;
-            }
-            else {
-                return $q->where('created_at', '>=', $init_date);
-            }            
-
-        });
-
-        $query->when(request('final-date'), function ($q, $final_date) {
-
-            if(($final_date) == 'all'){
-                return $q;
-            }
-            else {
-                return $q->where('created_at', '<=', $final_date);
-            }            
-
-        });
-
-        $query->when(request('search'), function ($q, $search) {
-
-            if($search == null){
-                return $q;
-            }
-            else {
-                return $q->where('name', 'like', "%$search%");
-            }
-        });
+        $filters = json_decode($request->input('filters'));
         
-        $sliders = $query->where('active', 1)->get();
+        $query = $this->slider->query();
+
+        if($filters != null){
+
+            $query->when($filters->search, function ($q, $search) {
+    
+                if($search == null){
+                    return $q;
+                }
+                else {
+                    return $q->where('t_sliders.name', 'like', "%$search%");
+                }   
+            });
+    
+            $query->when($filters->init_date, function ($q, $init_date) {
+    
+                if($init_date == 'all'){
+                    return $q;
+                }
+                else {
+                    $q->whereDate('t_sliders.created_at', '>=', $init_date);
+                }   
+            });
+    
+            $query->when($filters->final_date, function ($q, $final_date) {
+    
+                if($final_date == 'all'){
+                    return $q;
+                }
+                else {
+                    $q->whereDate('t_sliders.created_at', '<=', $final_date);
+                }   
+            });
+        }
+       
+        if($this->agent->isMobile()){
+            $sliders = $query->where('t_sliders.active', 1)
+                    ->orderBy('t_sliders.id', 'asc')
+                    ->paginate(10)
+                    ->appends(['filters' => json_encode($filters)]);  
+        }
+
+        if($this->agent->isDesktop()){
+            $sliders = $query->where('t_sliders.active', 1)
+                    ->orderBy('t_sliders.id', 'asc')
+                    ->paginate(6)
+                    ->appends(['filters' => json_encode($filters)]);   
+        }
 
         $view = View::make('admin.sliders.index')
             ->with('sliders', $sliders)

@@ -41,16 +41,16 @@
                             <div class="one-column">
                                 <div class="form-group">
                                     <div class="form-label">
-                                        <label for="init-date" class="label-highlight">Desde:</label>
+                                        <label for="init_date" class="label-highlight">Desde:</label>
                                     </div>
                                     <div class="form-input">
-                                        <input type="date" name="init-date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
+                                        <input type="date" name="init_date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
                                     </div>
                                     <div class="form-label">
-                                        <label for="final-date" class="label-highlight">Hasta:</label>
+                                        <label for="final_date" class="label-highlight">Hasta:</label>
                                     </div>
                                     <div class="form-input">
-                                        <input type="date" name="final-date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
+                                        <input type="date" name="final_date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
                                     </div>
                                 </div>
                             </div>    
@@ -85,16 +85,16 @@
                             <div class="one-column">
                                 <div class="form-group">
                                     <div class="form-label">
-                                        <label for="init-date" class="label-highlight">Desde:</label>
+                                        <label for="init_date" class="label-highlight">Desde:</label>
                                     </div>
                                     <div class="form-input">
-                                        <input type="date" name="init-date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
+                                        <input type="date" name="init_date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>
                                     </div>
                                     <div class="form-label">
-                                        <label for="final-date" class="label-highlight">Hasta:</label>
+                                        <label for="final_date" class="label-highlight">Hasta:</label>
                                     </div>
                                     <div class="form-input">
-                                        <input type="date" name="final-date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>                                
+                                        <input type="date" name="final_date" class="input-highlight" value="" min={{$items[0]->created_at}} max={{$items[count($items)-1]->created_at}}>
                                     </div>
                                 </div>
                             </div>    

@@ -23,8 +23,16 @@
                         </div>                        
                     </div>                                       
                 </li>
-                <li class="menu-item">
-                    Cosa 2
+                <li class="menu-item">                    
+                    <div class="submenu-main clickable" data-url="{{route('clients')}}">
+                        <span>Clientes</span>                        
+                        <div class="line expandir-submenu"></div>
+                    </div> 
+                    <div class="submenu">
+                        <div class="submenu-item clickable" data-url="{{route('directions')}}">
+                            <span>Direcciones</span>
+                        </div>                        
+                    </div>                                       
                 </li>
                 <li class="menu-item">Cosa 3</li>
                 <li class="menu-item">Cosa 4</li>

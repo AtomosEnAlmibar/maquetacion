@@ -47,13 +47,7 @@
                         @endif
                     </div>              
                 @endforeach              
-            @show
-            @if($agent->isMobile())
-                <div class="loading">
-                    
-                </div>        
-            @endif
-            
+            @show                        
         </div>
     </div>       
 

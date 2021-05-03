@@ -45,19 +45,38 @@
             margin-top: 0%;
             padding-inline-start: 0px;            
             li {                 
+                display: block;
                 border: 2px solid transparent;
                 border-radius: 10px;
                 margin-top: 1%;
                 margin-left: 2%;
                 margin-right: 2%;
-                text-align: center;   
-                width: 25%;
+                text-align: center;                   
                 color: #1F2833;       
                 background-color: #4ec9c1;                                              
             }            
 
             li:hover {
                 background-color: hsl(176, 53%, 35%);                                              
+            }
+
+            li:first-child:nth-last-child(1) {
+                width: 100%;
+            }
+                            
+            li:first-child:nth-last-child(2),
+            li:first-child:nth-last-child(2) ~ li {
+                width: 45%;
+            }   
+                        
+            li:first-child:nth-last-child(3),
+            li:first-child:nth-last-child(3) ~ li {
+                width: 28.3333%;
+            }
+                        
+            li:first-child:nth-last-child(4),
+            li:first-child:nth-last-child(4) ~ li {
+                width: 20%;
             }
         }
         
@@ -67,7 +86,7 @@
             top: 30%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 50%;
+            max-width: 75%;
             height: 50%;        
             justify-content: center;
             flex-direction: column;
@@ -151,22 +170,23 @@
         .modify-form {            
             display: flex;
             flex-direction: row;
-            z-index: 3;
+            z-index: 3;            
             width: 100%;
-            height: 100%;
-
+            height: 50%;            
             div {
-                width: 50%;
-                z-index: 4;
-                    
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 4;                    
                 background-color: #4ec9c1;                    
                 border:2px solid #4ec9c1;                                
-
+                width: 100%;
                 * {           
+
                     position: relative;                                
                     color: #1F2833;
-                    width: 60%;
-                    height: 60%;                    
+                    width: 40%;
+                    height: 40%;                    
                 }
             }
                                                            

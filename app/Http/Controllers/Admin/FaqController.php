@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Jenssegers\Agent\Agent;
 use App\Http\Requests\Admin\FaqRequest;
 use App\Models\DB\Faq;
 use Debugbar;
@@ -15,11 +16,13 @@ class FaqController extends Controller
 {
     protected $faq;
 
-    function __construct(Faq $faq)
+    function __construct(Faq $faq,Agent $agent)
     {
         //$this->middleware('auth');
 
         $this->faq = $faq;
+
+        $this->agent = $agent;
     }
 
     public function indexJson(Request $request)
@@ -136,53 +139,68 @@ class FaqController extends Controller
         ]);
     }
 
-    public function filter(){
+    public function filter(Request $request, $filters = null){
 
-        $query = $this->faq->query();                
-
-        $query->when(request('category_id'), function ($q, $category_id) {            
-
-            if($category_id == 'all'){                                
-                return $q;
-            }
-            else {                                            
-                return $q->where('category_id', $category_id);
-            }
-        });
-
-        $query->when(request('init-date'), function ($q, $init_date) {
-
-            if(($init_date) == 'all'){                                
-                return $q;
-            }
-            else {
-                return $q->where('created_at', '>=', $init_date);
-            }            
-
-        });
-
-        $query->when(request('final-date'), function ($q, $final_date) {
-
-            if(($final_date) == 'all'){
-                return $q;
-            }
-            else {
-                return $q->where('created_at', '<=', $final_date);
-            }            
-
-        });
-
-        $query->when(request('search'), function ($q, $search) {
-
-            if($search == null){
-                return $q;
-            }
-            else {
-                return $q->where('title', 'like', "%$search%");
-            }
-        });
+        $filters = json_decode($request->input('filters'));
         
-        $faqs = $query->where('active', 1)->get();
+        $query = $this->faq->query();
+
+        if($filters != null){
+
+            $query->when($filters->category_id, function ($q, $category_id) {
+
+                if($category_id == 'all'){
+                    return $q;
+                }
+                else{
+                    return $q->where('category_id', $category_id);
+                }
+            });
+    
+            $query->when($filters->search, function ($q, $search) {
+    
+                if($search == null){
+                    return $q;
+                }
+                else {
+                    return $q->where('t_faqs.title', 'like', "%$search%");
+                }   
+            });
+    
+            $query->when($filters->init_date, function ($q, $init_date) {
+    
+                if($init_date == 'all'){
+                    return $q;
+                }
+                else {
+                    $q->whereDate('t_faqs.created_at', '>=', $init_date);
+                }   
+            });
+    
+            $query->when($filters->final_date, function ($q, $final_date) {
+    
+                if($final_date == 'all'){
+                    return $q;
+                }
+                else {
+                    $q->whereDate('t_faqs.created_at', '<=', $final_date);
+                }   
+            });
+        }
+       
+        if($this->agent->isMobile()){
+            $faqs = $query->where('t_faqs.active', 1)
+                    ->orderBy('t_faqs.id', 'asc')
+                    ->paginate(10)
+                    ->appends(['filters' => json_encode($filters)]);  
+        }
+
+        if($this->agent->isDesktop()){
+            $faqs = $query->where('t_faqs.active', 1)
+                    ->orderBy('t_faqs.di', 'asc')
+                    ->paginate(6)
+                    ->appends(['filters' => json_encode($filters)]);   
+        }
 
         $view = View::make('admin.faqs.index')
             ->with('faqs', $faqs)

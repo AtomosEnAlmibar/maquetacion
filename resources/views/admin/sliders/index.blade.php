@@ -11,15 +11,22 @@
 
         {{ csrf_field()}}
 
-        
+        <ul class="menu-pestana">
+            <li class="menu-pestana-item" data-name="nombre">Nombre</li>
+            <li class="menu-pestana-item" data-name="entidad">Entidad</li>
+        </ul>
         <input id="nada" autocomplete="false" name="hidden" type="text" style="display:none;">
-        <input id="id" type="hidden" name="id" value="{{isset($slider->id) ? $slider->id : ''}}">                        
-        <label for="name">Nombre:</label>
+        <input id="id" type="hidden" name="id" value="{{isset($slider->id) ? $slider->id : ''}}"> 
+        <div class="pestana" id="nombre">
+            <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" value="{{isset($slider->name) ? $slider->name : ''}}" placeholder="¿En qué año fue 1 + 1?">
-        <label for="entity">Entidad:</label>
-        <input type="text" id="entity" name="entity" value="{{isset($slider->entity) ? $slider->entity : ''}}" placeholder="¿En qué año fue 1 + 1?">                
+        </div>                               
+        <div class="pestana inactivo" id="entidad">
+            <label for="entity">Entidad:</label>
+            <input type="text" id="entity" name="entity" value="{{isset($slider->entity) ? $slider->entity : ''}}" placeholder="¿En qué año fue 1 + 1?">                
+        </div>
         <div class="modify-form">
-            <div type="submit" value="Submit" id="enviar_form" >            
+            <div type="submit" value="Submit" id="enviar_form">            
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2-fill" viewBox="0 0 16 16">
                     <path d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v6h-2a.5.5 0 0 0-.354.854l2.5 2.5a.5.5 0 0 0 .708 0l2.5-2.5A.5.5 0 0 0 10.5 7.5h-2v-6z"/>
                 </svg>
