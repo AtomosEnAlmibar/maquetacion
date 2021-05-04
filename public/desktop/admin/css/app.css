@@ -209,6 +209,7 @@
 }
 
 #atomosform {
+  display: flex;
   background-color: #1F2833;
   order: 2;
 }
@@ -292,6 +293,49 @@
   justify-content: center;
   flex-direction: column;
 }
+#atomosform form .pestana .drop-zone {
+  max-width: 200px;
+  height: 200px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  color: #cccccc;
+  border: 4px dashed #009578;
+  border-radius: 10px;
+}
+#atomosform form .pestana .drop-zone--over {
+  border-style: solid;
+}
+#atomosform form .pestana .drop-zone__input {
+  display: none;
+}
+#atomosform form .pestana .drop-zone__thumb {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #cccccc;
+  background-size: cover;
+  position: relative;
+}
+#atomosform form .pestana .drop-zone__thumb::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 14px;
+  text-align: center;
+}
 #atomosform form .pestana input[type=text] {
   background-color: transparent;
   border: 2px solid whitesmoke;
@@ -374,6 +418,45 @@
   color: #1F2833;
   width: 40%;
   height: 40%;
+}
+#atomosform .menu-pestana {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  background-color: transparent;
+  margin-top: 0%;
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
+  width: 100%;
+}
+#atomosform .menu-pestana li {
+  display: block;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  margin-top: 1%;
+  margin-left: 2%;
+  margin-right: 2%;
+  text-align: center;
+  color: #1F2833;
+  background-color: #4ec9c1;
+}
+#atomosform .menu-pestana li:hover {
+  background-color: #2a8982;
+}
+#atomosform .menu-pestana li:first-child:nth-last-child(1) {
+  width: 100%;
+}
+#atomosform .menu-pestana li:first-child:nth-last-child(2),
+#atomosform .menu-pestana li:first-child:nth-last-child(2) ~ li {
+  width: 45%;
+}
+#atomosform .menu-pestana li:first-child:nth-last-child(3),
+#atomosform .menu-pestana li:first-child:nth-last-child(3) ~ li {
+  width: 28.3333%;
+}
+#atomosform .menu-pestana li:first-child:nth-last-child(4),
+#atomosform .menu-pestana li:first-child:nth-last-child(4) ~ li {
+  width: 20%;
 }
 
 ::-moz-placeholder {
