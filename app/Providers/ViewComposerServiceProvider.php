@@ -26,6 +26,11 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer([
+            'admin.*'], 
+            'App\Http\ViewComposers\Admin\LocaleLanguage'
+        );
+
+        view()->composer([
             'admin.faqs.index'],
             'App\Http\ViewComposers\Admin\FaqCategories'
         );

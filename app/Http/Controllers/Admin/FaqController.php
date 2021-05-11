@@ -9,20 +9,25 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Jenssegers\Agent\Agent;
 use App\Http\Requests\Admin\FaqRequest;
+use App\Vendor\Locale\Locale;
 use App\Models\DB\Faq;
 use Debugbar;
 
 class FaqController extends Controller
 {
     protected $faq;
+    protected $locale;
 
-    function __construct(Faq $faq,Agent $agent)
+    function __construct(Faq $faq,Agent $agent, Locale $locale)
     {
         //$this->middleware('auth');
 
         $this->faq = $faq;
-
+        $this->locale = $locale;
         $this->agent = $agent;
+
+        //$this->locale->setParent('faqs');
+        //$this->image->setEntity('faqs');
     }
 
     public function indexJson(Request $request)
@@ -54,8 +59,7 @@ class FaqController extends Controller
                 'form' => $sections['form'],                
                 'datos' => $sections['datos'],
             ]); 
-        }
-
+        }        
         return $view;
     }
 
@@ -80,6 +84,10 @@ class FaqController extends Controller
             'description' => request('description'),
             'active' => 1,
         ]);
+
+        if(request('locale')){
+            $locale = $this->locale->store(request('locale'), $faq->id);
+        }
 
         if (request('id')){
             $message = \Lang::get('admin/faqs.faq-update');
