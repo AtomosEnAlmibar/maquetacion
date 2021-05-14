@@ -29,15 +29,13 @@ class FaqRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'description' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'title.required' => 'El titulo es obligatorio',
-            'description.required' => 'Debe añadir una descripción',
+            'title.required' => 'El nombre es obligatorio',
         ];
     }
 }

@@ -93,8 +93,8 @@ let cambiarPestana = () => {
 
 export let renderForm = () => {    
     
-    let botonEnviarForm = document.getElementById("enviar_form");
-    let botonResetForm = document.getElementById("erase");
+    let botonEnviarForm = document.querySelector(".enviar_form");    
+    let botonResetForm = document.querySelector(".erase");
     botonEnviarForm.addEventListener("click", (event) => {
         event.preventDefault();
         

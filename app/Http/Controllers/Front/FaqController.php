@@ -21,10 +21,6 @@ class FaqController extends Controller
     {
         $this->agent = $agent;
         $this->faq = $faq;
-        $this->locale = $locale;
-        
-        $this->locale->setParent('faqs');
-        $this->locale->setLanguage(App::getLocale());
     }
 
     public function index()

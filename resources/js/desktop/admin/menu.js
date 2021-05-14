@@ -4,7 +4,7 @@ import {renderForm, renderTable} from './formTable.js';
 const botonExpandirMenu=document.getElementById("expandir-menu");
 const botonesExpandirSubmenu=document.querySelectorAll(".expandir-submenu");
 const botonesMenu = document.querySelectorAll('.clickable');
-const form = document.getElementById("faqs-form");    
+const form = document.querySelector(".faqs-form");    
 const table =document.getElementById("table");
 
 botonExpandirMenu.addEventListener("mouseenter",()=> {

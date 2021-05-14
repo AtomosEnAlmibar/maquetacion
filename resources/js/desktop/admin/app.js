@@ -7,3 +7,4 @@ require('./menu');
 require('./ckeditor');
 require('./filterTable');
 require('./messages');
+require('./upload');

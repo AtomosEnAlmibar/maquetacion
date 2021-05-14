@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
@@ -10,62 +9,62 @@ use App\Http\Controllers\Controller;
 use Jenssegers\Agent\Agent;
 use App\Http\Requests\Admin\FaqRequest;
 use App\Vendor\Locale\Locale;
-use App\Models\DB\Faq;
+use App\Vendor\Image\Image;
+use App\Models\DB\Faq; 
 use Debugbar;
 
 class FaqController extends Controller
 {
-    protected $faq;
+    protected $agent;
     protected $locale;
+    protected $image;
+    protected $paginate;
+    protected $faq;
 
-    function __construct(Faq $faq,Agent $agent, Locale $locale)
+    function __construct(Faq $faq, Agent $agent, Locale $locale, Image $image)
     {
         //$this->middleware('auth');
-
-        $this->faq = $faq;
-        $this->locale = $locale;
         $this->agent = $agent;
+        $this->locale = $locale;
+        $this->image = $image;
+        $this->faq = $faq;
+        $this->faq->visible = 1;
 
-        //$this->locale->setParent('faqs');
-        //$this->image->setEntity('faqs');
-    }
+        if ($this->agent->isMobile()) {
+            $this->paginate = 10;
+        }
 
-    public function indexJson(Request $request)
-    {
-        $length = $request->input('length');
-        $orderBy = $request->input('column'); 
-        $orderByDir = $request->input('dir', 'asc');
-        $searchValue = $request->input('search');
-        
-        $query = $this->faq->eloquentQuery($orderBy, $orderByDir, $searchValue);
-        $data = $query->paginate($length);
-        
-        return new DataTableCollectionResource($data);
+        if ($this->agent->isDesktop()) {
+            $this->paginate = 6;
+        }
+
+        $this->locale->setParent('faqs');
+        $this->image->setEntity('faqs');
     }
 
     public function index()
     {
-
         $view = View::make('admin.faqs.index')
-                ->with('faq', $this->faq)
-                ->with('faqs', $this->faq->where('active', 1)->paginate(10));
-
+        ->with('faq', $this->faq)
+        ->with('faqs', $this->faq->where('active', 1)
+        ->orderBy('created_at', 'desc')
+        ->paginate($this->paginate));
+    
         if(request()->ajax()) {
             
             $sections = $view->renderSections(); 
-            
+    
             return response()->json([
                 'table' => $sections['table'],
-                'form' => $sections['form'],                
-                'datos' => $sections['datos'],
+                'form' => $sections['form'],
             ]); 
-        }        
+        }
+
         return $view;
     }
 
     public function create()
     {
-
         $view = View::make('admin.faqs.index')
         ->with('faq', $this->faq)
         ->renderSections();
@@ -76,17 +75,23 @@ class FaqController extends Controller
     }
 
     public function store(FaqRequest $request)
-    {            
+    {                              
+        Debugbar::info(request('images'));
+        
         $faq = $this->faq->updateOrCreate([
             'id' => request('id')],[
             'category_id' => request('category_id'),
             'title' => request('title'),
-            'description' => request('description'),
-            'active' => 1,
+            'visible' => request('visible') == "true" ? 1 : 0 ,
+            'active' => 1,                    
         ]);
 
         if(request('locale')){
             $locale = $this->locale->store(request('locale'), $faq->id);
+        }
+
+        if(request('images')){
+            $images = $this->image->storeRequest(request('images'), 'webp', $faq->id);
         }
 
         if (request('id')){
@@ -96,7 +101,7 @@ class FaqController extends Controller
         }
 
         $view = View::make('admin.faqs.index')
-        ->with('faqs', $this->faq->where('active', 1)->get())
+        ->with('faqs', $this->faq->where('active', 1)->orderBy('created_at', 'desc')->paginate($this->paginate))
         ->with('faq', $faq)
         ->renderSections();        
 
@@ -108,17 +113,21 @@ class FaqController extends Controller
         ]);
     }
 
-    public function show(Faq $faq)
+    public function edit(Faq $faq)
     {
+        $locale = $this->locale->show($faq->id);
+
         $view = View::make('admin.faqs.index')
+        ->with('locale', $locale)
         ->with('faq', $faq)
-        ->with('faqs', $this->faq->where('active', 1)->get());   
+        ->with('faqs', $this->faq->where('active', 1)->orderBy('created_at', 'desc')->paginate($this->paginate));        
         
         if(request()->ajax()) {
 
             $sections = $view->renderSections(); 
     
             return response()->json([
+                'table' => $sections['table'],
                 'form' => $sections['form'],
             ]); 
         }
@@ -126,20 +135,31 @@ class FaqController extends Controller
         return $view;
     }
 
+    public function show(Faq $faq){
+
+        $view = View::make('admin.faqs.index')
+        ->with('faq', $faq)
+        ->with('faqs', $this->faq->where('active', 1)->orderBy('created_at', 'desc')->paginate($this->paginate))
+        ->renderSections();        
+
+        return response()->json([
+            'table' => $view['table'],
+            'form' => $view['form'],
+        ]);
+    }
+
     public function destroy(Faq $faq)
     {
         $faq->active = 0;
         $faq->save();
 
-        // $faq->delete();
-
         $message = \Lang::get('admin/faqs.faq-delete');
 
         $view = View::make('admin.faqs.index')
-            ->with('faq', $this->faq)
-            ->with('faqs', $this->faq->where('active', 1)->get())
-            ->renderSections();
-        
+        ->with('faq', $this->faq)
+        ->with('faqs', $this->faq->where('active', 1)->orderBy('created_at', 'desc')->paginate($this->paginate))
+        ->renderSections();        
+
         return response()->json([
             'table' => $view['table'],
             'form' => $view['form'],

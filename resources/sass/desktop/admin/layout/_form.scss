@@ -73,7 +73,7 @@
     }
 
     form {    
-        display: flex;    
+        display: none;    
         position: relative;
         top: 50%;
         left: 50%;
@@ -294,7 +294,9 @@
         
     }
 
-    
+    .activo {
+        display: flex;
+    }
 }
 
 ::placeholder {
