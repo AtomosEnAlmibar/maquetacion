@@ -31,25 +31,36 @@
     display: none;
 }
 
-.upload-thumb {
+.container {
+    display: flex;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #cccccc;
-    background-size: cover;
-    position: relative;
-}
-
-.upload-thumb::after {
-content: attr(data-label);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 5px 0;
-    color: #ffffff;
-    background: rgba(0, 0, 0, 0.75);
-    font-size: 14px;
-    text-align: center;
+    
+    .upload-thumb {
+        min-width: 20%;
+        height: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #cccccc;
+        background-size: cover;
+        position: absolute;
+    }
+    
+    .upload-thumb::after {
+    content: attr(data-label);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 5px 0;
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.75);
+        font-size: 14px;
+        text-align: center;
+    }
+    
+    .upload-thumb:hover {
+        transform: scale(2);
+        transition-duration: .25s;
+    }
 }

@@ -2582,7 +2582,7 @@ var renderUpload = function renderUpload() {
     });
     inputElement.addEventListener("change", function (e) {
       if (inputElement.files.length) {
-        updateThumbnail(uploadElement, inputElement.files[0]);
+        updateThumbnail(uploadElement, inputElement.files);
       }
     });
     uploadElement.addEventListener("dragover", function (e) {
@@ -2606,30 +2606,36 @@ var renderUpload = function renderUpload() {
     });
   });
 
-  function updateThumbnail(uploadElement, file) {
+  function updateThumbnail(uploadElement, files) {
     var thumbnailElement = uploadElement.querySelector(".upload-thumb");
+    var thumbnails = uploadElement.querySelectorAll(".upload-thumb");
 
     if (uploadElement.querySelector(".upload-prompt")) {
       uploadElement.querySelector(".upload-prompt").remove();
     }
 
-    if (!thumbnailElement) {
+    thumbnails.forEach(function (thumbnail) {
+      thumbnail.remove();
+    });
+
+    for (var i = 0; i < files.length; i++) {
       thumbnailElement = document.createElement("div");
       thumbnailElement.classList.add("upload-thumb");
-      uploadElement.appendChild(thumbnailElement);
-    }
+      document.querySelector(".container").appendChild(thumbnailElement);
+      thumbnailElement.dataset.label = files[i].name;
 
-    thumbnailElement.dataset.label = file.name;
+      if (files[i].type.startsWith("image/")) {
+        (function () {
+          var reader = new FileReader();
+          reader.readAsDataURL(files[i]);
 
-    if (file.type.startsWith("image/")) {
-      var reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onload = function () {
-        thumbnailElement.style.backgroundImage = "url('".concat(reader.result, "')");
-      };
-    } else {
-      thumbnailElement.style.backgroundImage = null;
+          reader.onload = function () {
+            thumbnailElement.style.backgroundImage = "url('".concat(reader.result, "')");
+          };
+        })();
+      } else {
+        thumbnailElement.style.backgroundImage = null;
+      }
     }
   }
 };

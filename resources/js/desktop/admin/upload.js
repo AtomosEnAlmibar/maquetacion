@@ -6,13 +6,13 @@ let renderUpload = () => {
     
         let uploadElement = inputElement.closest(".upload");
       
-        uploadElement.addEventListener("click", (e) => {
+        uploadElement.addEventListener("click", (e) => {            
             inputElement.click();
         });
       
         inputElement.addEventListener("change", (e) => {
-            if (inputElement.files.length) {
-                updateThumbnail(uploadElement, inputElement.files[0]);
+            if (inputElement.files.length) {                
+                updateThumbnail(uploadElement, inputElement.files);                             
             }
         });
       
@@ -39,33 +39,39 @@ let renderUpload = () => {
         });
     });
       
-    function updateThumbnail(uploadElement, file) {
+    function updateThumbnail(uploadElement, files) {
     
         let thumbnailElement = uploadElement.querySelector(".upload-thumb");
+        let thumbnails = uploadElement.querySelectorAll(".upload-thumb");
       
         if (uploadElement.querySelector(".upload-prompt")) {
             uploadElement.querySelector(".upload-prompt").remove();
-        }
-      
-        if (!thumbnailElement) {
-            thumbnailElement = document.createElement("div");
-            thumbnailElement.classList.add("upload-thumb");
-            uploadElement.appendChild(thumbnailElement);
-        }
-      
-        thumbnailElement.dataset.label = file.name;
-      
-        if (file.type.startsWith("image/")) {
-            let reader = new FileReader();
+        }        
         
-            reader.readAsDataURL(file);
-    
-            reader.onload = () => {
-                thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
-            };
-        } else {
-            thumbnailElement.style.backgroundImage = null;
-        }
+        thumbnails.forEach(thumbnail => {
+            thumbnail.remove();
+        });
+
+        for (let i = 0; i < files.length; i++) {            
+            thumbnailElement = document.createElement("div");            
+            thumbnailElement.classList.add("upload-thumb");
+            document.querySelector(".container").appendChild(thumbnailElement);
+          
+            thumbnailElement.dataset.label = files[i].name;
+          
+            if (files[i].type.startsWith("image/")) {
+                let reader = new FileReader();
+            
+                reader.readAsDataURL(files[i]);
+        
+                reader.onload = () => {
+                    thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+                };
+            } else {
+                thumbnailElement.style.backgroundImage = null;
+            }
+        }        
+
     }
 }
 

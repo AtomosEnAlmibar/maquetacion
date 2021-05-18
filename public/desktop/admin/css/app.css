@@ -801,17 +801,21 @@
   display: none;
 }
 
-.upload-thumb {
+.container {
+  display: flex;
   width: 100%;
+  height: 100%;
+}
+.container .upload-thumb {
+  min-width: 20%;
   height: 100%;
   border-radius: 10px;
   overflow: hidden;
   background-color: #cccccc;
   background-size: cover;
-  position: relative;
+  position: absolute;
 }
-
-.upload-thumb::after {
+.container .upload-thumb::after {
   content: attr(data-label);
   position: absolute;
   bottom: 0;
@@ -822,4 +826,8 @@
   background: rgba(0, 0, 0, 0.75);
   font-size: 14px;
   text-align: center;
+}
+.container .upload-thumb:hover {
+  transform: scale(2);
+  transition-duration: 0.25s;
 }
