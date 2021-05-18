@@ -35,7 +35,7 @@
     display: flex;
     width: 100%;
     height: 100%;
-    
+
     .upload-thumb {
         min-width: 20%;
         height: 100%;
@@ -45,7 +45,7 @@
         background-size: cover;
         position: absolute;
     }
-    
+    a
     .upload-thumb::after {
     content: attr(data-label);
         position: absolute;
