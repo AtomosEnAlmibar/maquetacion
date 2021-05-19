@@ -41,7 +41,6 @@ let renderUpload = () => {
       
     function updateThumbnail(uploadElement, files) {
     
-        let thumbnailElement = uploadElement.querySelector(".upload-thumb");
         let thumbnails = uploadElement.querySelectorAll(".upload-thumb");
       
         if (uploadElement.querySelector(".upload-prompt")) {
@@ -53,21 +52,21 @@ let renderUpload = () => {
         });
 
         for (let i = 0; i < files.length; i++) {            
-            thumbnailElement = document.createElement("div");            
+            let thumbnailElement = document.createElement("div");            
             thumbnailElement.classList.add("upload-thumb");
             document.querySelector(".container").appendChild(thumbnailElement);
           
             thumbnailElement.dataset.label = files[i].name;
           
-            if (files[i].type.startsWith("image/")) {
+            if (files[i].type.startsWith("image/")) {                
                 let reader = new FileReader();
             
-                reader.readAsDataURL(files[i]);
-        
-                reader.onload = () => {
+                reader.readAsDataURL(files[i]);                
+
+                reader.onload = () => {                                  
                     thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
                 };
-            } else {
+            } else {                
                 thumbnailElement.style.backgroundImage = null;
             }
         }        

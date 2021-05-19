@@ -2607,7 +2607,6 @@ var renderUpload = function renderUpload() {
   });
 
   function updateThumbnail(uploadElement, files) {
-    var thumbnailElement = uploadElement.querySelector(".upload-thumb");
     var thumbnails = uploadElement.querySelectorAll(".upload-thumb");
 
     if (uploadElement.querySelector(".upload-prompt")) {
@@ -2618,24 +2617,26 @@ var renderUpload = function renderUpload() {
       thumbnail.remove();
     });
 
-    for (var i = 0; i < files.length; i++) {
-      thumbnailElement = document.createElement("div");
+    var _loop = function _loop(i) {
+      var thumbnailElement = document.createElement("div");
       thumbnailElement.classList.add("upload-thumb");
       document.querySelector(".container").appendChild(thumbnailElement);
       thumbnailElement.dataset.label = files[i].name;
 
       if (files[i].type.startsWith("image/")) {
-        (function () {
-          var reader = new FileReader();
-          reader.readAsDataURL(files[i]);
+        var reader = new FileReader();
+        reader.readAsDataURL(files[i]);
 
-          reader.onload = function () {
-            thumbnailElement.style.backgroundImage = "url('".concat(reader.result, "')");
-          };
-        })();
+        reader.onload = function () {
+          thumbnailElement.style.backgroundImage = "url('".concat(reader.result, "')");
+        };
       } else {
         thumbnailElement.style.backgroundImage = null;
       }
+    };
+
+    for (var i = 0; i < files.length; i++) {
+      _loop(i);
     }
   }
 };
