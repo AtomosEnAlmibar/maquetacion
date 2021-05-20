@@ -2577,7 +2577,7 @@ var renderUpload = function renderUpload() {
   var inputElements = document.querySelectorAll(".upload-input");
   inputElements.forEach(function (inputElement) {
     var uploadElement = inputElement.closest(".upload");
-    uploadElement.addEventListener("click", function (e) {
+    inputElement.closest(".upload-file").addEventListener("click", function (e) {
       inputElement.click();
     });
     inputElement.addEventListener("change", function (e) {
@@ -2613,6 +2613,10 @@ var renderUpload = function renderUpload() {
       uploadElement.querySelector(".upload-prompt").remove();
     }
 
+    if (document.querySelector(".text")) {
+      document.querySelector(".text").remove();
+    }
+
     thumbnails.forEach(function (thumbnail) {
       thumbnail.remove();
     });
@@ -2638,7 +2642,18 @@ var renderUpload = function renderUpload() {
     for (var i = 0; i < files.length; i++) {
       _loop(i);
     }
+
+    focusImage();
   }
+};
+
+var focusImage = function focusImage() {
+  var images = document.querySelectorAll(".upload-thumb");
+  images.forEach(function (image) {
+    image.addEventListener("click", function () {
+      document.querySelector(".thumbnail").style.backgroundImage = image.style.backgroundImage;
+    });
+  });
 };
 
 renderUpload();

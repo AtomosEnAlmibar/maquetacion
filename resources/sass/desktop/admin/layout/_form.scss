@@ -4,11 +4,16 @@
     flex-direction: column;
     background-color:#1F2833;   
     order: 2; 
+
     * {
         font-family: Arial, Helvetica, sans-serif;
         color: #4ec9c1;
+        
+    }  
+    
+    #ck {
         background-color: transparent;
-    }    
+    }
 
     #expandir_form {                   
         position: relative;
@@ -83,8 +88,7 @@
         justify-content: row;
         flex-direction: column;
 
-        border: 4px solid #4ec9c1;;
-        
+        border: 4px solid #4ec9c1;;        
 
         .menu-pestana {
             z-index: 80;
@@ -135,12 +139,11 @@
         .pestana {
             display: flex;
             position: relative;
-
-            max-width: 100%;
+            width: 100%;
             height: 100%;   
             align-items: center;     
             justify-content: center;
-            flex-direction: column;
+            flex-direction: row;
 
             .drop-zone {
                 max-width: 200px;
@@ -267,7 +270,7 @@
         }
 
         .modify-form {            
-            display: none;
+            display: flex;
             flex-direction: row;
             z-index: 3;            
             width: 100%;

@@ -217,6 +217,8 @@
 #atomosform * {
   font-family: Arial, Helvetica, sans-serif;
   color: #4ec9c1;
+}
+#atomosform #ck {
   background-color: transparent;
 }
 #atomosform #expandir_form {
@@ -330,11 +332,11 @@
 #atomosform form .pestana {
   display: flex;
   position: relative;
-  max-width: 100%;
+  width: 100%;
   height: 100%;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
 }
 #atomosform form .pestana .drop-zone {
   max-width: 200px;
@@ -441,7 +443,7 @@
   display: flex;
 }
 #atomosform form .modify-form {
-  display: none;
+  display: flex;
   flex-direction: row;
   z-index: 3;
   width: 100%;
@@ -767,25 +769,46 @@
   width: 1em;
 }
 
+.image-info {
+  max-height: 80%;
+  width: 52.5%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+.image-info .thumbnail {
+  z-index: 998;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+}
+.image-info .thumbnail .text {
+  font-style: oblique;
+}
+.image-info .form {
+  height: 30%;
+  display: block;
+}
+.image-info .form label {
+  display: block;
+}
+
 .upload {
-  position: fixed;
+  z-index: 0;
   align-items: center;
   border: 0.2em dashed #02a8b1;
   color: #cccccc;
-  cursor: pointer;
   display: flex;
   font-size: 1.2em;
   font-weight: 500;
   max-height: 80%;
-  width: 42.5%;
+  width: 32.5%;
   margin-left: 2.5%;
   margin-right: 2.5%;
   justify-content: center;
   text-align: center;
-}
-
-.upload:hover {
-  border: 4px dashed #ff5100;
 }
 
 .upload-over {
@@ -798,18 +821,41 @@
   z-index: 999;
 }
 
-.upload-input {
+.upload-file {
+  display: flex;
+  z-index: 99;
+  cursor: pointer;
+  max-height: 15%;
+  width: 25%;
+  border-radius: 10px;
+  background-color: #cccccc;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+.upload-file span {
+  font-size: 24px;
+  font-weight: bolder;
+  color: darkgray;
+}
+.upload-file .upload-input {
   display: none;
 }
 
 .container {
+  z-index: 98;
   display: flex;
   width: 100%;
   height: 100%;
 }
 .container .upload-thumb {
-  min-width: 20%;
-  height: 100%;
+  margin-left: 1%;
+  margin-right: 1%;
+  z-index: 99;
+  max-width: 25%;
+  max-height: 15%;
   border-radius: 10px;
   overflow: hidden;
   background-color: #cccccc;
@@ -817,6 +863,7 @@
 }
 .container .upload-thumb::after {
   content: attr(data-label);
+  z-index: 99;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -826,7 +873,12 @@
   font-size: 14px;
   text-align: center;
 }
-.container .upload-thumb:hover {
-  transform: scale(2);
-  transition-duration: 0.25s;
+.container .add-image {
+  z-index: 99;
+  max-width: 25%;
+  max-height: 15%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #cccccc;
+  background-size: cover;
 }

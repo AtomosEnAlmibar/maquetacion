@@ -6,7 +6,7 @@ let renderUpload = () => {
     
         let uploadElement = inputElement.closest(".upload");
       
-        uploadElement.addEventListener("click", (e) => {            
+        inputElement.closest(".upload-file").addEventListener("click", (e) => {            
             inputElement.click();
         });
       
@@ -45,7 +45,11 @@ let renderUpload = () => {
       
         if (uploadElement.querySelector(".upload-prompt")) {
             uploadElement.querySelector(".upload-prompt").remove();
-        }        
+        } 
+        
+        if (document.querySelector(".text")){
+            document.querySelector(".text").remove();
+        }
         
         thumbnails.forEach(thumbnail => {
             thumbnail.remove();
@@ -69,9 +73,21 @@ let renderUpload = () => {
             } else {                
                 thumbnailElement.style.backgroundImage = null;
             }
-        }        
+        }
+        
+        focusImage();
 
     }
+}
+
+let focusImage = () => {
+    let images = document.querySelectorAll(".upload-thumb");
+
+    images.forEach(image =>{
+        image.addEventListener("click",() =>{
+            document.querySelector(".thumbnail").style.backgroundImage=image.style.backgroundImage;
+        })
+    });
 }
 
 renderUpload();
