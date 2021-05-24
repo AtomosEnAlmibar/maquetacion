@@ -148,14 +148,42 @@
   border-bottom: 2px solid #1F2833;
   border-radius: 0px 10px 0px 0px;
 }
-.atomosflex .faq .description {
+.atomosflex .faq .info {
+  display: flex;
   max-height: 100vh;
-  font-size: 20px;
+  height: 40vh;
   width: 100%;
+  transition-duration: 0.4s;
+}
+.atomosflex .faq .info .description {
+  font-size: 20px;
   margin-left: 2%;
   overflow: hidden;
   word-wrap: break-word;
-  transition-duration: 0.4s;
+}
+.atomosflex .faq .info .gallery {
+  display: flex;
+  margin-left: auto;
+  border-radius: 20px 0px 0px 20px;
+  background-color: #1F2833;
+  position: relative;
+  flex-wrap: wrap;
+  width: 45%;
+  height: 100%;
+}
+.atomosflex .faq .info .gallery .thumbnail-single {
+  flex-grow: 10;
+  border-radius: 20px;
+  background-color: grey;
+  width: 100%;
+  height: 75%;
+  float: right;
+}
+.atomosflex .faq .info .gallery .thumbnail-grid {
+  border-radius: 20px;
+  background-color: lightgray;
+  width: 25%;
+  height: 25%;
 }
 .atomosflex .faq .inactivo {
   max-height: 0vh;

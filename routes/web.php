@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['prefix' => 'admin'], function () {
 
+    Route::get('/image/delete/{image?}', 'App\Vendor\Image\Image@destroy')->name('delete_image');
+    Route::get('/image/temporal/{image?}', 'App\Vendor\Image\Image@showTemporal')->name('show_temporal_image_seo');
+    Route::get('/image/{image}', 'App\Vendor\Image\Image@show')->name('show_image_seo');
+    Route::post('/image/seo', 'App\Vendor\Image\Image@storeSeo')->name('store_image_seo');
+
+    Route::resource('locale_tags', 'App\Http\Controllers\Admin\LocaleTagController', [
+        'names' => [
+            'index' => 'locale_tags',
+            'create' => 'locale_tags_create',
+            'edit' => 'locale_tags_edit',
+            'store' => 'locale_tags_store',
+            'destroy' => 'locale_tags_destroy',
+            'show' => 'locale_tags_show',
+        ]
+    ]);
+
     Route::get('/sliders/filter/{filters?}', 'App\Http\Controllers\Admin\SliderController@filter')->name('sliders_filter');
 
     Route::resource('sliders', 'App\Http\Controllers\Admin\SliderController', [

@@ -80,14 +80,45 @@
             border-radius: 0px 10px 0px 0px;            
         }
 
-        .description {
+        .info {
+            display: flex;
             max-height: 100vh;
-            font-size: 20px;
+            height: 40vh;
             width: 100%;
-            margin-left: 2%;
-            overflow: hidden;
-            word-wrap: break-word;        
             transition-duration:  .4s;
+
+            .description {                
+                font-size: 20px;                
+                margin-left: 2%;
+                overflow: hidden;
+                word-wrap: break-word;                        
+            }
+
+            .gallery {
+                display: flex;
+                margin-left: auto; 
+                border-radius: 20px 0px 0px 20px;                                   
+                background-color: #1F2833;
+                position: relative;
+                flex-wrap: wrap;
+                width: 45%;
+                height: 100%;
+                .thumbnail-single {    
+                    flex-grow: 10;
+                    border-radius: 20px;                                   
+                    background-color: grey;
+                    width: 100%;
+                    height: 75%;
+                    float: right;                
+                }
+
+                .thumbnail-grid {                    
+                    border-radius: 20px;                                   
+                    background-color: lightgray;
+                    width: 25%;
+                    height: 25%;
+                }
+            }            
         }
 
         .inactivo {

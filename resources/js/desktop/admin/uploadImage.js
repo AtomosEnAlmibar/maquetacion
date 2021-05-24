@@ -86,6 +86,7 @@ let focusImage = () => {
     images.forEach(image =>{
         image.addEventListener("click",() =>{
             document.querySelector(".thumbnail").style.backgroundImage=image.style.backgroundImage;
+            document.querySelector(".image-form").reset();
         })
     });
 }

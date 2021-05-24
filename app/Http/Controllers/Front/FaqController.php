@@ -36,19 +36,17 @@ class FaqController extends Controller
         //     return collect($faq)->union($faq->locale->pluck('value','tag'));
         // });
 
-        $faqs = $this->faq->with('image_featured_desktop')->where('active', 1)->where('visible', 1)->get();
+        if($this->agent->isDesktop()){
+            $faqs = $this->faq->with('image_featured_desktop')->where('active', 1)->where('visible', 1)->get();
+            $faqs = $this->faq->with('image_grid_desktop')->where('active', 1)->where('visible', 1)->get();
+        }
+        
+        elseif($this->agent->isMobile()){
+            $faqs = $this->faq->with('image_featured_mobile')->where('active', 1)->where('visible', 1)->get();
+            $faqs = $this->faq->with('image_grid_mobile')->where('active', 1)->where('visible', 1)->get();
+        }
 
-        $faqs = $faqs->each(function($faq) {  
-            
-            $faq['locale'] = $faq->locale->pluck('value','tag');
-            
-            return $faq;
-        });
-
-        Debugbar::info($faqs);
-
-
-        $view = View::make('front.pages.faqs.index')
+        $view = View::make('front.faqs.index')
                 ->with('faqs', $faqs );
 
         return $view;

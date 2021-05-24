@@ -1924,7 +1924,9 @@ __webpack_require__(/*! ./filterTable */ "./resources/js/desktop/admin/filterTab
 
 __webpack_require__(/*! ./messages */ "./resources/js/desktop/admin/messages.js");
 
-__webpack_require__(/*! ./upload */ "./resources/js/desktop/admin/upload.js");
+__webpack_require__(/*! ./uploadImage */ "./resources/js/desktop/admin/uploadImage.js");
+
+__webpack_require__(/*! ./editImage */ "./resources/js/desktop/admin/editImage.js");
 
 /***/ }),
 
@@ -1962,6 +1964,108 @@ var createCK = function createCK() {
   });
 };
 createCK();
+
+/***/ }),
+
+/***/ "./resources/js/desktop/admin/editImage.js":
+/*!*************************************************!*\
+  !*** ./resources/js/desktop/admin/editImage.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var imageStoreButton = document.getElementById("store-image");
+var imageDeleteButton = document.getElementById("delete-image");
+imageStoreButton.addEventListener("click", function (e) {
+  var imageForm = document.getElementById('image-form');
+  var data = new FormData(imageForm);
+  var url = imageForm.action;
+
+  var sendImagePostRequest = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              try {
+                axios.post(url, data).then(function (response) {
+                  imageForm.reset();
+                  stopWait();
+                  showMessage('success', response.data.message);
+                });
+              } catch (error) {
+                console.error(error);
+              }
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function sendImagePostRequest() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  sendImagePostRequest();
+});
+imageDeleteButton.addEventListener("click", function (e) {
+  var url = imageDeleteButton.dataset.route;
+  var imageForm = document.getElementById('image-form');
+  var temporalId = document.getElementById('modal-image-temporal-id').value;
+  var id = document.getElementById('modal-image-id').value;
+
+  if (id) {
+    var sendImageDeleteRequest = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                try {
+                  axios.get(url, {
+                    params: {
+                      'image': id
+                    }
+                  }).then(function (response) {
+                    deleteThumbnail(response.data.imageId);
+                    showMessage('success', response.data.message);
+                  });
+                } catch (error) {}
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function sendImageDeleteRequest() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    sendImageDeleteRequest();
+  } else {
+    deleteThumbnail(temporalId);
+  }
+
+  imageForm.reset();
+  stopWait();
+});
 
 /***/ }),
 
@@ -2567,10 +2671,10 @@ closeButtons.forEach(function (closeButton) {
 
 /***/ }),
 
-/***/ "./resources/js/desktop/admin/upload.js":
-/*!**********************************************!*\
-  !*** ./resources/js/desktop/admin/upload.js ***!
-  \**********************************************/
+/***/ "./resources/js/desktop/admin/uploadImage.js":
+/*!***************************************************!*\
+  !*** ./resources/js/desktop/admin/uploadImage.js ***!
+  \***************************************************/
 /***/ (() => {
 
 var renderUpload = function renderUpload() {
@@ -2652,6 +2756,7 @@ var focusImage = function focusImage() {
   images.forEach(function (image) {
     image.addEventListener("click", function () {
       document.querySelector(".thumbnail").style.backgroundImage = image.style.backgroundImage;
+      document.querySelector(".image-form").reset();
     });
   });
 };

@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'es',
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,6 +166,9 @@ return [
          * Package Service Providers...
          */
         Jenssegers\Agent\AgentServiceProvider::class,
+        App\Vendor\Locale\ManagerServiceProvider::class,
+        App\Vendor\Locale\TranslationServiceProvider::class,
+        App\Vendor\Locale\LocalizationSeoServiceProvider::class,
         /*
          * Application Service Providers...
          */
