@@ -9,3 +9,4 @@ require('./filterTable');
 require('./messages');
 require('./uploadImage');
 require('./editImage');
+require('./localeTags');

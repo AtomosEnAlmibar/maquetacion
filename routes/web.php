@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,19 +20,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/image/{image}', 'App\Vendor\Image\Image@show')->name('show_image_seo');
     Route::post('/image/seo', 'App\Vendor\Image\Image@storeSeo')->name('store_image_seo');
 
-    Route::resource('locale_tags', 'App\Http\Controllers\Admin\LocaleTagController', [
-        'names' => [
-            'index' => 'locale_tags',
-            'create' => 'locale_tags_create',
-            'edit' => 'locale_tags_edit',
-            'store' => 'locale_tags_store',
-            'destroy' => 'locale_tags_destroy',
-            'show' => 'locale_tags_show',
-        ]
-    ]);
+    Route::get('/tags/import', 'App\Http\Controllers\Admin\LocaleTagController@importTags')->name('tags_import');
+    Route::get('/tags/{group}/{key}', 'App\Http\Controllers\Admin\LocaleTagController@edit')->name('tags_edit');
+    Route::get('/tags', 'App\Http\Controllers\Admin\LocaleTagController@destroy')->name('tags_destroy');
+    Route::get('/tags', 'App\Http\Controllers\Admin\LocaleTagController@index')->name('tags');
+    Route::post('/tags', 'App\Http\Controllers\Admin\LocaleTagController@store')->name('tags_store');
 
     Route::get('/sliders/filter/{filters?}', 'App\Http\Controllers\Admin\SliderController@filter')->name('sliders_filter');
-
     Route::resource('sliders', 'App\Http\Controllers\Admin\SliderController', [
         'names' => [
             'index' => 'sliders',
