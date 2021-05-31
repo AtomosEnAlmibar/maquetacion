@@ -26,6 +26,16 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/tags', 'App\Http\Controllers\Admin\LocaleTagController@index')->name('tags');
     Route::post('/tags', 'App\Http\Controllers\Admin\LocaleTagController@store')->name('tags_store');
 
+    Route::resource('leechs', 'App\Http\Controllers\Admin\LeechController', [
+        'names' => [
+            'index' => 'leechs',
+            'create' => 'leechs_create',
+            'store' => 'leechs_store',
+            'destroy' => 'leechs_destroy',
+            'show' => 'leechs_show',
+        ]
+    ]);
+
     Route::get('/sliders/filter/{filters?}', 'App\Http\Controllers\Admin\SliderController@filter')->name('sliders_filter');
     Route::resource('sliders', 'App\Http\Controllers\Admin\SliderController', [
         'names' => [
@@ -110,6 +120,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::post('/fingerprint', 'App\Http\Controllers\Front\FingerprintController@store')->name('front_fingerprint');
 
 Route::get('/faqs','App\Http\Controllers\Front\FaqController@index');
+Route::get('/shop','App\Http\Controllers\Front\ShopController@index');
 
 Route::get('/login', 'App\Http\Controllers\Front\LoginController@index')->name('front_login');
 Route::post('/login', 'App\Http\Controllers\Front\LoginController@login')->name('front_login_submit');
