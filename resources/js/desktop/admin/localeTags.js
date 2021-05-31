@@ -1,7 +1,7 @@
 import {renderTable} from './formTable';
 import {showMessage} from './messages';
 
-/*export let renderLocaleTags = () => {
+export let renderLocaleTags = () => {
 
     let table = document.getElementById("table");
     let importTags = document.getElementById('import-tags');
@@ -35,5 +35,5 @@ import {showMessage} from './messages';
     }
 }
 
-renderLocaleTags();*/
+renderLocaleTags();
 console.log("cosas")
