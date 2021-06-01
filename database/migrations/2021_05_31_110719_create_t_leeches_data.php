@@ -17,6 +17,8 @@ class CreateTLeechesData extends Migration
             $table->id();
             $table->string("scientific_name");
             $table->string("common_name");
+            $table->boolean("visible");
+            $table->boolean("active");
             $table->timestamps();
         });
     }

@@ -14,12 +14,13 @@ class CreateTProducts extends Migration
     public function up()
     {
         Schema::create('t_products', function (Blueprint $table) {
-            $table->id();
-            $table->string("product_type");
+            $table->id();            
             $table->string("name");
             $table->text("description");
             $table->integer("quantity");
             $table->float("price");
+            $table->boolean("visible");
+            $table->boolean("active");
             $table->timestamps();
         });
     }

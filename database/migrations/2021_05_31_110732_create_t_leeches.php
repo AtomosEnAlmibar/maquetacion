@@ -17,6 +17,8 @@ class CreateTLeeches extends Migration
             $table->id();
             $table->foreignId('leech_data_id')->constrained('t_leeches_data');
             $table->integer("age");
+            $table->boolean("visible");
+            $table->boolean("active");
             $table->timestamps();
         });
     }
