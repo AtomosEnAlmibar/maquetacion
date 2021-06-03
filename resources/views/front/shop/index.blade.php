@@ -2,7 +2,7 @@
 
 @section('content') 
     <div class="scene">
-        <div class="card is-flipped">
+        <div class="card">
             <div class="card-face --front">
                 <img src="https://cdn.shopify.com/s/files/1/1192/1400/products/hirudo-medicinalis_1024x1024.jpg?v=1567280772">
             </div>

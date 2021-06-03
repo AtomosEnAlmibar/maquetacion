@@ -121,6 +121,7 @@ Route::post('/fingerprint', 'App\Http\Controllers\Front\FingerprintController@st
 
 Route::get('/faqs','App\Http\Controllers\Front\FaqController@index');
 Route::get('/shop','App\Http\Controllers\Front\ShopController@index');
+Route::get('/shop/product','App\Http\Controllers\Front\ProductController@index');
 
 Route::get('/login', 'App\Http\Controllers\Front\LoginController@index')->name('front_login');
 Route::post('/login', 'App\Http\Controllers\Front\LoginController@login')->name('front_login_submit');

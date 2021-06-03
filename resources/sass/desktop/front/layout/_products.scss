@@ -1,0 +1,194 @@
+.product {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: row;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    width: 90%;
+    height: 90%;
+    .gallery {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: darkred;
+
+        .main-image {
+            height: 80%;
+            width: 100%;
+            img {
+                height: 100%;
+            }
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            height: 20%;
+
+            .grid-image {                
+                img {
+                    height: 100%;
+                }
+            }
+
+            .grid-image:first-child:nth-last-child(1) {
+                width: 100%;
+            }
+                            
+            .grid-image:first-child:nth-last-child(2),
+            .grid-image:first-child:nth-last-child(2) ~ .grid-image {
+                width: 45%;
+            }   
+                        
+            .grid-image:first-child:nth-last-child(3),
+            .grid-image:first-child:nth-last-child(3) ~ .grid-image {
+                width: 28.3333%;
+            }
+                        
+            .grid-image:first-child:nth-last-child(4),
+            .grid-image:first-child:nth-last-child(4) ~ .grid-image {
+                width: 20%;
+            }
+        }
+    }
+
+    .product-details {
+        width: 50%;
+        background-color: beige;
+
+        .title {
+            padding-left: 10px;
+            font-size: 78px;
+            text-align: center;
+            
+        }
+
+        .price {
+            padding-left: 10px;
+            font-size: 38px;
+            span {
+                font-size: 58px;
+                color: crimson;
+            }            
+        }
+
+        .scientific-name {
+            padding-left: 10px;
+            h3 {
+                color: hsl(0, 0%, 25%);
+            }
+        }
+
+        .common-name {
+            padding-left: 10px;
+            h3 {
+                color: hsl(0, 0%, 25%);
+            }
+        }
+
+        .description {
+            padding-left: 10px;
+            h3 {
+                color: hsl(0, 0%, 25%);
+            }
+        }
+
+        .buy {            
+            display: flex;
+            flex-direction: row;            
+            height: 20%; 
+
+            .buy-item {
+                width: 50%;                
+                .buy-now {                        
+                    width: 90%;
+                    height: 6vh;
+                    display: inline-block;
+                    border-radius: 25px;
+                    background-color: hsl(14, 91%, 74%);
+                    border: none;
+                    color: #FFFFFF;
+                    text-align: center;
+                    font-size: 16px;
+                    padding: 20px;                        
+                    transition: all 0.5s;
+                    cursor: pointer;
+                    margin: 5px;
+                    span {
+                        cursor: pointer;
+                        display: inline-block;
+                        position: relative;
+                        transition: 0.5s;
+                    }
+
+                    span:after {
+                        content: '\00bb';
+                        position: absolute;
+                        opacity: 0;
+                        top: 0;
+                        right: -20px;
+                        transition: 0.5s;
+                    }
+                }
+
+                .buy-now:hover {
+                    span {
+                        padding-right: 25px;
+                    }
+
+                    span:after {
+                        opacity: 1;
+                        right: 0;
+                    }
+                }
+
+                .add-cart {                        
+                    width: 90%;
+                    height: 6vh;
+                    display: inline-block;
+                    border-radius: 25px;
+                    background-color: hsl(49, 100%, 70%);
+                    border: none;
+                    color: #FFFFFF;
+                    text-align: center;
+                    font-size: 16px;
+                    padding: 20px;                        
+                    transition: all 0.5s;
+                    cursor: pointer;
+                    margin: 5px;
+                    span {
+                        cursor: pointer;
+                        display: inline-block;
+                        position: relative;
+                        transition: 0.5s;
+                    }
+
+                    span:after {
+                        content: '\00bb';
+                        position: absolute;
+                        opacity: 0;
+                        top: 0;
+                        right: -20px;
+                        transition: 0.5s;
+                    }
+                }
+
+                .add-cart:hover {
+                    span {
+                        padding-right: 25px;
+                    }
+
+                    span:after {
+                        opacity: 1;
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
