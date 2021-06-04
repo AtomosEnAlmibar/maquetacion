@@ -191,11 +191,19 @@
   transition-duration: 0.4s;
 }
 
-.scene {
+.products {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+}
+.products .scene {
   width: 300px;
   height: 360px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-.scene .card {
+.products .scene .card {
   width: 100%;
   height: 100%;
   position: relative;
@@ -203,7 +211,7 @@
   transform-style: preserve-3d;
   font-family: Arial, Helvetica;
 }
-.scene .card .card-face {
+.products .scene .card .card-face {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -215,20 +223,20 @@
           user-select: none;
   border-radius: 25px;
 }
-.scene .card .--front {
+.products .scene .card .--front {
   background: red;
 }
-.scene .card .--front img {
+.products .scene .card .--front img {
   border-radius: 25px;
   width: 100%;
   height: 100%;
 }
-.scene .card .--back {
+.products .scene .card .--back {
   display: flex;
   background-color: bisque;
   transform: rotateY(180deg);
 }
-.scene .card .--back .title {
+.products .scene .card .--back .title {
   padding: 0px 25px 3px 25px;
   height: 20%;
   font-weight: bold;
@@ -236,29 +244,29 @@
   vertical-align: bottom;
   text-align: center;
 }
-.scene .card .--back .leech-name {
+.products .scene .card .--back .leech-name {
   padding: 0px 25px 0px 25px;
   height: 10%;
   font-size: 20px;
   color: #404040;
   vertical-align: middle;
 }
-.scene .card .--back .description {
+.products .scene .card .--back .description {
   padding: 0px 25px 0px 25px;
   height: 50%;
   vertical-align: middle;
   text-align: justify;
 }
-.scene .card .--back .buy {
+.products .scene .card .--back .buy {
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 20%;
 }
-.scene .card .--back .buy .buy-item {
+.products .scene .card .--back .buy .buy-item {
   width: 70%;
 }
-.scene .card .--back .buy .buy-item .buy-now {
+.products .scene .card .--back .buy .buy-item .buy-now {
   width: 100%;
   height: 7vh;
   display: inline-block;
@@ -273,13 +281,13 @@
   cursor: pointer;
   margin: 5px;
 }
-.scene .card .--back .buy .buy-item .buy-now span {
+.products .scene .card .--back .buy .buy-item .buy-now span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
-.scene .card .--back .buy .buy-item .buy-now span:after {
+.products .scene .card .--back .buy .buy-item .buy-now span:after {
   content: "»";
   position: absolute;
   opacity: 0;
@@ -287,20 +295,20 @@
   right: -20px;
   transition: 0.5s;
 }
-.scene .card .--back .buy .buy-item .buy-now:hover span {
+.products .scene .card .--back .buy .buy-item .buy-now:hover span {
   padding-right: 25px;
 }
-.scene .card .--back .buy .buy-item .buy-now:hover span:after {
+.products .scene .card .--back .buy .buy-item .buy-now:hover span:after {
   opacity: 1;
   right: 0;
 }
-.scene .card .--back .buy .price {
+.products .scene .card .--back .buy .price {
   font-weight: bold;
   font-size: 24px;
   width: 30%;
   text-align: right;
 }
-.scene .card.is-flipped {
+.products .scene .card.is-flipped {
   transform: rotateY(180deg);
 }
 
@@ -356,20 +364,12 @@
 }
 .product .product-details {
   width: 50%;
-  background-color: beige;
+  background-color: #ffe3c2;
 }
 .product .product-details .title {
   padding-left: 10px;
-  font-size: 78px;
+  font-size: 68px;
   text-align: center;
-}
-.product .product-details .price {
-  padding-left: 10px;
-  font-size: 38px;
-}
-.product .product-details .price span {
-  font-size: 58px;
-  color: crimson;
 }
 .product .product-details .scientific-name {
   padding-left: 10px;
@@ -384,10 +384,21 @@
   color: #404040;
 }
 .product .product-details .description {
+  border-bottom: 2px solid #ffb65c;
   padding-left: 10px;
+  padding-bottom: 50px;
 }
 .product .product-details .description h3 {
   color: #404040;
+}
+.product .product-details .price {
+  text-align: right;
+  padding-left: 10px;
+  font-size: 38px;
+}
+.product .product-details .price span {
+  font-size: 48px;
+  color: crimson;
 }
 .product .product-details .buy {
   display: flex;
@@ -399,14 +410,14 @@
 }
 .product .product-details .buy .buy-item .buy-now {
   width: 90%;
-  height: 6vh;
+  height: 9vh;
   display: inline-block;
   border-radius: 25px;
-  background-color: #f99d80;
+  background-color: #f77750;
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 16px;
+  font-size: 24px;
   padding: 20px;
   transition: all 0.5s;
   cursor: pointer;
@@ -435,14 +446,14 @@
 }
 .product .product-details .buy .buy-item .add-cart {
   width: 90%;
-  height: 6vh;
+  height: 9vh;
   display: inline-block;
   border-radius: 25px;
-  background-color: #ffe366;
+  background-color: #ffda33;
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 16px;
+  font-size: 24px;
   padding: 20px;
   transition: all 0.5s;
   cursor: pointer;

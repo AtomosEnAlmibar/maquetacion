@@ -1987,21 +1987,23 @@ boton_expandir_menu.addEventListener("click", function () {
   \********************************************/
 /***/ (() => {
 
-var card = document.querySelector('.card');
+var cards = document.querySelectorAll('.card');
 var buyButtons = document.querySelectorAll('.buy-now');
 buyButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     console.log("polla");
   });
 });
-card.addEventListener('mouseenter', function () {
-  card.classList.toggle('is-flipped');
-});
-card.addEventListener('mouseleave', function () {
-  card.classList.toggle('is-flipped');
-});
-card.addEventListener('click', function () {
-  window.location.replace = 'dev-maquetacion.com/shop/product';
+cards.forEach(function (card) {
+  card.addEventListener('mouseenter', function () {
+    card.classList.toggle('is-flipped');
+  });
+  card.addEventListener('mouseleave', function () {
+    card.classList.toggle('is-flipped');
+  });
+  card.addEventListener('click', function () {
+    window.location.replace = 'dev-maquetacion.com/shop/product';
+  });
 });
 
 /***/ }),

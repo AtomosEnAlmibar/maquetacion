@@ -10,3 +10,4 @@ require('./messages');
 require('./uploadImage');
 require('./editImage');
 require('./localeTags');
+require('./menuItems');

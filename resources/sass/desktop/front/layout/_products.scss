@@ -59,22 +59,13 @@
 
     .product-details {
         width: 50%;
-        background-color: beige;
+        background-color: hsl(33, 100%, 88%);
 
         .title {
             padding-left: 10px;
-            font-size: 78px;
+            font-size: 68px;
             text-align: center;
             
-        }
-
-        .price {
-            padding-left: 10px;
-            font-size: 38px;
-            span {
-                font-size: 58px;
-                color: crimson;
-            }            
         }
 
         .scientific-name {
@@ -92,10 +83,22 @@
         }
 
         .description {
+            border-bottom: 2px solid hsl(33, 100%, 68%);
             padding-left: 10px;
+            padding-bottom: 50px;
             h3 {
                 color: hsl(0, 0%, 25%);
             }
+        }
+
+        .price {
+            text-align: right;            
+            padding-left: 10px;
+            font-size: 38px;
+            span {
+                font-size: 48px;                
+                color: crimson;
+            }            
         }
 
         .buy {            
@@ -107,14 +110,14 @@
                 width: 50%;                
                 .buy-now {                        
                     width: 90%;
-                    height: 6vh;
+                    height: 9vh;
                     display: inline-block;
                     border-radius: 25px;
-                    background-color: hsl(14, 91%, 74%);
+                    background-color: hsl(14, 91%, 64%);
                     border: none;
                     color: #FFFFFF;
                     text-align: center;
-                    font-size: 16px;
+                    font-size: 24px;
                     padding: 20px;                        
                     transition: all 0.5s;
                     cursor: pointer;
@@ -149,14 +152,14 @@
 
                 .add-cart {                        
                     width: 90%;
-                    height: 6vh;
+                    height: 9vh;
                     display: inline-block;
                     border-radius: 25px;
-                    background-color: hsl(49, 100%, 70%);
+                    background-color: hsl(49, 100%, 60%);
                     border: none;
                     color: #FFFFFF;
                     text-align: center;
-                    font-size: 16px;
+                    font-size: 24px;
                     padding: 20px;                        
                     transition: all 0.5s;
                     cursor: pointer;

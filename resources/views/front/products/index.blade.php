@@ -21,10 +21,6 @@
         <div class="title">
             <span>20 leech live pack</span>
         </div>
-        <div class="price">
-            <label>Price: </label>
-            <span>350€</span>
-        </div>
         <div class="scientific-name">
             <h3>Scientific Name:</h3>
             <span>Hirudo medicinalis</span>
@@ -38,6 +34,9 @@
             <span>The general morphology of medicinal leeches follows that of most other leeches. Fully mature adults can be up to 20 cm in length, and are green, brown, or greenish-brown with a darker tone on the dorsal side and a lighter ventral side. The dorsal side also has a thin red stripe. These organisms have two suckers, one at each end, called the anterior and posterior suckers. The posterior is used mainly for leverage, whereas the anterior sucker, consisting of the jaw and teeth, is where the feeding takes place. Medicinal leeches have three jaws (tripartite) that resemble saws, on which are approximately 100 sharp edges used to incise the host. The incision leaves a mark that is an inverted Y inside of a circle. After piercing the skin, they suck out blood whilst injecting anticoagulants (hirudin).[2] Large adults can consume up to ten times their body weight in a single meal, with 5–15 mL being the average volume taken.[3] These leeches can live for up to a year between feeding.[citation needed]
 
                 Medicinal leeches are hermaphrodites that reproduce by sexual mating, laying eggs in clutches of up to 50 near (but not under) water, and in shaded, humid places.</span>
+        </div>
+        <div class="price">            
+            <span>350€</span>
         </div>
         <div class="buy">
             <div class="buy-item">
