@@ -46,7 +46,7 @@ class FaqController extends Controller
             $faqs = $this->faq->with('image_grid_mobile')->where('active', 1)->where('visible', 1)->get();
         }
 
-        $view = View::make('front.faqs.index')
+        $view = View::make('front.pages.faqs.index')
                 ->with('faqs', $faqs );
 
         return $view;

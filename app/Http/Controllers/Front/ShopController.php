@@ -36,7 +36,7 @@ class ShopController extends Controller
             $products = $this->product->with('image_grid_mobile')->where('active', 1)->where('visible', 1)->get();
         } 
 
-        $view = View::make('front.shop.index')
+        $view = View::make('front.pages.shop.index')
                 ->with('products', $products );
 
         return $view;
