@@ -1,4 +1,4 @@
-<div class="menu encogido">
+<div class="menu">
     <div class="menu-item">Cosa 1</div>
     <div class="menu-item">Cosa 2</div>
     <div class="menu-item">Cosa 3</div>

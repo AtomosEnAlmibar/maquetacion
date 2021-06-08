@@ -1928,7 +1928,7 @@ __webpack_require__(/*! ./uploadImage */ "./resources/js/desktop/admin/uploadIma
 
 __webpack_require__(/*! ./editImage */ "./resources/js/desktop/admin/editImage.js");
 
-__webpack_require__(/*! ./localeTags */ "./resources/js/desktop/admin/localeTags.js");
+__webpack_require__(/*! ./localeTags */ "./resources/js/desktop/admin/localeTags.js"); //require('./menuItems');
 
 /***/ }),
 

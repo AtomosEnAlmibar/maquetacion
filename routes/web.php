@@ -65,6 +65,19 @@ Route::group(['prefix' => 'admin'], function () {
         ]
     ]);
 
+    Route::resource('contactos', 'App\Http\Controllers\Admin\ContactController', [
+        'parameters' => [
+            'contactos' => 'contact', 
+        ],
+        'names' => [
+            'index' => 'contacts',
+            'create' => 'contacts_create',
+            'store' => 'contacts_store',
+            'destroy' => 'contacts_destroy',
+            'edit' => 'contacts_edit',
+        ]
+    ]);
+
     Route::resource('faqs/categorias', 'App\Http\Controllers\Admin\FaqCategoryController', [
         'parameters' => [
             'categorias' => 'faq_category', 
