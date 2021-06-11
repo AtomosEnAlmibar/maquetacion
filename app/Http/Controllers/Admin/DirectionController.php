@@ -16,7 +16,7 @@ class DirectionController extends Controller
 
     function __construct(Direction $direction)
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
 
         $this->direction = $direction;
     }

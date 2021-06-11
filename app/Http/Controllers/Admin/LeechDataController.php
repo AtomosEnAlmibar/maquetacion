@@ -23,7 +23,7 @@ class LeechController extends Controller
 
     function __construct(Leech $leech, Agent $agent, Locale $locale, Image $image)
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
         $this->agent = $agent;
         $this->locale = $locale;
         $this->image = $image;
